@@ -1,11 +1,15 @@
-# Running Vault with external end to end encryption
+---
+title: Running Vault with external end to end encryption
+shortTitle: External encryption
+weight: 10
+---
 
 This document assumes you have a working Kuberentes cluster which has a:
-* Working install of Vault.
-* That you have a working knowledge of Kubernetes.
-* A working install of helm
-* A working knowledge of Kubernetes ingress
-* A valid external (www.example.com) SSL certificate, verified by your provider as a Kubernetes secret.
+- Working install of Vault.
+- That you have a working knowledge of Kubernetes.
+- A working install of helm
+- A working knowledge of Kubernetes ingress
+- A valid external (www.example.com) SSL certificate, verified by your provider as a Kubernetes secret.
 
 ## Background
 
@@ -22,7 +26,7 @@ on a production website or ingress-controller that has a lot of traffic.
 ## Install
 ### ingress-nginx
 ### vaules.yaml
-```
+```yaml
 controller:
   electionID: vault-ingress-controller-leader
   ingressClass: nginx-vault
@@ -44,13 +48,13 @@ controller:
         topologyKey: kubernetes.io/hostname
 ```
 ### Install nginx-ingress via helm
-```
+```bash
 helm install nginx-stable/nginx-ingress --name my-release -f vaules.yaml
 ```
 
 ## Configuration
 ### SSL Secret example:
-```
+```yaml
 apiVersion: v1
 data:
   tls.crt: LS0tLS1......=
@@ -65,7 +69,7 @@ type: Opaque
 ```
 
 ### CR Vault Config:
-```
+```yaml
 ---
 apiVersion: "vault.banzaicloud.com/v1alpha1"
 kind: "Vault"
@@ -94,7 +98,7 @@ spec:
     ui: true
 ```
 ### CR Service:
-```
+```yaml
   # Specify the Service's type where the Vault Service is exposed
   serviceType: ClusterIP
   servicePorts:
@@ -104,7 +108,7 @@ spec:
     ext-clu-port: 8301
 ```
 ### Mount the secret into your vault pod
-```
+```yaml
   volumes:
     - name: wildcard-ssl
       secret:
@@ -117,7 +121,7 @@ spec:
 ```
 
 ### CR Ingress:
-```
+```yaml
   # Request an Ingress controller with the default configuration
   ingress:
     annotations:

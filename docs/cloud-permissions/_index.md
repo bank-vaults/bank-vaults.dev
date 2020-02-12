@@ -1,4 +1,8 @@
-# Cloud permissions
+---
+title: Cloud permissions
+shortTitle: Permissions
+weight: 10
+---
 
 The `bank-vaults` CLI command needs certain cloud permissions to function properly (init, unseal, configuration).
 

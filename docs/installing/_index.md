@@ -1,3 +1,9 @@
+---
+title: Installing Bank-Vaults
+shortTitle: Install
+weight: 10
+---
+
 # Getting and Installing
 
 ```bash

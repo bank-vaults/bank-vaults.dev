@@ -1,4 +1,8 @@
-# Using Vault Agent Templating in the mutating webhook
+---
+title: Using Vault Agent Templating in the mutating webhook
+shortTitle: Vault Agent Templating
+weight: 10
+---
 
 This document assumes you have a working Kuberentes cluster which has a:
 * Working install of Vault.
@@ -22,7 +26,7 @@ As of Kubernetes 1.10 you can [share](https://kubernetes.io/docs/tasks/configure
 
 If you wish to use Vault TTLs you need a way that you can HUP your application on configuration file change, Vault Agent can be [configured](https://www.vaultproject.io/docs/agent/template/index.html) with a `command` attribute which it will run when it writes a new configuration file. You can find a basic example below which uses/requires the ShareProcessNamespace feature and the Kubernetes Auth:
 
-```
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap

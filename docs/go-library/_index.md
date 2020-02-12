@@ -1,4 +1,8 @@
-# The Go library
+---
+title: The Go library
+shortTitle: Go library
+weight: 10
+---
 
 This repository contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/banzaicloud/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
 

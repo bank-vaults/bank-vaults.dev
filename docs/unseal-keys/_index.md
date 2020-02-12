@@ -1,4 +1,7 @@
-# Unseal Keys
+---
+title: Unseal keys
+weight: 10
+---
 
 Vault data and the unseal keys live together, if you delete a Vault instance installed by the operator or the Helm chart all your data and the unseal keys to that initialized state should remain untouched. Read more about it in the [official documentaion](https://www.vaultproject.io/docs/concepts/seal/).
 

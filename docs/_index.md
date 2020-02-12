@@ -1,3 +1,8 @@
+---
+title: Bank-Vaults
+weight: 100
+---
+
 # Table of Contents
 
 - [Getting and Installing](installing/README.md)

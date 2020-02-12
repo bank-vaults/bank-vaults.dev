@@ -1,4 +1,7 @@
-# Operator
+---
+title: Operator
+weight: 10
+---
 
 We have a Vault operator built on bank-vaults features as:
 
@@ -14,7 +17,7 @@ The source code can be found inside the [operator](https://github.com/banzaiclou
 
 ## Deploying the operator
 
-The proper way for deploying the operator is to use the [Helm chart](../../charts/vault-operator/README.md):
+The proper way for deploying the operator is to use the [Helm chart](https://github.com/banzaicloud/bank-vaults/blob/master/charts/vault-operator/README.md):
 
 ```bash
 helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com

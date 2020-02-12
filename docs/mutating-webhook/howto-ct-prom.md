@@ -1,12 +1,16 @@
-# Injecting consul-template into the prometheus operator for vault metrics
+---
+title: Injecting consul-template into the prometheus operator for vault metrics
+shortTitle: Injecting consul-template
+weight: 10
+---
 
 This document assumes you have a working Kuberentes cluster which has a:
-* Working install of Vault.
-* Working install of the mutating webhook via helm or manually.
-* That you have a working knowledge of Kubernetes.
-* That you have the [CoreOS Prometheus Operator](https://github.com/coreos/prometheus-operator) installed and working.
-* That you have the ability to apply Deployments or PodSpec's to the cluster.
-* That you have the ability to change the configuration of the mutating webhook.
+- Working install of Vault.
+- Working install of the mutating webhook via helm or manually.
+- That you have a working knowledge of Kubernetes.
+- That you have the [CoreOS Prometheus Operator](https://github.com/coreos/prometheus-operator) installed and working.
+- That you have the ability to apply Deployments or PodSpec's to the cluster.
+- That you have the ability to change the configuration of the mutating webhook.
 
 ## Background
 
@@ -30,7 +34,7 @@ custom Dockerfile and entrypoint.
 
 ## Configuration
 ### Custom consul-temlpate image; docker-entrypoint.sh
-```
+```bash
 #!/bin/dumb-init /bin/sh
 set -ex
 
@@ -77,7 +81,7 @@ fi
 exec "$@"
 ```
 ### Dockerfile
-```
+```Dockerfile
 FROM hashicorp/consul-template:0.19.6-dev-alpine
 
 ADD build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
@@ -89,7 +93,7 @@ RUN apk --no-cache add shadow && \
 USER consul-template:consul-template
 ```
 ### ConfigMap
-```
+```yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -124,7 +128,7 @@ data:
 
 ## Vault CR snippets:
 Set the vault image to use:
-```
+```yaml
 ---
 apiVersion: "vault.banzaicloud.com/v1alpha1"
 kind: "Vault"
@@ -135,7 +139,7 @@ spec:
   image: vault:1.1.2
 ```
 Our Vault config for telemetry:
-```
+```yaml
   # A YAML representation of a final vault config file.
   # See https://www.vaultproject.io/docs/configuration/ for more information.
   config:
@@ -144,13 +148,13 @@ Our Vault config for telemetry:
       disable_hostname: true
 ```
 Disable statsd:
-```
+```yaml
   # since we are running Vault 1.1.0 with the native Prometheus support, we do not need the statsD exporter
   statsdDisabled: true
 ```
 Vault externalConfig
 policies :
-```
+```yaml
   externalConfig:
     policies:
       - name: prometheus-operator-prometheus
@@ -164,7 +168,7 @@ policies :
           }
 ```
 auth:
-```
+```yaml
     auth:
       - type: token
         roles:
@@ -183,7 +187,7 @@ auth:
 
 ## Prometheus Operator Snippets:
 ### prometheusSpec:
-```
+```yaml
   prometheusSpec:
     # https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
     podMetadata:
@@ -198,7 +202,7 @@ auth:
 ```
 
 ### Prometheus CRD ServiceMonitor
-```
+```yaml
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor

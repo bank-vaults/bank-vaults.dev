@@ -1,4 +1,7 @@
-# Contributing
+---
+title: Contributing
+weight: 10
+---
 
 If you find this project useful here's how you can help:
 
@@ -16,7 +19,7 @@ vault server -config vault.hcl
 ```
 
 **example vault.hcl:**
-```
+```shell
 api_addr = "http://localhost:8200"
 
 storage "file" {
@@ -35,7 +38,7 @@ VAULT_ADDR=http://127.0.0.1:8200 bank-vaults unseal --init --mode file
 ```
 
 The unseal keys and root token are stored your working directory:
-```
+```shell
 vault-root
 vault-unseal-0
 vault-unseal-1

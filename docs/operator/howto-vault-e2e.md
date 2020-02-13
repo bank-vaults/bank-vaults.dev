@@ -4,7 +4,8 @@ shortTitle: External encryption
 weight: 10
 ---
 
-This document assumes you have a working Kuberentes cluster which has a:
+This document assumes you have a working Kubernetes cluster which has a:
+
 - Working install of Vault.
 - That you have a working knowledge of Kubernetes.
 - A working install of helm
@@ -16,16 +17,20 @@ This document assumes you have a working Kuberentes cluster which has a:
 The bank-vaults operator takes care of creating and maintaining internal cluster communications but if you wish to use your vault install
 outside of your Kubernetes cluster what is the best way to maintain a secure state. Creating a standard Ingress object will reverse proxy
 these requests to your vault instance but this is a hand off between the external SSL connection and the internal one and not acceptable
-for some circumstances and if you have to adhere to scrict security standards.
+for some circumstances and if you have to adhere to strict security standards.
 
 ## Workflow
-Here we will create a separate TCP listner for vault using a custom SSL certificate on an external domain of your choosing. We will then
+
+Here we will create a separate TCP listener for vault using a custom SSL certificate on an external domain of your choosing. We will then
 install a unique ingress-nginx controller allowing SSL pass through. SSL Pass through comes with a performance hit, so you would not use this
 on a production website or ingress-controller that has a lot of traffic.
 
 ## Install
+
 ### ingress-nginx
-### vaules.yaml
+
+values.yaml
+
 ```yaml
 controller:
   electionID: vault-ingress-controller-leader
@@ -47,13 +52,17 @@ controller:
             values: ["vault-ingress"]
         topologyKey: kubernetes.io/hostname
 ```
+
 ### Install nginx-ingress via helm
+
 ```bash
 helm install nginx-stable/nginx-ingress --name my-release -f vaules.yaml
 ```
 
 ## Configuration
+
 ### SSL Secret example:
+
 ```yaml
 apiVersion: v1
 data:
@@ -69,6 +78,7 @@ type: Opaque
 ```
 
 ### CR Vault Config:
+
 ```yaml
 ---
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -97,7 +107,9 @@ spec:
     cluster_addr: https://vault:8201
     ui: true
 ```
+
 ### CR Service:
+
 ```yaml
   # Specify the Service's type where the Vault Service is exposed
   serviceType: ClusterIP
@@ -107,7 +119,9 @@ spec:
     ext-api-port: 8300
     ext-clu-port: 8301
 ```
+
 ### Mount the secret into your vault pod
+
 ```yaml
   volumes:
     - name: wildcard-ssl
@@ -121,6 +135,7 @@ spec:
 ```
 
 ### CR Ingress:
+
 ```yaml
   # Request an Ingress controller with the default configuration
   ingress:

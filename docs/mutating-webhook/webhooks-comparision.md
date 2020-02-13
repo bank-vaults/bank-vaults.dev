@@ -1,10 +1,11 @@
 ---
-title: Comparision of Banzai Cloud and HashiCorp mutating webhook for Vault
+title: Comparison of Banzai Cloud and HashiCorp mutating webhook for Vault
 shortTitle: Comparison
 weight: 10
 ---
 
 #### Legend:
+
 - :white_check_mark: - Implemented
 - :o: - Planned/In-progress
 

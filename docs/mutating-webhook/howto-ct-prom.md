@@ -4,7 +4,8 @@ shortTitle: Injecting consul-template
 weight: 10
 ---
 
-This document assumes you have a working Kuberentes cluster which has a:
+This document assumes you have a working Kubernetes cluster which has a:
+
 - Working install of Vault.
 - Working install of the mutating webhook via helm or manually.
 - That you have a working knowledge of Kubernetes.
@@ -18,6 +19,7 @@ As of Vault 1.1 it is no longer required to use a statsD exporter to get vault m
 The problem is you need to log into Vault to get access to this endpoint.
 
 ## Workflow
+
 The webhook will inject `vault-agent` as an init container, based on the Kubernetes Auth role configuration `prometheus-operator-prometheus`
 provided below this will grab a token with the policy of `prometheus-operator-prometheus`.
 
@@ -29,11 +31,13 @@ Prometheus then can use this token to read the Vault Prometheus endpoint.
 The trick here is that Prometheus is run with the SecurityContext UID of 1000 but the default `consul-template` image is running under the UID of 100. This
 is because of a Dockerfile Volume that is configured which dockerd mounts as 100 (/consul-template/data).
 
-Subseqently using this `consul-template` means it will never start, so we need to ensure we do not use this declared volume and change the UID using a
+Subsequently using this `consul-template` means it will never start, so we need to ensure we do not use this declared volume and change the UID using a
 custom Dockerfile and entrypoint.
 
 ## Configuration
+
 ### Custom consul-temlpate image; docker-entrypoint.sh
+
 ```bash
 #!/bin/dumb-init /bin/sh
 set -ex
@@ -80,7 +84,9 @@ fi
 
 exec "$@"
 ```
+
 ### Dockerfile
+
 ```Dockerfile
 FROM hashicorp/consul-template:0.19.6-dev-alpine
 
@@ -92,7 +98,9 @@ RUN apk --no-cache add shadow && \
 
 USER consul-template:consul-template
 ```
+
 ### ConfigMap
+
 ```yaml
 ---
 apiVersion: v1
@@ -126,8 +134,10 @@ data:
     }
 ```
 
-## Vault CR snippets:
+## Vault CR snippets
+
 Set the vault image to use:
+
 ```yaml
 ---
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -138,7 +148,9 @@ spec:
   size: 2
   image: vault:1.1.2
 ```
+
 Our Vault config for telemetry:
+
 ```yaml
   # A YAML representation of a final vault config file.
   # See https://www.vaultproject.io/docs/configuration/ for more information.
@@ -147,13 +159,16 @@ Our Vault config for telemetry:
       prometheus_retention_time: 30s
       disable_hostname: true
 ```
+
 Disable statsd:
+
 ```yaml
   # since we are running Vault 1.1.0 with the native Prometheus support, we do not need the statsD exporter
   statsdDisabled: true
 ```
-Vault externalConfig
-policies :
+
+Vault externalConfig policies:
+
 ```yaml
   externalConfig:
     policies:
@@ -167,7 +182,9 @@ policies :
           capabilities = ["list", "read"]
           }
 ```
+
 auth:
+
 ```yaml
     auth:
       - type: token
@@ -186,7 +203,9 @@ auth:
 ```
 
 ## Prometheus Operator Snippets:
+
 ### prometheusSpec:
+
 ```yaml
   prometheusSpec:
     # https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
@@ -202,6 +221,7 @@ auth:
 ```
 
 ### Prometheus CRD ServiceMonitor
+
 ```yaml
 ---
 apiVersion: monitoring.coreos.com/v1

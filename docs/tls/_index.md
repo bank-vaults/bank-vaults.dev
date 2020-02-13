@@ -11,6 +11,7 @@ Bank-Vaults tries to automates as much as possible for handling TLS certificates
 The operator and the chart as well generates one Kubernetes Secret holding the TLS certificates, this is named `${VAULT_CR_NAME}-tls` (in `vault-tls` in most examples in this repo):
 
 The Secret data keys are:
+
 - `ca.crt`
 - `server.crt`
 - `server.key`
@@ -47,7 +48,7 @@ Using existing secret, which contains the TLS certificate, define `existingTlsSe
 
 ### Generating custom certificates with CFSSL for Bank-Vaults
 
-If you don't wish to use the Helm or Operator genereted certificates the most easiest way to create a custom certificate for Bank-Vaults is [CFSSL](https://github.com/cloudflare/cfssl).
+If you don't wish to use the Helm or Operator generated certificates the most easiest way to create a custom certificate for Bank-Vaults is [CFSSL](https://github.com/cloudflare/cfssl).
 This directory holds a set of custom CFSSL configurations which are prepared for the Helm release name `vault` in the `default` namespace. Of course you can put any other certificates into the Secret below, this is just an example:
 
 1. Create a CA first:
@@ -56,19 +57,19 @@ This directory holds a set of custom CFSSL configurations which are prepared for
     cfssl genkey -initca csr.json | cfssljson -bare ca
     ```
 
-2. Create a server certificate:
+1. Create a server certificate:
 
     ```bash
     cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=config.json -profile=server server.json | cfssljson -bare server
     ```
 
-3. Put these certificates (and the server key) into a Kubernetes Secret:
+1. Put these certificates (and the server key) into a Kubernetes Secret:
 
     ```bash
     kubectl create secret generic vault-tls --from-file=ca.crt=ca.pem --from-file=server.crt=server.pem --from-file=server.key=server-key.pem
     ```
 
-4.  Install the Vault:
+1. Install the Vault:
 
     - With the chart which uses this certificate:
 
@@ -85,6 +86,7 @@ This directory holds a set of custom CFSSL configurations which are prepared for
 ### Generating custom certificates with cert-manager for Bank-Vaults
 
 Example custom resource used by the cert-manager to generate the certificate for Bank-Vaults
+
 ```bash
 kubectl apply -f - <<EOF
 apiVersion: cert-manager.io/v1alpha2

@@ -104,7 +104,6 @@ export VAULT_TOKEN="$(aws kms decrypt \
   --query Plaintext --output text | base64 --decode)"
 ```
 
-
 The Instance profile in which the Pod is running has to have the following IAM Policies:
 
 - KMS: `kms:Encrypt, kms:Decrypt`

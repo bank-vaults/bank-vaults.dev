@@ -1,6 +1,5 @@
 ---
 title: Annotations and labels
-shortTitle: Annotations
 weight: 1000
 ---
 

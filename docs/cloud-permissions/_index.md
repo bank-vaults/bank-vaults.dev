@@ -1,6 +1,5 @@
 ---
 title: Cloud permissions
-shortTitle: Permissions
 weight: 600
 ---
 

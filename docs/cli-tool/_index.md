@@ -1,6 +1,6 @@
 ---
 title: The CLI tool
-shortTitle: CLI
+shortTitle: The CLI tool
 weight: 700
 ---
 

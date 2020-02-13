@@ -1,6 +1,6 @@
 ---
 title: TLS
-weight: 10
+weight: 500
 ---
 
 Bank-Vaults tries to automates as much as possible for handling TLS certificates.

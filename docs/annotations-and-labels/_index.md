@@ -1,7 +1,7 @@
 ---
 title: Annotations and labels
 shortTitle: Annotations
-weight: 10
+weight: 1000
 ---
 
 The Vault Operator suypport annotating most of the resources it creates using a set of fields in the Vault Specs:

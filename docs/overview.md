@@ -1,5 +1,6 @@
 ---
 title: Overview
+weight: 5
 ---
 
 **Banzai Cloud Bank-Vaults** is an umbrella project which provides various tools for Vault to make using and operating Hashicorp Vault easier.

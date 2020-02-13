@@ -1,7 +1,7 @@
 ---
 title: Watching External Secrets
 shortTitle: External Secrets
-weight: 10
+weight: 1100
 ---
 
 In some setup it might be needed to restart the Vault Statefulset when secrets, external to the operator control, are changed. 

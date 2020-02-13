@@ -1,6 +1,6 @@
 ---
 title: Operator
-weight: 10
+weight: 200
 ---
 
 We have a Vault operator built on bank-vaults features as:

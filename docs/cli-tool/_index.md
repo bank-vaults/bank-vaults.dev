@@ -1,7 +1,7 @@
 ---
 title: The CLI tool
 shortTitle: CLI
-weight: 10
+weight: 700
 ---
 
 The `bank-vaults` CLI tool is to help automate the setup and management of HashiCorp Vault.

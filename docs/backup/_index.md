@@ -1,7 +1,6 @@
 ---
 title: Backing up Vault
-shortTitle: Backup
-weight: 10
+weight: 650
 ---
 
 The vault-operator has support for backing up the cluster with Velero.

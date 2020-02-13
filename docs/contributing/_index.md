@@ -1,6 +1,6 @@
 ---
 title: Contributing
-weight: 10
+weight: 1200
 ---
 
 If you find this project useful here's how you can help:

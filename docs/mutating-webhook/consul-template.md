@@ -1,7 +1,7 @@
 ---
 title: Using consul-template in the mutating webhook
 shortTitle: Consul template
-weight: 10
+weight: 100
 ---
 
 This document assumes you have a working Kubernetes cluster which has a:

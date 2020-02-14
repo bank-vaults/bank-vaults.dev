@@ -1,7 +1,7 @@
 ---
 title: Injecting consul-template into the prometheus operator for vault metrics
 shortTitle: Injecting consul-template
-weight: 10
+weight: 400
 ---
 
 This document assumes you have a working Kubernetes cluster which has a:

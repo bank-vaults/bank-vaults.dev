@@ -1,7 +1,7 @@
 ---
 title: Monitoring the Webhook with Grafana and Prometheus
 shortTitle: Monitoring
-weight: 10
+weight: 300
 ---
 
 Install the webhook with monitoring and Prometheus Operator ServiceMonitor enabled:

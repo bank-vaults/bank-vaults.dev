@@ -5,7 +5,7 @@ weight: 5
 
 {{% include-headless "doc/bank-vaults-intro.md" %}}
 
-- <a href="https://github.com/banzaicloud/bank-vaults" target="_blank">View Github repository</a>
-- [View Bank Vaults related blogposts](/tags/vault/)
-- [Schedule a demo](/contact)
-- [Install Bank-Vaults](../installing/)
+## First step
+
+If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}).
+You can also <a href="https://github.com/banzaicloud/bank-vaults" target="_blank">view the Github repository</a>, the [Bank-Vaults related blogposts](/tags/vault/), or [schedule a demo](/contact).

@@ -10,7 +10,7 @@ At Banzai Cloud we prefer Prometheus for monitoring and use it also for Vault. I
       statsd_address: localhost:9125
 ```
 
-# A generic Prometheus kubernetes client Go Process runtime monitoring dashboard
+## A generic Prometheus kubernetes client Go Process runtime monitoring dashboard
 
 Found [here](https://grafana.com/grafana/dashboards/240)
 

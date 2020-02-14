@@ -1,4 +1,7 @@
-# Backing up Vault
+---
+title: Backing up Vault
+weight: 650
+---
 
 The vault-operator has support for backing up the cluster with Velero.
 
@@ -82,7 +85,7 @@ velero backup describe --details vault-1
 
 Output:
 
-```
+```shell
 Name:         vault-1
 Namespace:    velero
 Labels:       velero.io/backup=vault-1

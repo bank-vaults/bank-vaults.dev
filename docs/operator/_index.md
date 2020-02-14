@@ -1,4 +1,7 @@
-# Operator
+---
+title: Operator
+weight: 200
+---
 
 We have a Vault operator built on bank-vaults features as:
 
@@ -14,7 +17,7 @@ The source code can be found inside the [operator](https://github.com/banzaiclou
 
 ## Deploying the operator
 
-The proper way for deploying the operator is to use the [Helm chart](../../charts/vault-operator/README.md):
+The proper way for deploying the operator is to use the [Helm chart](https://github.com/banzaicloud/bank-vaults/blob/master/charts/vault-operator/README.md):
 
 ```bash
 helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
@@ -54,7 +57,7 @@ kubectl apply -f operator/deploy/rbac.yaml
 kubectl apply -f operator/deploy/cr-etcd-ha.yaml
 ```
 
-From now on, if you deploy a Vault CustomResource into the cluster which has an [Etcd Storage Backend](https://www.vaultproject.io/docs/configuration/storage/etcd.html) defined in its configuration the Vault operator will create an EtcdCluster CustomResource for the Vault instance, and the etcd-operator will orchestrate the etcd cluster. After the etcd cluster is ready the Vault instance can connect to it and will start up. If the Vault CustomResource is deleted from the cluster the etcd cluster will be garbage-collected as well. You have to make sure you define backup and restore for the etcd cluster to prevent data loss, this part is not handled by the Vault operator, see [this](https://github.com/coreos/etcd-operator#backup-and-restore-an-etcd-cluster) document for more details, but in general we suggest you to use [Velero](../docs/backup/README.md) for backups.
+From now on, if you deploy a Vault CustomResource into the cluster which has an [Etcd Storage Backend](https://www.vaultproject.io/docs/configuration/storage/etcd.html) defined in its configuration the Vault operator will create an EtcdCluster CustomResource for the Vault instance, and the etcd-operator will orchestrate the etcd cluster. After the etcd cluster is ready the Vault instance can connect to it and will start up. If the Vault CustomResource is deleted from the cluster the etcd cluster will be garbage-collected as well. You have to make sure you define backup and restore for the etcd cluster to prevent data loss, this part is not handled by the Vault operator, see [this](https://github.com/coreos/etcd-operator#backup-and-restore-an-etcd-cluster) document for more details, but in general we suggest you to use [Velero](../backup/) for backups.
 
 ### Use existing etcd
 

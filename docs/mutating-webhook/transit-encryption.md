@@ -1,4 +1,7 @@
-# Transit Encryption
+---
+title: Transit Encryption
+weight: 200
+---
 
 The transit secrets engine handles cryptographic functions on data in-transit. Vault doesn't store the data sent to the secrets engine. It can also be viewed as "cryptography as a service" or "encryption as a service". Detailed information about transit encryption can be found in [official documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
 

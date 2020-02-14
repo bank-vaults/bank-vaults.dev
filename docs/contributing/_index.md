@@ -1,11 +1,13 @@
-# Contributing
+---
+title: Contributing
+weight: 1200
+---
 
 If you find this project useful here's how you can help:
 
 - Send a pull request with your new features and bug fixes
 - Help new users with issues they may encounter
 - Support the development of this project and star this repo!
-
 
 ## Development environment
 
@@ -16,7 +18,8 @@ vault server -config vault.hcl
 ```
 
 **example vault.hcl:**
-```
+
+```shell
 api_addr = "http://localhost:8200"
 
 storage "file" {
@@ -29,13 +32,15 @@ listener "tcp" {
 }
 ```
 
-Now you have a running vault server which is unitialized and unsealed you can init and unseal it with `bank-vaults` cli-tool and unseal keys will be stored to a local file:
+Now you have a running vault server which is uninitialized and unsealed you can init and unseal it with `bank-vaults` cli-tool and unseal keys will be stored to a local file:
+
 ```shell
 VAULT_ADDR=http://127.0.0.1:8200 bank-vaults unseal --init --mode file
 ```
 
 The unseal keys and root token are stored your working directory:
-```
+
+```shell
 vault-root
 vault-unseal-0
 vault-unseal-1
@@ -43,7 +48,6 @@ vault-unseal-2
 vault-unseal-3
 vault-unseal-4
 ```
-
 
 ## Operator
 
@@ -72,6 +76,7 @@ $ DOCKER_LATEST=1 make docker
 ```
 
 There are at least four ways to distribute this image in your Kubernetes cluster, by default `IfNotPresent` image pull policy is used:
+
 - If you are using Docker for Mac, you don't have to anything, the Kubernetes cluster and your host shares the same Docker daemon.
 - If you are using Minikube with `--vm-driver=none` (you are probably using Linux) the same applies as for Docker for Mac
 - If you are using Minikube with some real `vm-driver` you have to run `eval $(minikube docker-env)` before building the Docker image with the `make` command so you build it with the minikube Docker daemon and the image will be stored there

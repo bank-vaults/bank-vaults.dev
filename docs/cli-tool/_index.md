@@ -1,4 +1,7 @@
-# The CLI tool
+---
+title: The CLI tool
+weight: 700
+---
 
 The `bank-vaults` CLI tool is to help automate the setup and management of HashiCorp Vault.
 
@@ -17,7 +20,7 @@ Features:
   - If the configuration is updated Vault will be reconfigured
   - It supports configuring Vault secret engines, plugins, auth methods, and policies
 
-The `bank-vaults` CLI command needs certain [cloud permissions](../cloud-permissions/README.md) to function properly (init, unseal, configuration).
+The `bank-vaults` CLI command needs certain [cloud permissions](../cloud-permissions/) to function properly (init, unseal, configuration).
 
 ## Example external Vault configuration
 

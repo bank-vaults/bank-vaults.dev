@@ -1,6 +1,9 @@
-# Unseal Keys
+---
+title: Unseal keys
+weight: 400
+---
 
-Vault data and the unseal keys live together, if you delete a Vault instance installed by the operator or the Helm chart all your data and the unseal keys to that initialized state should remain untouched. Read more about it in the [official documentaion](https://www.vaultproject.io/docs/concepts/seal/).
+Vault data and the unseal keys live together, if you delete a Vault instance installed by the operator or the Helm chart all your data and the unseal keys to that initialized state should remain untouched. Read more about it in the [official documentation](https://www.vaultproject.io/docs/concepts/seal/).
 
 The keys that will be stored by Bank-Vaults are:
 
@@ -17,11 +20,13 @@ To unseal Vault the `vault-root` token is not needed and can be removed from the
 To use the KMS-encrypted root token with Vault CLI:
 
 Required CLI tools:
-  - aws
+
+- aws
 
 Steps:
 
 1. Download and decrypt the root token (and the unseal keys, but that is not mandatory) into a file on your local file system:
+
     ```bash
     BUCKET=bank-vaults-0
     REGION=eu-central-1
@@ -42,6 +47,7 @@ Steps:
     ```
 
 1. Save it as an environment variable:
+
     ```bash
     export VAULT_TOKEN="$(cat vault-root.txt)"
     ```
@@ -51,6 +57,7 @@ Steps:
 To use the KMS-encrypted root token with vault CLI:
 
 Required CLI tools:
+
 - `gcloud`
 - `gsutil`
 
@@ -85,6 +92,7 @@ export VAULT_TOKEN=$(kubectl get secrets ${VAULT_NAME}-unseal-keys -o jsonpath={
 If you need to move your Vault instance from one provider or an external managed Vault, you will have to store those the unseal keys and a root token in the Bank-Vaults format.
 
 All examples assume that you have created files holding the root-token and the 5 unseal keys in plaintext:
+
 - vault-root.txt
 - vault-unseal-0.txt
 - vault-unseal-1.txt

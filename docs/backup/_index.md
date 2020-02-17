@@ -59,7 +59,7 @@ kubectl apply -f operator/deploy/cr-raft.yaml
 
 NOTE: The Vault CR in cr-raft.yaml has a special flag called `veleroEnabled`,
 this is useful for file-based Vault storage backends (`file`, `raft`), please
-see https://velero.io/docs/v1.2.0/hooks/:
+see the [Velero documentation](https://velero.io/docs/v1.2.0/hooks/):
 
 ```yaml
   # Add Velero fsfreeze sidecar container and supporting hook annotations to Vault Pods:
@@ -174,4 +174,4 @@ Delete the backup if you don't wish to keep it anymore:
 velero backup delete vault-1
 ```
 
-For a daily scheduled backup please see `docs/backup/schedule.yaml`.
+For a daily scheduled backup please see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults-docs/master/docs/backup/schedule.yaml).

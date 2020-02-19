@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  trigger-submodule-update:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Trigger
+          command: scripts/trigger-submodule-update.sh
+
+workflows:
+  ci:
+    jobs:
+      - trigger-submodule-update:
+          filters:
+            branches:
+              only: master

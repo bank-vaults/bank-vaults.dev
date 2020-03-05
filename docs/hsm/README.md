@@ -214,6 +214,7 @@ time="2020-03-04T13:32:29Z" level=info msg="HSM TokenInfo {Label:bank-vaults (Us
 time="2020-03-04T13:32:29Z" level=info msg="HSM SlotInfo for slot 0: {SlotDescription:Nitrokey Nitrokey HSM (DENK02000740000         ) 00 00 ManufacturerID:Nitrokey Flags:7 HardwareVersion:{Major:0 Minor:0} FirmwareVersion:{Major:0 Minor:0}}"
 time="2020-03-04T13:32:29Z" level=info msg="found objects with label \"bank-vaults\" in HSM"
 time="2020-03-04T13:32:29Z" level=info msg="this HSM device doesn't support encryption, extracting public key and doing encrytion on the computer"
+time="2020-03-04T13:32:29Z" level=info msg="no storage backend specified for HSM, using on device storage"
 time="2020-03-04T13:32:29Z" level=info msg="joining leader vault..."
 time="2020-03-04T13:32:29Z" level=info msg="vault metrics exporter enabled: :9091/metrics"
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -232,6 +233,66 @@ time="2020-03-04T13:32:33Z" level=info msg="unseal key stored in key store" key=
 time="2020-03-04T13:32:33Z" level=info msg="root token stored in key store" key=vault-root
 time="2020-03-04T13:32:33Z" level=info msg="vault is sealed, unsealing"
 time="2020-03-04T13:32:39Z" level=info msg="successfully unsealed vault"
+```
+
+Also. you will find the unseal keys and the root token on the HSM:
+
+```bash
+pkcs11-tool --list-objects
+```
+```
+Using slot 0 with a present token (0x0)
+Public Key Object; RSA 2048 bits
+  label:      bank-vaults
+  ID:         a9548075b20243627e971873826ead172e932359
+  Usage:      encrypt, verify, wrap
+  Access:     none
+Data object 2168561792
+  label:          'vault-test'
+  application:    'vault-test'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168561168
+  label:          'vault-unseal-0'
+  application:    'vault-unseal-0'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168561264
+  label:          'vault-unseal-1'
+  application:    'vault-unseal-1'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168561360
+  label:          'vault-unseal-2'
+  application:    'vault-unseal-2'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168562304
+  label:          'vault-unseal-3'
+  application:    'vault-unseal-3'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168562400
+  label:          'vault-unseal-4'
+  application:    'vault-unseal-4'
+  app_id:         <empty>
+  flags:           modifiable
+Data object 2168562496
+  label:          'vault-root'
+  application:    'vault-root'
+  app_id:         <empty>
+  flags:           modifiable
+```
+
+If you would like to clean up on the HSM after testing:
+
+```bash
+PIN=banzai
+
+for label in "vault-test" "vault-root" "vault-unseal-0" "vault-unseal-1" "vault-unseal-2" "vault-unseal-3" "vault-unseal-4"
+do
+  pkcs11-tool --delete-object --type data --label ${label} --pin ${PIN}
+done
 ```
 
 ## Additional HSM implementations

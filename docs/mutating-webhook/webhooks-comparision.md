@@ -16,6 +16,7 @@ weight: 500
 | Direct env var injection      | :white_check_mark: |   |
 | Injecting into K8S Secrets    | :white_check_mark: |   |
 | Injecting into K8S ConfigMaps | :white_check_mark: |   |
+| Injecting into K8S CRDs | :white_check_mark: |   |
 | Sidecar-less dynamic secrets  | :white_check_mark: |   |
 | CSI Driver                    | :o: |   |
 | Native Kubernetes sidecar     | :o: |   |

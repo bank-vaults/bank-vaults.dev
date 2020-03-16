@@ -302,7 +302,7 @@ Since the HSM is a hardware device connected to a physical node, Bank-Vaults has
     ```bash
     PIN=banzai
 
-    # Delete the unseal keys adn the root token
+    # Delete the unseal keys and the root token
     for label in "vault-test" "vault-root" "vault-unseal-0" "vault-unseal-1" "vault-unseal-2" "vault-unseal-3" "vault-unseal-4"
     do
       pkcs11-tool --delete-object --type data --label ${label} --pin ${PIN}

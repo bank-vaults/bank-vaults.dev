@@ -15,7 +15,11 @@ To support HSM devices for encrypting unseal-keys and root-tokens, Bank-Vaults:
 - the `bank-vaults` Docker image now includes the SoftHSM (for testing) and the OpenSC tooling,
 - the operator is aware of HSM and its nature.
 
-The HSM offers an encryption mechanism, but the unseal-keys and root-token have to be stored somewhere after they got encrypted. Some HSM devices offer to store a limited quantity of arbitrary data (like Nitrokey HSM). Bank-Vaults additionally offers Kubernetes Secrets to storage backend the encrypted unseal keys. We think that after encryption is safe to store the Kubernetes Secrets in this form. In future versions, we will probably offer more storage backends, but currently, this fulfills our requirements.
+The HSM offers an encryption mechanism, but the unseal-keys and root-token have to be stored somewhere after they got encrypted. Currently there are two possible solutions for that:
+
+- Some HSM devices can store a limited quantity of arbitrary data (like Nitrokey HSM), and Bank-Vaults can store the unseal-keys and root-token here.
+- If the HSM does not support that, Bank-Vaults uses the HSM to encrypt the unseal-keys and root-token, then stores them in [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/). We believe that it is safe to store these keys in Kubernetes Secrets in encrypted format.
+- In future versions, we will probably offer more storage backends, [contact us if you have a specific use case](/contact).
 
 Bank-Vaults offers the ability to use the pre-created the cryptographic encryption keys on the HSM device, or generate a key pair on the fly if there isn't any with the specified label in the specified slot.
 

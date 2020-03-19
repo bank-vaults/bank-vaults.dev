@@ -3,7 +3,7 @@ title: TLS
 weight: 500
 ---
 
-Bank-Vaults tries to automates as much as possible for handling TLS certificates.
+Bank-Vaults tries to automate as much as possible for handling TLS certificates.
 
 - The `vault-operator` automates the creation and renewal of TLS certificates for Vault.
 - The `vault` Helm Chart automates the creation only of TLS certificates for Vault via [Sprig](https://masterminds.github.io/sprig/crypto.html).
@@ -20,7 +20,7 @@ The operator doesn't overwrite this Secret holding the certificate if it already
 
 ## Operator custom TLS settings
 
-There are some attributes that can influence the TLS settings in the operator:
+Some attributes can influence the TLS settings in the operator:
 
 ```go
     // ExistingTLSSecretName is name of the secret contains TLS certificate (accepted secret type: kubernetes.io/tls)
@@ -48,8 +48,8 @@ Using existing secret, which contains the TLS certificate, define `existingTlsSe
 
 ### Generating custom certificates with CFSSL for Bank-Vaults
 
-If you don't wish to use the Helm or Operator generated certificates the most easiest way to create a custom certificate for Bank-Vaults is [CFSSL](https://github.com/cloudflare/cfssl).
-This directory holds a set of custom CFSSL configurations which are prepared for the Helm release name `vault` in the `default` namespace. Of course you can put any other certificates into the Secret below, this is just an example:
+If you don't wish to use the Helm or Operator generated certificates the easiest way to create a custom certificate for Bank-Vaults is [CFSSL](https://github.com/cloudflare/cfssl).
+This directory holds a set of custom CFSSL configurations which are prepared for the Helm release name `vault` in the `default` namespace. Of course, you can put any other certificates into the Secret below, this is just an example:
 
 1. Create a CA first:
 
@@ -69,7 +69,7 @@ This directory holds a set of custom CFSSL configurations which are prepared for
     kubectl create secret generic vault-tls --from-file=ca.crt=ca.pem --from-file=server.crt=server.pem --from-file=server.key=server-key.pem
     ```
 
-1. Install the Vault:
+1. Install the Vault instance:
 
     - With the chart which uses this certificate:
 

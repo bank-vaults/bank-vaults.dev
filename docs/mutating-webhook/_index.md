@@ -55,7 +55,7 @@ data:
   AWS_SECRET_ACCESSKEY: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY
 ```
 
-Also, the webhook can inject into any kind of resorces as well (even into CRDs):
+Also, the webhook can inject into any kind of resources as well (even into CRDs):
 
 ```yaml
 apiVersion: mysql.example.github.com/v1
@@ -68,7 +68,7 @@ spec:
 
 Writing into Vault, for example, getting a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
 
-***NOTE**: This feature takes advantage of secret caching, since we need to access the `my-role` endpoint twice, but in the background it is written only once in Vault:*
+***NOTE**: This feature takes advantage of secret caching since we need to access the `my-role` endpoint twice, but in the background, it is written only once in Vault:*
 
 ```yaml
     env:
@@ -86,7 +86,7 @@ Writing into Vault, for example, getting a [dynamic database username/password p
       value: "vault:secret/data/accounts/dockerhub#My username on DockerHub is: ${title .DOCKER_USERNAME}"
 ```
 
-In this case, an init-container will be injected to the given Pod. This container copies the `vault-env` binary into an in-memory volume, and mounts that Volume to every container which has an environment variable definition like that. It also changes the `command` of the container to run `vault-env` instead of your application directly. When `vault-env` starts up, it connects to Vault with the [Kubernetes Auth method](https://www.vaultproject.io/docs/auth/kubernetes.html), and checks the environment variables. The variables that have a reference to a value stored in Vault (`vault:secret/....`) are replaced with that value read from the Secret backend. After this, `vault-env` immediately executes (with `syscall.Exec()`) your process with the given arguments, replacing itself with that process (in non-daemon mode).
+In this case, an init-container will be injected into the given Pod. This container copies the `vault-env` binary into an in-memory volume and mounts that Volume to every container which has an environment variable definition like that. It also changes the `command` of the container to run `vault-env` instead of your application directly. When `vault-env` starts up, it connects to Vault with the [Kubernetes Auth method](https://www.vaultproject.io/docs/auth/kubernetes.html) and checks the environment variables. The variables that have a reference to a value stored in Vault (`vault:secret/....`) are replaced with that value read from the Secret backend. After this, `vault-env` immediately executes (with `syscall.Exec()`) your process with the given arguments, replacing itself with that process (in non-daemon mode).
 
 **With this solution none of your Secrets stored in Vault will ever land in Kubernetes Secrets, thus in etcd.**
 
@@ -138,7 +138,7 @@ Write a secret into Vault:
 vault kv put secret/valami/aws AWS_SECRET_ACCESS_KEY=s3cr3t
 ```
 
-This deployment will be mutated by the webhook, since it has at least one environment variable having a value which is a reference to a path in Vault:
+This deployment will be mutated by the webhook since it has at least one environment variable having a value which is a reference to a path in Vault:
 
 ```yaml
 apiVersion: apps/v1
@@ -229,7 +229,7 @@ kubectl annotate secret dockerhub vault.security.banzaicloud.io/vault-path="kube
 
 ## Using charts without explicit container.command and container.args
 
-The Webhook is now capable of determining the container's entrypoint and command with the help of image metadata queried from the image registry, this data is cached until the webhook Pod is restarted. If the registry is publicly accessible (without authentication) you don't need to do anything, but if the registry requires authentication the credentials have to be available in the Pod's `imagePullSecrets` section.
+The Webhook is now capable of determining the container's `ENTRYPOINT` and `CMD` with the help of image metadata queried from the image registry, this data is cached until the webhook Pod is restarted. If the registry is publicly accessible (without authentication) you don't need to do anything, but if the registry requires authentication the credentials have to be available in the Pod's `imagePullSecrets` section.
 
 Some examples (apply `cr.yaml` from the operator samples first):
 
@@ -243,7 +243,7 @@ helm upgrade --install mysql stable/mysql \
 
 ### Registry access
 
-You can also specify a default secret to be used by the webhook for cases where a pod has no `imagePullSecrets` specified. To make this work you have to set the environment variables `DEFAULT_IMAGE_PULL_SECRET` and `DEFAULT_IMAGE_PULL_SECRET_NAMESPACE` when deploying the vault-secrets-webhook. Have a look at the values.yaml of the
+You can also specify a default secret being used by the webhook for cases where a pod has no `imagePullSecrets` specified. To make this work you have to set the environment variables `DEFAULT_IMAGE_PULL_SECRET` and `DEFAULT_IMAGE_PULL_SECRET_NAMESPACE` when deploying the vault-secrets-webhook. Have a look at the values.yaml of the
 [vault-secrets-webhook](https://github.com/banzaicloud/bank-vaults/blob/master/charts/vault-secrets-webhook/values.yaml) helm chart to see how this is done.
 
 **NOTE**: _If you EC2 nodes are having ECR instance role added the webhook can request an ECR access token through that role automatically, instead of an explicit `imagePullSecret`_

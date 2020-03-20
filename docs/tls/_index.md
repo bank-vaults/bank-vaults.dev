@@ -104,7 +104,6 @@ spec:
   commonName: vault
   usages:
     - server auth
-    - client auth
   dnsNames:
     - vault
     - vault.default

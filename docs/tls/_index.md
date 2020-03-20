@@ -43,7 +43,7 @@ Some attributes can influence the TLS settings in the operator:
     CANamespaces []string `json:"caNamespaces,omitempty"`
 ```
 
-The `ca.crt` key is mandatory in `existingTlsSecretName` otherwise the Bank-Vaults components can verify the Vault server certificate.
+The `ca.crt` key is mandatory in `existingTlsSecretName` otherwise the Bank-Vaults components can't verify the Vault server certificate.
 
 ## Using the generated custom TLS certificate with vault-operator:
 

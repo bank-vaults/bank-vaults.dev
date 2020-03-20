@@ -23,7 +23,8 @@ The operator doesn't overwrite this Secret holding the certificate if it already
 Some attributes can influence the TLS settings in the operator:
 
 ```go
-    // ExistingTLSSecretName is name of the secret contains TLS certificate (accepted secret type: kubernetes.io/tls)
+    // ExistingTLSSecretName is name of the secret that contains a TLS server certificate and key and the corresponding CA certificate.
+    // Required secret format kubernetes.io/tls type secret keys + ca.crt key
     // If it is set, generating certificate will be disabled
     // default: ""
     ExistingTLSSecretName string `json:"existingTlsSecretName,omitempty"`
@@ -41,6 +42,8 @@ Some attributes can influence the TLS settings in the operator:
     // default:
     CANamespaces []string `json:"caNamespaces,omitempty"`
 ```
+
+The `ca.crt` key is mandatory in `existingTlsSecretName` otherwise the Bank-Vaults components can verify the Vault server certificate.
 
 ## Using the generated custom TLS certificate with vault-operator:
 
@@ -104,7 +107,6 @@ spec:
   commonName: vault
   usages:
     - server auth
-    - client auth
   dnsNames:
     - vault
     - vault.default

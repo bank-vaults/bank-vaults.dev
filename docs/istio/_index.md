@@ -40,7 +40,7 @@ We support the following three scenarios:
     - With `kubectl`:
 
         ```bash
-        kubectl patch istio -n istio-system mesh --type=json -p='[{"op": "replace", "path": "/spec/mtls", "value":true}]'
+        kubectl patch istio -n istio-system mesh --type=json -p='[{"op": "replace", "path": "/spec/meshPolicy/mtlsMode", "value":STRICT}]'
         ```
 
     - With `backyards`:

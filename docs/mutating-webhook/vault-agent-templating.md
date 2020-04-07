@@ -29,7 +29,7 @@ This document assumes you have a working Kubernetes cluster which has a:
 
 As of Kubernetes 1.10 you can [share](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) the process list of all containers in a pod, please check your Kubernetes API server FeatureGates configuration to find if it is on or not, it is default on in 1.12. The webhook will disable it by default in any version less than 1.12 and enable it by default for version 1.12 and above. You can override this configuration using the `vault.security.banzaicloud.io/vault-agent-share-process-namespace` annotation or webhook `vault_agent_share_process_namespace` environment variable.
 
-If you wish to use Vault TTLs you need a way that you can HUP your application on configuration file change, Vault Agent can be [configured](https://www.vaultproject.io/docs/agent/template/index.html) with a `command` attribute which it will run when it writes a new configuration file. You can find a basic example below which uses/requires the ShareProcessNamespace feature and the Kubernetes Auth:
+If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. Vault Agent can be [configured](https://www.vaultproject.io/docs/agent/template/index.html) to do that with a `command` attribute which will run when it writes a new configuration file. You can find a basic example below which uses/requires the ShareProcessNamespace feature and the Kubernetes Auth:
 
 ```yaml
 ---

@@ -57,7 +57,16 @@ kubectl apply -f operator/deploy/rbac.yaml
 kubectl apply -f operator/deploy/cr-etcd-ha.yaml
 ```
 
-From now on, if you deploy a Vault CustomResource into the cluster which has an [Etcd Storage Backend](https://www.vaultproject.io/docs/configuration/storage/etcd.html) defined in its configuration the Vault operator will create an EtcdCluster CustomResource for the Vault instance, and the etcd-operator will orchestrate the etcd cluster. After the etcd cluster is ready the Vault instance can connect to it and will start up. If the Vault CustomResource is deleted from the cluster the etcd cluster will be garbage-collected as well. You have to make sure you define backup and restore for the etcd cluster to prevent data loss, this part is not handled by the Vault operator, see [this](https://github.com/coreos/etcd-operator#backup-and-restore-an-etcd-cluster) document for more details, but in general we suggest you to use [Velero](../backup/) for backups.
+From now on, if you deploy a Vault CustomResource into a cluster which has an [Etcd Storage Backend](https://www.vaultproject.io/docs/configuration/storage/etcd.html) defined in its configuration:
+
+- the Vault operator will create an EtcdCluster CustomResource for the Vault instance, and
+- the etcd-operator will orchestrate the etcd cluster.
+
+After the etcd cluster is ready the Vault instance can connect to it and will start up. If the Vault CustomResource is deleted from the cluster the etcd cluster will be garbage-collected as well.
+
+{{< warning >}}
+You must define backup and restore for the etcd cluster to prevent data loss, this part is not handled by the Vault operator. See [this document](https://github.com/coreos/etcd-operator#backup-and-restore-an-etcd-cluster) for more details, but in general we suggest you to use [Velero](../backup/) for backups.
+{{< /warning >}}
 
 ### Use existing etcd
 

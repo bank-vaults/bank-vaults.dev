@@ -3,9 +3,13 @@ title: Annotations and labels
 weight: 1000
 ---
 
-The Vault Operator support annotating most of the resources it creates using a set of fields in the Vault Specs:
+{{< contents >}}
 
-## Common Vault Resources annotations
+## Annotations
+
+The Vault Operator supports annotating most of the resources it creates using a set of fields in the Vault Specs:
+
+### Common Vault Resources annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -27,7 +31,7 @@ These annotations are common to all Vault Created resources
 - Vault Configurer Service
 - Vault TLS Secret
 
-## Vault Statefulset Resources annotations
+### Vault Statefulset Resources annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -48,7 +52,7 @@ These annotations are common to all Vault Statefulset Created resources
 
 These annotations will override any annotation defined in the common set
 
-## Vault Configurer deployment Resources annotations
+### Vault Configurer deployment Resources annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -68,7 +72,7 @@ These annotations are common to all Vault Configurer Deployment Created resource
 
 These annotations will override any annotation defined in the common set
 
-## ETCD CRD Annotations
+### ETCD CRD Annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -82,7 +86,7 @@ metadata:
 
 These annotations are set *only* on the etcdcluster resource
 
-## ETCD PODs Annotations
+### ETCD PODs Annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -96,11 +100,11 @@ metadata:
 
 These annotations are set *only* on the etcd pods created by the etcd-operator
 
-# Labels
+## Labels
 
 The Vault Operator support labelling most of the resources it creates using a set of fields in the Vault Specs:
 
-## Vault Statefulset Resources labels
+### Vault Statefulset Resources labels
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -119,7 +123,7 @@ These Labels are common to all Vault Statefulset Created resources
 - Vault Services
 - Vault TLS Secret
 
-## Vault Configurer deployment Resources labels
+### Vault Configurer deployment Resources labels
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"

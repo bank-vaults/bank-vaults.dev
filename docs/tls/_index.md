@@ -31,7 +31,7 @@ Some attributes can influence the TLS settings in the operator:
 
     // TLSExpiryThreshold is the Vault TLS certificate expiration threshold in Go's Duration format.
     // default: 168h
-    TLSExpiryThreshold *time.Duration `json:"tlsExpiryThreshold,omitempty"`
+    TLSExpiryThreshold string `json:"tlsExpiryThreshold,omitempty"`
 
     // TLSAdditionalHosts is a list of additional hostnames or IP addresses to add to the SAN on the automatically generated TLS certificate.
     // default:

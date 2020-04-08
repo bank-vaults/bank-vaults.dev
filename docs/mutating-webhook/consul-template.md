@@ -45,7 +45,7 @@ As of Kubernetes 1.10 you can [share](https://kubernetes.io/docs/tasks/configure
 
 > Note, at the time of this writing, consul-template 0.20.0 is [broken](https://github.com/hashicorp/consul-template/pull/1182#issuecomment-486047781), do not use this version.
 
-If you wish to use Vault TTLs you need a way that you can HUP your application on configuration file change, consul template can be [configured](https://github.com/hashicorp/consul-template#configuration-file-format) with a 'command' attribute which it will run when it writes a new configuration file. You can find a basic example below (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)) which uses/requires the ShareProcessNamespace feature:
+If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. The consul template can be [configured](https://github.com/hashicorp/consul-template#configuration-file-format) to do that with a `command` attribute which will run when it writes a new configuration file. You can find a basic example below (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)) which uses/requires the ShareProcessNamespace feature:
 
 ```yaml
 ---

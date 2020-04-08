@@ -12,7 +12,7 @@ Some Examples include:
   **Starting with version 0.11 of cert-manager no label is available anymore so use the `watchedSecretsAnnotations` field**
 - Cloud IAM Credentials created with an external tool ( like terraform ) to allow vault to interact with the cloud services
 
-The Operator can watch a set of secrets in the namespace of the Vault resource using either a list of labels selector or annotations selector and update the statefulset, triggering a rolling restart, when the content of any of those secrets change
+The Operator can watch a set of secrets in the namespace of the Vault resource using either a list of labels selector or an annotations selector. The Operator can update the statefulset, triggering a rolling restart, when the content of any of those secrets changes.
 
 How to configure labels selectors
 

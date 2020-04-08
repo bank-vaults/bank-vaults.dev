@@ -16,8 +16,8 @@ This document assumes you have a working Kubernetes cluster which has a:
 
 The bank-vaults operator takes care of creating and maintaining internal cluster communications but if you wish to use your vault install
 outside of your Kubernetes cluster what is the best way to maintain a secure state. Creating a standard Ingress object will reverse proxy
-these requests to your vault instance but this is a hand off between the external SSL connection and the internal one and not acceptable
-for some circumstances and if you have to adhere to strict security standards.
+these requests to your vault instance but this is a hand off between the external SSL connection and the internal one. This might not be acceptable
+under some circumstances, for example, if you have to adhere to strict security standards.
 
 ## Workflow
 

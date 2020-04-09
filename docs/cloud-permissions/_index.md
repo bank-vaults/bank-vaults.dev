@@ -28,26 +28,28 @@ The Access Policy in which the Pod is running has to have the following IAM Role
 
 ## AWS
 
-### Enable IAM OIDC provider for cluster
+### Enable IAM OIDC provider for an EKS cluster
 
 To allow Vault pods to assume IAM roles in order to access AWS services the IAM OIDC provider needs to be enabled on the cluster.
 
 ```bash
-CLUSTER_NAME="mycluster"
+BANZAI_CURRENT_CLUSTER_NAME="mycluster"
 
 # Enable OIDC provider for the cluster with eksctl
 # Follow the docs here to do it manually https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 eksctl utils associate-iam-oidc-provider \
-    --name $CLUSTER_NAME \
+    --cluster ${BANZAI_CURRENT_CLUSTER_NAME} \
     --approve
 
 # Create a KMS key and S3 bucket and enter details here
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
-KMS_KEY_ARN="arn:aws:kms:eu-central-1:123456789191:key/02a2ba49-42ce-487f-b006-34c64f4b760e"
+REGION="eu-west-1"
+KMS_KEY_ID="9f054126-2a98-470c-9f10-9b3b0cad94a1"
+KMS_KEY_ARN="arn:aws:kms:${REGION}:${AWS_ACCOUNT_ID}:key/${KMS_KEY_ID}"
 BUCKET="bank-vaults"
-OIDC_PROVIDER=$(aws eks describe-cluster --name ${CLUSTER_NAME} --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
-SERVICE_ACCOUNT_NAME=vault
-SERVICE_ACCOUNT_NAMESPACE=vault
+OIDC_PROVIDER=$(aws eks describe-cluster --name ${BANZAI_CURRENT_CLUSTER_NAME} --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
+SERVICE_ACCOUNT_NAME="vault"
+SERVICE_ACCOUNT_NAMESPACE="vault"
 
 cat > trust.json <<EOF
 {
@@ -112,12 +114,12 @@ kubectl create serviceaccount $SERVICE_ACCOUNT_NAME --namespace $SERVICE_ACCOUNT
 kubectl annotate serviceaccount $SERVICE_ACCOUNT_NAME  --namespace $SERVICE_ACCOUNT_NAMESPACE eks.amazonaws.com/role-arn="arn:aws:iam::${AWS_ACCOUNT_ID}:role/vault"
 
 # Cleanup
-rm /tmp/operator-policy.json
+rm vault-policy.json trust.json
 ```
 
 ### Getting the root token
 
-After the Vault is successfully deployed, you will need to get the root token for first access.
+After Vault is successfully deployed, you can query the root-token for admin access.
 
 ```bash
 # Fetch Vault root token, check bucket for actual name based on unsealConfig.aws.s3Prefix

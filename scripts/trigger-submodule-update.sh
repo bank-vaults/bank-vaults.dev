@@ -13,6 +13,7 @@ function main()
         -d "{
             \"branch\": \"gh-pages\",
             \"parameters\": {
+                \"remote-trigger\": true,
                 \"module\": \"bank-vaults\"
             }
         }" "https://circleci.com/api/v2/project/${PROJECT_SLUG}/pipeline"

@@ -14,7 +14,7 @@ This templating is based on [Go templates](https://golang.org/pkg/text/template/
 
 ### Special characters
 
-To avoid confusion and potential parsing errors, the templates don't use the default delimiters that Go templates use (`{{` and `}}`). Instead, it uses `${` for the left delimiter, and `}` for the right one. Additionally, to quote parameters being passed to functions, surround them with backticks (`` ` ``) instead. For example, to call the `env` function, you can use this in your manifest:
+To avoid confusion and potential parsing errors (and interference with other templating tools like [Helm](https://helm.sh/docs/chart_best_practices/templates/)), the templates don't use the default delimiters that Go templates use (`{{` and `}}`). Instead, it uses `${` for the left delimiter, and `}` for the right one. Additionally, to quote parameters being passed to functions, surround them with backticks (`` ` ``) instead. For example, to call the `env` function, you can use this in your manifest:
 
 ```yaml
 password: "${ env `MY_ENVIRONMENT_VARIABLE` }"
@@ -32,19 +32,11 @@ One thing to keep in mind is that some Sprig functions might return values other
 
 To provide functionality that's more Kubernetes-friendly and cloud-native, bank-vaults provides a few additional functions not available in Sprig or Go. The functions and their parameters (in the order they should go in the function) are documented below.
 
-### `file`
-
-Reads the content of a file from disk at the given path and returns it. This assumes that the file exists, it's mounted, and readable by `vault-configurer`.
-
-Parameter | Type   | Required
-----------|--------|---------
-path      | String | Yes
-
 ### `awskms`
 
 Takes a base64-encoded, KMS-encrypted string and returns the decrypted string. Additionally, the function takes an optional second parameter for any encryption context that might be required for decrypting. If any encryption context is required, the function will take any number of additional parameters, each of which should be a key-value pair (separated by a `=`), corresponding to the full context.
 
-Note: this function assumes that the `vault-configurer` pod has the appropriate AWS IAM credentials and permissions to decrypt the given string. You can be inject the AWS IAM credentials by using Kubernetes secrets as environment variables, an EC2 instance role, [kube2iam](https://github.com/jtblin/kube2iam), etc.
+Note: this function assumes that the `vault-configurer` pod has the appropriate AWS IAM credentials and permissions to decrypt the given string. You can be inject the AWS IAM credentials by using Kubernetes secrets as environment variables, an EC2 instance role, [kube2iam](https://github.com/jtblin/kube2iam), or [EKS IAM roles](https://banzaicloud.com/docs/bank-vaults/cloud-permissions/#aws), etc.
 
 Parameter         | Type                           | Required
 ------------------|--------------------------------|---------
@@ -64,3 +56,28 @@ projectId     | String                | Yes
 location      | String                | Yes
 keyRing       | String                | Yes
 key           | String                | Yes
+
+### `blob`
+
+Reads the content of a blob from disk (file) or from cloud blob storage services (object storage) at the given URL and returns it. This assumes that the path exists, and is readable by `vault-configurer`.
+
+Valid values for the URL paramaters are listed below, for more fine grained options check the documentation of the [underlying library](https://gocloud.dev/howto/blob/):
+
+- `file:///path/to/dir/file`
+- `s3://my-bucket/object?region=us-west-1`
+- `gs://my-bucket/object`
+- `azblob://my-container/blob`
+
+Note: this function assumes that the `vault-configurer` pod has the appropriate rights to access the given cloud service, for that please check the [awskms](#awskms) and [gcpkms](#gcpkms) functions.
+
+Parameter | Type   | Required
+----------|--------|---------
+url       | String | Yes
+
+### `file`
+
+Reads the content of a file from disk at the given path and returns it. This assumes that the file exists, it's mounted, and readable by `vault-configurer`.
+
+Parameter | Type   | Required
+----------|--------|---------
+path      | String | Yes

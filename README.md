@@ -1,4 +1,4 @@
-This repository contains the source code of the official Bank-Vaults documentation. To read the documentation, visit the [Bank-Vaults documentation page](https://banzaicloud.com/docs/bank-vaults/)
+This repository contains the source code of the official [Bank-Vaults](https://github.com/banzaicloud/bank-vaults) documentation. To read the documentation, visit the [Bank-Vaults documentation page](https://banzaicloud.com/docs/bank-vaults/)
 
 If you find an error, feel free to send a pull request.
 

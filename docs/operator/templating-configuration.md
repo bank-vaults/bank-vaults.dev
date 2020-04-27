@@ -61,7 +61,7 @@ key           | String                | Yes
 
 Reads the content of a blob from disk (file) or from cloud blob storage services (object storage) at the given URL and returns it. This assumes that the path exists, and is readable by `vault-configurer`.
 
-Valid values for the URL paramaters are listed below, for more fine grained options check the documentation of the [underlying library](https://gocloud.dev/howto/blob/):
+Valid values for the URL parameters are listed below, for more fine grained options check the documentation of the [underlying library](https://gocloud.dev/howto/blob/):
 
 - `file:///path/to/dir/file`
 - `s3://my-bucket/object?region=us-west-1`

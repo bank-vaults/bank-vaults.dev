@@ -74,7 +74,7 @@ velero backup create --selector vault_cr=vault vault-1
 
 # OR
 
-kubectl apply -f docs/backup/backup.yaml
+kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/backup.yaml
 ```
 
 Check that the Velero backup got created successfully:
@@ -174,4 +174,4 @@ Delete the backup if you don't wish to keep it anymore:
 velero backup delete vault-1
 ```
 
-For a daily scheduled backup please see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults-docs/master/docs/backup/schedule.yaml).
+For a daily scheduled backup please see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/schedule.yaml).

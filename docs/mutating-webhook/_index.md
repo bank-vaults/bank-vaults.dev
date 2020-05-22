@@ -66,16 +66,32 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
-Writing into Vault, for example, getting a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
+Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Vault API, this can be also used to request a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
 
 ***NOTE**: This feature takes advantage of secret caching since we need to access the `my-role` endpoint twice, but in the background, it is written only once in Vault:*
 
 ```yaml
     env:
     - name: MYSQL_USERNAME
-      value: ">>vault:database/creds/my-role#username"
+      value: "vault:database/creds/my-role#username"
     - name: MYSQL_PASSWORD
-      value: ">>vault:database/creds/my-role#password"
+      value: "vault:database/creds/my-role#password"
+```
+
+Values starting with `">>vault:"` issue a `write` (HTTP POST/PUT) request towards the Vault API, some secret engine APIs should be `written` instead of `reading from` like the [Password Generator for HashiCorp Vault](https://github.com/sethvargo/vault-secrets-gen):
+
+```yaml
+    env:
+    - name: MY_SECRET_PASSWORD
+      value: ">>vault:gen/password#value"
+```
+
+Or with [Transit Secret Engine](https://www.vaultproject.io/api-docs/secret/transit#decrypt-data) which is a fairly complex example since we are using templates when rendering the response and send data in the write request as well:
+
+```yaml
+    env:
+    - name: MY_SECRET_PASSWORD
+      value: ">>vault:transit/decrypt/mykey#${.plaintext | b64dec}#{"ciphertext":"vault:v1:/DupSiSbX/ATkGmKAmhqD0tvukByrx6gmps7dVI="}"
 ```
 
 [Templating](https://golang.org/pkg/text/template/) is also supported on the secret sourced from Vault (in the key part, after the first `#`), in the very same fashion as in the Vault configuration and external configuration with all [the Sprig functions](http://masterminds.github.io/sprig/) (this is supported only for Pods right now):
@@ -92,7 +108,7 @@ In this case, an init-container will be injected into the given Pod. This contai
 
 `vault-env` was designed to work in Kubernetes in the first place, but nothing stops you to use it outside Kubernetes as well. It can be configured with the standard Vault client's [environment variables](https://www.vaultproject.io/docs/commands/#environment-variables) (because there is a standard Go Vault client underneath).
 
-Currently, the Kubernetes Service Account based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into. Implementation is ongoing to use [Vault Agent's Auto-Auth](https://www.vaultproject.io/docs/agent/autoauth/index.html) to request tokens in an init-container with all the supported authentication mechanisms.
+Currently, the Kubernetes Service Account-based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into. Implementation is ongoing to use [Vault Agent's Auto-Auth](https://www.vaultproject.io/docs/agent/autoauth/index.html) to request tokens in an init-container with all the supported authentication mechanisms.
 
 Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/) which became beta as of 1.13. This feature requires some changes in webhooks with side effects. Vault mutating admission webhook is `dry-run aware`.
 

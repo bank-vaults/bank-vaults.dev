@@ -10,8 +10,4 @@ At Banzai Cloud we prefer Prometheus for monitoring and use it also for Vault. I
       statsd_address: localhost:9125
 ```
 
-## A generic Prometheus kubernetes client Go Process runtime monitoring dashboard
-
-Found [here](https://grafana.com/grafana/dashboards/240)
-
-This can then be used against the webhook and any go process.
+You may find the [generic Prometheus kubernetes client Go Process runtime monitoring dashboard](https://grafana.com/grafana/dashboards/240) useful for monitoring the webhook or any other Go process.

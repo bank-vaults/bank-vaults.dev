@@ -214,9 +214,9 @@ kubectl apply -f deploy/test-dynamic-env-vars.yaml
 kubectl logs -f deployment/hello-secrets
 ```
 
-## Getting secret data from Vault and replace it in Kubernetes Secret
+## Getting secret data from Vault and replace it in Kubernetes Secret (and/or ConfigMap)
 
-You can mutate secrets as well if you set annotations and define proper vault path in secret data:
+You can mutate Secrets (and ConfigMaps) as well if you set annotations and define proper Vault path in the `data` section:
 
 ```yaml
 apiVersion: v1

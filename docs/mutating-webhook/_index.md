@@ -66,6 +66,14 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
+You can specify the version of a vault secrets as well if you define the version as an example below.
+
+```yaml
+        env:
+        - name: AWS_SECRET_ACCESS_KEY
+          value: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY#2
+```
+
 Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Vault API, this can be also used to request a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
 
 ***NOTE**: This feature takes advantage of secret caching since we need to access the `my-role` endpoint twice, but in the background, it is written only once in Vault:*
@@ -140,7 +148,7 @@ Deploying with Helm 3:
 ```bash
 helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
 kubectl create namespace vault-infra
-kubectl label namespace vault-infra name=vault-infra 
+kubectl label namespace vault-infra name=vault-infra
 helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
 ```
 
@@ -200,7 +208,7 @@ helm upgrade --install mysql stable/mysql --set mysqlRootPassword=your-root-pass
 
 # Deploy the vault-operator and the vault-secerts-webhook
 kubectl create namespace vault-infra
-kubectl label namespace vault-infra name=vault-infra 
+kubectl label namespace vault-infra name=vault-infra
 helm upgrade --namespace vault-infra --install vault-operator banzaicloud-stable/vault-operator
 helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
 

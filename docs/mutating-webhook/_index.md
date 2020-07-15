@@ -66,7 +66,7 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
-You can specify the version of a vault secrets as well if you define the version as an example below.
+You can specify the version of a vault secrets as well if you define the version as shown in the following  example.
 
 ```yaml
         env:

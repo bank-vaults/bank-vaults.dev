@@ -12,9 +12,9 @@ If you are getting the **x509: certificate signed by unknown authority app=vault
 - Build a docker image where the CA store of the OS layer of the image contains the CA certificate of the registry.
 - Alternatively, you can disable certificate verification for the registry by using the **REGISTRY_SKIP_VERIFY="true"** environment variable in the deployment of the webhook.
 
-## Is it possible to mutate ENV passed to a liveness or readiness probe?
+## Mutate ENV passed to a liveness or readiness probe
 
-Yes, just put /vault/vault-env before /bin/sh, for example:
+To mutate the ENV passed to a liveness or readiness probe, just put /vault/vault-env before /bin/sh, for example:
 
 ```yaml
 livenessProbe:
@@ -28,7 +28,8 @@ livenessProbe:
 
 ## Login to the Vault web UI
 
-To login to the Vault web UI,  you can use the root token, or any configured authentication backend.
+To login to the Vault web UI, you can use the root token, or any configured authentication backend.
+
 ## Can changing the vault CR delete the Vault instance and data?
 
 Bank-Vaults never ever deletes the Vault instance from the cluster. However, if you delete the Vault CR, then the Kubernetes garbage controller deletes the vault pods. You are recommended to [keep backups](/docs/bank-vaults/backup/).

@@ -12,6 +12,20 @@ If you are getting the **x509: certificate signed by unknown authority app=vault
 - Build a docker image where the CA store of the OS layer of the image contains the CA certificate of the registry.
 - Alternatively, you can disable certificate verification for the registry by using the **REGISTRY_SKIP_VERIFY="true"** environment variable in the deployment of the webhook.
 
+## Is it possible to mutate ENV passed to a liveness or readiness probe?
+
+Yes, just put /vault/vault-env before /bin/sh, for example:
+
+```yaml
+livenessProbe:
+  exec:
+    command:
+    - /vault/vault-env
+    - sh
+    - -c
+    - {{command-to-run}}
+```
+
 ## Login to the Vault web UI
 
 To login to the Vault web UI,  you can use the root token, or any configured authentication backend.

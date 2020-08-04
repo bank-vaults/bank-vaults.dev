@@ -142,7 +142,11 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 
 ### Helm chart
 
-There is a Helm chart available to deploy the [Vault Secrets Webhook](https://github.com/banzaicloud/bank-vaults/tree/master/charts/vault-secrets-webhook).
+There is a Helm chart available to deploy the [Vault Secrets Webhook](https://github.com/banzaicloud/bank-vaults/tree/master/charts/vault-secrets-webhook). Note that:
+
+- The user you use for deploying the chart to the k8s cluster needs cluster-admin privileges.
+- The Helm chart of the vault-secrets-webhook contains the templates of the required permissions as well.
+- The deployed RBAC objects contain the necessary permissions fo running the webhook.
 
 Deploying with Helm 3:
 

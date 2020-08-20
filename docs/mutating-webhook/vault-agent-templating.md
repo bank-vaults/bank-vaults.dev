@@ -16,7 +16,7 @@ This document assumes you have a working Kubernetes cluster which has a:
 
 - You have an application or tool that requires to read its configuration from a file.
 - You wish to have secrets that have a TTL and expire.
-- You do not wish to be limited on which vault secrets backend you use.
+- You have no issues with running your application with a sidecar.
 
 ## General concept
 

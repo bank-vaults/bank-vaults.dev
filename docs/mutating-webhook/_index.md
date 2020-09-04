@@ -66,7 +66,9 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
-You can specify the version of a vault secrets as well if you define the version as shown in the following  example.
+You can specify the version of the injected Vault secret as well in the special reference, the format is: `vault:PATH#KEY_OR_TEMPLATE#VERSION`
+
+Example:
 
 ```yaml
         env:
@@ -94,7 +96,9 @@ Values starting with `">>vault:"` issue a `write` (HTTP POST/PUT) request toward
       value: ">>vault:gen/password#value"
 ```
 
-Or with [Transit Secret Engine](https://www.vaultproject.io/api-docs/secret/transit#decrypt-data) which is a fairly complex example since we are using templates when rendering the response and send data in the write request as well:
+Or with [Transit Secret Engine](https://www.vaultproject.io/api-docs/secret/transit#decrypt-data) which is a fairly complex example since we are using templates when rendering the response and send data in the write request as well, the format is: `vault:PATH#KEY_OR_TEMPLATE#DATA`
+
+Example: 
 
 ```yaml
     env:

@@ -145,6 +145,7 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/mutate-configmap`|`"false"`|Mutate the annotated ConfigMap as well (only Secrets and Pods are mutated by default)|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|
+`vault.security.banzaicloud.io/vault-env-from-path`|`""`|Comma-delimited list of vault paths to pull in all secrets as environment variables|
 
 ## Deploying the webhook
 

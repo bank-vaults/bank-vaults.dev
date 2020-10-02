@@ -76,6 +76,14 @@ Example:
           value: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY#2
 ```
 
+There is a special `vault:login` reference format to request a working Vault token into an environment variable to be later consumed by your application:
+
+```yaml
+        env:
+        - name: VAULT_TOKEN
+          value: vault:login
+```
+
 Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Vault API, this can be also used to request a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
 
 ***NOTE**: This feature takes advantage of secret caching since we need to access the `my-role` endpoint twice, but in the background, it is written only once in Vault:*

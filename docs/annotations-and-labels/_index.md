@@ -3,7 +3,7 @@ title: Annotations and labels
 weight: 1000
 ---
 
-{{< contents >}}
+
 
 ## Annotations
 

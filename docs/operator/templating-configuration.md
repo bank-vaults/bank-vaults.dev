@@ -4,7 +4,7 @@ shortTitle: Templating configuration
 weight: 20
 ---
 
-{{< contents >}}
+
 
 ## Background
 

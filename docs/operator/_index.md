@@ -77,3 +77,7 @@ And all config under etcd storage will not be override.
 
 If you want setup pod anti-affinity. You can set `podAntiAffinity` vault with a topologyKey value. 
 For example, you can use `failure-domain.beta.kubernetes.io/zone` to force K8S deploy vault on multi AZ.
+
+## Deleting a resource created by the operator
+
+If you manually delete a resource that the Bank-Vaults operator has created (for example, the Ingress resource), the operator automatically recreates it every 30 seconds. If it doesn't, then something went wrong, or the operator is not running. In this case, check the logs of the operator.

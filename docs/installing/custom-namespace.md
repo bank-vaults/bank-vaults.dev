@@ -12,5 +12,4 @@ In the RBAC resources:
 In the Vault CR:
 
 - [unsealConfig.kubernetes.secretNamespace](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/cr.yaml#L101)
-- [auth.roles.bound_service_account_namespaces](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/cr.yaml#L138)
 - [secrets.configuration.config.issuing_certificates and crl_distribution_points:](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/cr.yaml#L155-L157)

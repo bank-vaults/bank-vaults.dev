@@ -66,6 +66,26 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
+Inline mutation:
+
+The webhook also support inline mutation when your secret needs to be replaced somewhere inside a string.
+
+Set the annotation `vault.security.banzaicloud.io/inline-mutation` to `true` and:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aws-key-secret
+data:
+  config.yaml: >
+foo: bar
+secret: ${{vault:secret/data/mysecret#supersecret}}
+type: Opaque
+```
+This works also for ConfigMap resources when `configMapMutation` is enabled.
+To enable inline mutation globally, set the env variable `INLINE_MUTATION: true` on the webhook.
+
 You can specify the version of the injected Vault secret as well in the special reference, the format is: `vault:PATH#KEY_OR_TEMPLATE#VERSION`
 
 Example:
@@ -154,6 +174,7 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|
 `vault.security.banzaicloud.io/vault-env-from-path`|`""`|Comma-delimited list of vault paths to pull in all secrets as environment variables|
+`vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets by using `${{vault:secret#field}}` inside a string|
 
 ## Deploying the webhook
 

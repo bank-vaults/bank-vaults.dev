@@ -68,7 +68,7 @@ spec:
 
 Inline mutation:
 
-The webhook also support inline mutation when your secret needs to be replaced somewhere inside a string.
+The webhook also supports inline mutation when your secret needs to be replaced somewhere inside a string.
 
 Set the annotation `vault.security.banzaicloud.io/inline-mutation` to `true` and:
 

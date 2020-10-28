@@ -126,7 +126,7 @@ Values starting with `">>vault:"` issue a `write` (HTTP POST/PUT) request toward
 
 Or with [Transit Secret Engine](https://www.vaultproject.io/api-docs/secret/transit#decrypt-data) which is a fairly complex example since we are using templates when rendering the response and send data in the write request as well, the format is: `vault:PATH#KEY_OR_TEMPLATE#DATA`
 
-Example: 
+Example:
 
 ```yaml
     env:
@@ -148,7 +148,7 @@ In this case, an init-container will be injected into the given Pod. This contai
 
 `vault-env` was designed to work in Kubernetes in the first place, but nothing stops you to use it outside Kubernetes as well. It can be configured with the standard Vault client's [environment variables](https://www.vaultproject.io/docs/commands/#environment-variables) (because there is a standard Go Vault client underneath).
 
-Currently, the Kubernetes Service Account-based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into. 
+Currently, the Kubernetes Service Account-based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into.
 
 - [GCP](https://www.vaultproject.io/docs/auth/gcp) and general [OIDC/JWT](https://www.vaultproject.io/docs/auth/gcp) authentication methods are supported as well, see the [example manifest](https://github.com/banzaicloud/bank-vaults/blob/master/deploy/test-deployment-gcp.yaml).
 - Kubernetes [Projected Service Account Tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) work too, as shown in [this example](https://github.com/banzaicloud/bank-vaults/blob/master/hack/oidc-pod.yaml).
@@ -163,6 +163,8 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 |Annotation    |default     |Explanation |
 |--------------|------------|------------|
 `vault.security.banzaicloud.io/vault-addr`|`"https://vault:8200"`|Same as VAULT_ADDR|
+`vault.security.banzaicloud.io/vault-image`|`"vault:latest"`|Vault agent image|
+`vault.security.banzaicloud.io/vault-image-pull-policy`|`IfNotPresent`|the Pull policy for the vault agent container|
 `vault.security.banzaicloud.io/vault-role`|`""`|The Vault role for Vault agent to use, for Pods it is the name of the ServiceAccount if not specified|
 `vault.security.banzaicloud.io/vault-path`|`"kubernetes"`|The mount path of the auth method|
 `vault.security.banzaicloud.io/vault-skip-verify`|`"false"`|Same as VAULT_SKIP_VERIFY|
@@ -170,6 +172,8 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/vault-ignore-missing-secrets`|`"false"`|When enabled will only log warnings when Vault secrets are missing|
 `vault.security.banzaicloud.io/vault-env-passthrough`|`""`|Comma separated list of `VAULT_*` related environment variables to pass through to `vault-env` to the main process. E.g.`VAULT_ADDR,VAULT_ROLE`.|
 `vault.security.banzaicloud.io/vault-env-daemon`|`"false"`|Run `vault-env` as a daemon instead of replacing itself with the main process|
+`vault.security.banzaicloud.io/vault-env-image`|`"banzaicloud/vault-env:latest"`|vault-env image|
+`vault.security.banzaicloud.io/vault-env-image-pull-policy`|`IfNotPresent`|the Pull policy for the vault-env container|
 `vault.security.banzaicloud.io/mutate-configmap`|`"false"`|Mutate the annotated ConfigMap as well (only Secrets and Pods are mutated by default)|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|

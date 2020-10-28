@@ -168,7 +168,7 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/vault-skip-verify`|`"false"`|Same as VAULT_SKIP_VERIFY|
 `vault.security.banzaicloud.io/vault-tls-secret`|`""`|Name of the Kubernetes Secret holding the CA certificate for Vault|
 `vault.security.banzaicloud.io/vault-ignore-missing-secrets`|`"false"`|When enabled will only log warnings when Vault secrets are missing|
-`vault.security.banzaicloud.io/vault-env-passthrough`|`""`|Comma separated list of `VAULT_*` related environment variables to pass through to `vault-env` to the main process. E.g.`VAULT_ADDR,VAULT_ROLE`.|
+`vault.security.banzaicloud.io/vault-env-passthrough`|`""`|Comma separated list of `VAULT_*` related environment variables to pass through to `vault-env` to the main process. E.g. `VAULT_ADDR,VAULT_ROLE`.|
 `vault.security.banzaicloud.io/vault-env-daemon`|`"false"`|Run `vault-env` as a daemon instead of replacing itself with the main process|
 `vault.security.banzaicloud.io/mutate-configmap`|`"false"`|Mutate the annotated ConfigMap as well (only Secrets and Pods are mutated by default)|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|

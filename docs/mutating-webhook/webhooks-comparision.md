@@ -4,19 +4,19 @@ shortTitle: Comparison
 weight: 500
 ---
 
-#### Legend:
+#### Legend
 
-- :white_check_mark: - Implemented
-- :o: - Planned/In-progress
+- &#9989;: Implemented
+- {{% emoji ":o:" %}}: Planned/In-progress
 
 | Feature    | Banzai Cloud Webhook | HashiCorp Webhook |
 |------------|----------------------|-------------------|
-| Automated Vault and K8S setup | :white_check_mark: (operator) |        |
-| vault-agent/consul-template sidecar injection| :white_check_mark: | :white_check_mark: |
-| Direct env var injection      | :white_check_mark: |   |
-| Injecting into K8S Secrets    | :white_check_mark: |   |
-| Injecting into K8S ConfigMaps | :white_check_mark: |   |
-| Injecting into K8S CRDs | :white_check_mark: |   |
-| Sidecar-less dynamic secrets  | :white_check_mark: |   |
-| CSI Driver                    | :o: |   |
-| Native Kubernetes sidecar     | :o: |   |
+| Automated Vault and K8S setup | &#9989; (operator) |     |
+| vault-agent/consul-template sidecar injection | &#9989; | &#9989; |
+| Direct env var injection      | &#9989; |   |
+| Injecting into K8S Secrets    | &#9989; |   |
+| Injecting into K8S ConfigMaps | &#9989; |   |
+| Injecting into K8S CRDs | &#9989; |   |
+| Sidecar-less dynamic secrets  | &#9989; |   |
+| CSI Driver                    | {{% emoji ":o:" %}} |   |
+| Native Kubernetes sidecar     | {{% emoji ":o:" %}} |   |

@@ -17,7 +17,7 @@ helm upgrade --wait --install vault-secrets-webhook \
 Install the Prometheus Operator Bundle:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/bundle.yaml
+kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/master/bundle.yaml
 ```
 
 Create a Prometheus instance which monitors the Bank-Vaults components:

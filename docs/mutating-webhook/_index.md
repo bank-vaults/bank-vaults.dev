@@ -176,6 +176,7 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/vault-env-from-path`|`""`|Comma-delimited list of vault paths to pull in all secrets as environment variables|
 `vault.security.banzaicloud.io/token-auth-mount`|`""`|`{volume:file}` to be injected as `.vault-token`. |
 `vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets by using `${{vault:secret#field}}` inside a string|
+`vault.security.banzaicloud.io/vault-auth-method`|`"kubernetes"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "gcp-gce", "jwt"]`|
 
 ## Deploying the webhook
 

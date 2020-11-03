@@ -12,6 +12,8 @@ Bank-Vaults provides the following tools for Hashicorp Vault to make its use eas
 - A [CLI tool](/docs/bank-vaults/cli-tool/) to automatically initialize, unseal, and configure Vault with authentication methods and secret engines.
 - A [Go client wrapper](/docs/bank-vaults/go-library/) for the official Vault client with automatic token renewal, built-in Kubernetes support, and a dynamic database credential provider.
 
+![Bank-Vaults overview](/docs/bank-vaults/images/bank-vault-overview.png)
+
 The package also includes Helm charts for installing the various components, and a collection of scripts to support advanced features (for example, dynamic SSH).
 
 ## First step

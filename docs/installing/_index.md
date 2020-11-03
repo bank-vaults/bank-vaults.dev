@@ -63,6 +63,84 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
     ```
 
+### Deploy the mutating webhook
+
+You can deploy the Vault Secrets Webhook using Helm. Note that:
+
+- The Helm chart of the vault-secrets-webhook contains the templates of the required permissions as well.
+- The deployed RBAC objects contain the necessary permissions fo running the webhook.
+
+#### Prerequisites
+
+- The user you use for deploying the chart to the Kubernetes cluster must have cluster-admin privileges.
+- The chart requires Helm 3.
+- To interact with Vault (for example, for testing), the *vault* command line client must be installed on your computer.
+
+#### Deploy the webhook
+
+1. Create a namespace for the webhook and add a label to the namespace, for example, *vault-infra*:
+
+    ```bash
+    kubectl create namespace vault-infra
+    kubectl label namespace vault-infra name=vault-infra
+    ```
+
+1. Deploy the vault-secrets-webhook chart:
+
+    ```bash
+    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
+    helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
+    ```
+
+1. Check that the pods are running:
+
+    ```bash
+    kubectl get pods --namespace vault-infra
+    NAME                                     READY   STATUS    RESTARTS   AGE
+    vault-secrets-webhook-58b97c8d6d-qfx8c   1/1     Running   0          22s
+    vault-secrets-webhook-58b97c8d6d-rthgd   1/1     Running   0          22s
+    ```
+
+1. Write a secret into Vault (the Vault CLI must be installed on your computer):
+
+    ```bash
+    vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t
+    ```
+
+1. Apply the following deployment to your cluster. The webhook will mutate this deployment because it has an environment variable having a value which is a reference to a path in Vault:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vault
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vault
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "https://vault:8200" # optional, the address of the Vault service, default values is https://vault:8200
+        vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
+        vault.security.banzaicloud.io/vault-skip-verify: "false" # optional, skip TLS verification of the Vault server certificate
+        vault.security.banzaicloud.io/vault-tls-secret: "vault-tls" # optinal, the name of the Secret where the Vault CA cert is, if not defined it is not mounted
+        vault.security.banzaicloud.io/vault-agent: "false" # optional, if true, a Vault Agent will be started to do Vault authentication, by default not needed and vault-env will do Kubernetes Service Account based Vault authentication
+        vault.security.banzaicloud.io/vault-path: "kubernetes" # optional, the Kubernetes Auth mount path in Vault the default value is "kubernetes"
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: alpine
+        image: alpine
+        command: ["sh", "-c", "echo $AWS_SECRET_ACCESS_KEY && echo going to sleep... && sleep 10000"]
+        env:
+        - name: AWS_SECRET_ACCESS_KEY
+          value: vault:secret/data/demosecret/aws#AWS_SECRET_ACCESS_KEY
+```
+
 ## Install the CLI tool
 
 On macOs, you can directly install the CLI from Homebrew:

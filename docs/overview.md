@@ -18,5 +18,5 @@ The package also includes Helm charts for installing the various components, and
 
 ## First step
 
-If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}).
-You can also <a href="https://github.com/banzaicloud/bank-vaults" target="_blank">view the Github repository</a>, the [Bank-Vaults related blogposts](/tags/vault/), or [schedule a demo](/contact/).
+- If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}), or read some of the the [Bank-Vaults related blogposts](/tags/vault/).
+- If you need help using Bank-Vaults, see the [Support page](/docs/bank-vaults/support/) for ways to contact us.

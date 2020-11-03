@@ -3,7 +3,11 @@ title: Mutating Webhook
 weight: 300
 ---
 
-The mutating admission webhook injects an executable to containers (in a very non-intrusive way) inside a Deployments/StatefulSets which than can request secrets from Vault through special environment variable definitions. The project is inspired by many, already existing projects (e.g.: `channable/vaultenv`, `hashicorp/envconsul`). The webhook checks if a container has environment variables defined in the following form, and reads the values for those variables directly from Vault during startup time:
+The mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions. 
+
+## How the webhook works
+
+The webhook checks if a container has environment variables defined in the following formats, and reads the values for those variables directly from Vault during startup time.
 
 ```yaml
         env:
@@ -23,7 +27,7 @@ The mutating admission webhook injects an executable to containers (in a very no
                 key: AWS_SECRET_ACCESS_KEY
 ```
 
-The webhook checks if a container has envFrom and parses defined ConfigMaps and Secrets:
+The webhook checks if a container has *envFrom* and parses the defined ConfigMaps and Secrets:
 
 ```yaml
         envFrom:
@@ -55,7 +59,9 @@ data:
   AWS_SECRET_ACCESSKEY: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY
 ```
 
-Also, the webhook can inject into any kind of resources as well (even into CRDs):
+### Inject into resources
+
+The webhook can inject into any kind of resources, even into CRDs, for example:
 
 ```yaml
 apiVersion: mysql.example.github.com/v1
@@ -66,7 +72,7 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
-Inline mutation:
+### Inline mutation
 
 The webhook also supports inline mutation when your secret needs to be replaced somewhere inside a string.
 
@@ -83,6 +89,7 @@ foo: bar
 secret: ${{vault:secret/data/mysecret#supersecret}}
 type: Opaque
 ```
+
 This works also for ConfigMap resources when `configMapMutation` is enabled.
 To enable inline mutation globally, set the env variable `INLINE_MUTATION: true` on the webhook.
 
@@ -96,6 +103,8 @@ Example:
           value: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY#2
 ```
 
+### Requesting a Vault token
+
 There is a special `vault:login` reference format to request a working Vault token into an environment variable to be later consumed by your application:
 
 ```yaml
@@ -103,6 +112,8 @@ There is a special `vault:login` reference format to request a working Vault tok
         - name: VAULT_TOKEN
           value: vault:login
 ```
+
+### Reading a value from Vault
 
 Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Vault API, this can be also used to request a [dynamic database username/password pair for MySQL](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html#usage):
 
@@ -115,6 +126,8 @@ Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Va
     - name: MYSQL_PASSWORD
       value: "vault:database/creds/my-role#password"
 ```
+
+### Writing a value into Vault
 
 Values starting with `">>vault:"` issue a `write` (HTTP POST/PUT) request towards the Vault API, some secret engine APIs should be `written` instead of `reading from` like the [Password Generator for HashiCorp Vault](https://github.com/sethvargo/vault-secrets-gen):
 
@@ -133,6 +146,8 @@ Example:
     - name: MY_SECRET_PASSWORD
       value: ">>vault:transit/decrypt/mykey#${.plaintext | b64dec}#{"ciphertext":"vault:v1:/DupSiSbX/ATkGmKAmhqD0tvukByrx6gmps7dVI="}"
 ```
+
+### Templating in values
 
 [Templating](https://golang.org/pkg/text/template/) is also supported on the secret sourced from Vault (in the key part, after the first `#`), in the very same fashion as in the Vault configuration and external configuration with all [the Sprig functions](http://masterminds.github.io/sprig/) (this is supported only for Pods right now):
 
@@ -203,7 +218,7 @@ helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud
 
 For further details follow the webhook's Helm chart [repository](https://github.com/banzaicloud/bank-vaults/tree/master/charts/vault-secrets-webhook).
 
-## Example
+### Test the webhook
 
 Write a secret into Vault:
 

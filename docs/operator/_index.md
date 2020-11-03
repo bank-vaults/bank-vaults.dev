@@ -42,19 +42,31 @@ kubectl delete -f operator/deploy/rbac.yaml
 kubectl delete -f operator/deploy/cr.yaml
 ```
 
+### HA setup with Raft
 
+In a production environment you want to run Vault as a cluster. The following CR creates a 3-node Vault instance that uses the Raft storage backend:
 
+1. Install the Bank-Vaults operator:
 
+    ```bash
+    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
+    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
+    ```
 
+1. Create a Vault instance using the `cr-raft.yaml` custom resource. This will create a Kubernetes `CustomResource` called `vault` that uses the Raft backend:
 
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-raft.yaml
+    ```
 
 {{< warning >}}
+Backing up the storage backend to prevent data loss, is not handled by the Vault operator. We recommend using [Velero](../backup/) for backups.
 {{< /warning >}}
-
 
 ### Pod anti-affinity
 
-If you want setup pod anti-affinity. You can set `podAntiAffinity` vault with a topologyKey value. 
+If you want to setup pod anti-affinity, you can set `podAntiAffinity` vault with a topologyKey value.
 For example, you can use `failure-domain.beta.kubernetes.io/zone` to force K8S deploy vault on multi AZ.
 
 ## Deleting a resource created by the operator

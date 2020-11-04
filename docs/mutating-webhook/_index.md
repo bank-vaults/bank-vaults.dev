@@ -276,7 +276,7 @@ kubectl label namespace vault-infra name=vault-infra
 helm upgrade --namespace vault-infra --install vault-operator banzaicloud-stable/vault-operator
 helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
 
-# Create a Vault instance with MySQL storage and a configured dynamic database secerts backend
+# Create a Vault instance with MySQL storage and a configured dynamic database secrets backend
 kubectl apply -f operator/deploy/rbac.yaml
 kubectl apply -f operator/deploy/cr-mysql-ha.yaml
 

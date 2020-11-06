@@ -42,40 +42,31 @@ kubectl delete -f operator/deploy/rbac.yaml
 kubectl delete -f operator/deploy/cr.yaml
 ```
 
-### HA setup with etcd
+### HA setup with Raft
 
-Additionally you have to deploy the [etcd-operator](https://github.com/coreos/etcd-operator) to the cluster as well:
+In a production environment you want to run Vault as a cluster. The following CR creates a 3-node Vault instance that uses the Raft storage backend:
 
-```bash
-helm upgrade --install vault-operator banzaicloud-stable/vault-operator --set etcd-operator.enabled=true
-```
+1. Install the Bank-Vaults operator:
 
-Now deploy a HA vault which connects to an etcd storage backend:
+    ```bash
+    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
+    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
+    ```
 
-```bash
-kubectl apply -f operator/deploy/rbac.yaml
-kubectl apply -f operator/deploy/cr-etcd-ha.yaml
-```
+1. Create a Vault instance using the `cr-raft.yaml` custom resource. This will create a Kubernetes `CustomResource` called `vault` that uses the Raft backend:
 
-From now on, if you deploy a Vault CustomResource into a cluster which has an [Etcd Storage Backend](https://www.vaultproject.io/docs/configuration/storage/etcd.html) defined in its configuration:
-
-- the Vault operator will create an EtcdCluster CustomResource for the Vault instance, and
-- the etcd-operator will orchestrate the etcd cluster.
-
-After the etcd cluster is ready the Vault instance can connect to it and will start up. If the Vault CustomResource is deleted from the cluster the etcd cluster will be garbage-collected as well.
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-raft.yaml
+    ```
 
 {{< warning >}}
-You must define backup and restore for the etcd cluster to prevent data loss, this part is not handled by the Vault operator. See [this document](https://github.com/coreos/etcd-operator#backup-and-restore-an-etcd-cluster) for more details, but in general we suggest you to use [Velero](../backup/) for backups.
+Backing up the storage backend to prevent data loss, is not handled by the Vault operator. We recommend using [Velero](../backup/) for backups.
 {{< /warning >}}
-
-### Use existing etcd
-
-If you want to use an existing etcd. You can set `etcdSize` vault to `< 0` (e.g.: `-1`). Then it won't create a new etcd.
-And all config under etcd storage will not be override.
 
 ### Pod anti-affinity
 
-If you want setup pod anti-affinity. You can set `podAntiAffinity` vault with a topologyKey value. 
+If you want to setup pod anti-affinity, you can set `podAntiAffinity` vault with a topologyKey value.
 For example, you can use `failure-domain.beta.kubernetes.io/zone` to force K8S deploy vault on multi AZ.
 
 ## Deleting a resource created by the operator

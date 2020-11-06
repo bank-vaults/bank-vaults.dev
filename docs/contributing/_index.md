@@ -5,13 +5,14 @@ weight: 1200
 
 If you find this project useful here's how you can help:
 
-- Send a pull request with your new features and bug fixes
-- Help new users with issues they may encounter
-- Support the development of this project and star this repo!
+- If you use Bank-Vaults in a production environment, add yourself to the [list of production adopters](https://github.com/banzaicloud/bank-vaults/blob/master/ADOPTERS.md).
+- Help new users with issues they may encounter on our [GitHub issues page](https://github.com/banzaicloud/bank-vaults/issues) or in the [#bank-vaults community Slack channel]((https://pages.banzaicloud.com/invite-slack)
+- Support the development of this project and [star our GitHub repo](https://github.com/banzaicloud/bank-vaults/stargazers)!
+- Send a pull request with your new features and bug fixes.
 
 ## Development environment
 
-In your develepment environment you can use file mode for testing `bank-vaults` cli-tool:
+In your development environment you can use file mode for testing `bank-vaults` cli-tool:
 
 ```shell
 vault server -config vault.hcl

@@ -86,7 +86,7 @@ metadata:
 data:
   config.yaml: >
 foo: bar
-secret: ${{vault:secret/data/mysecret#supersecret}}
+secret: ${vault:secret/data/mysecret#supersecret}
 type: Opaque
 ```
 

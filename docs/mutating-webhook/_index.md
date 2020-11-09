@@ -86,7 +86,7 @@ metadata:
 data:
   config.yaml: >
 foo: bar
-secret: ${{vault:secret/data/mysecret#supersecret}}
+secret: ${vault:secret/data/mysecret#supersecret}
 type: Opaque
 ```
 
@@ -125,6 +125,8 @@ Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Va
       value: "vault:database/creds/my-role#username"
     - name: MYSQL_PASSWORD
       value: "vault:database/creds/my-role#password"
+    - name: REDIS_URI
+      value: "redis://${vault:database/creds/my-role#username}:${vault:database/creds/my-role#password}@127.0.0.1:6739"
 ```
 
 ### Writing a value into Vault
@@ -194,7 +196,7 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|
 `vault.security.banzaicloud.io/vault-env-from-path`|`""`|Comma-delimited list of vault paths to pull in all secrets as environment variables|
 `vault.security.banzaicloud.io/token-auth-mount`|`""`|`{volume:file}` to be injected as `.vault-token`. |
-`vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets by using `${{vault:secret#field}}` inside a string|
+`vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets and configmaps by using `${vault:secret#field}` inside a string|
 `vault.security.banzaicloud.io/vault-auth-method`|`"kubernetes"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "gcp-gce", "jwt"]`|
 
 ## Deploying the webhook

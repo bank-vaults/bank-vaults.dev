@@ -3,9 +3,9 @@ title: Mutating Webhook
 weight: 300
 ---
 
-The mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions. 
+The mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions.
 
-## How the webhook works
+## How the webhook works - overview
 
 The webhook checks if a container has environment variables defined in the following formats, and reads the values for those variables directly from Vault during startup time.
 
@@ -58,6 +58,12 @@ metadata:
 data:
   AWS_SECRET_ACCESSKEY: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY
 ```
+
+For further examples and use cases, see [Configuration examples and scenarios](#examples).
+
+{{< include-headless "deploy-mutating-webhook.md" "bank-vaults" >}}
+
+## Configuration examples and scenarios {#examples}
 
 ### Inject into resources
 
@@ -168,13 +174,12 @@ Currently, the Kubernetes Service Account-based Vault authentication mechanism i
 - [GCP](https://www.vaultproject.io/docs/auth/gcp) and general [OIDC/JWT](https://www.vaultproject.io/docs/auth/gcp) authentication methods are supported as well, see the [example manifest](https://github.com/banzaicloud/bank-vaults/blob/master/deploy/test-deployment-gcp.yaml).
 - Kubernetes [Projected Service Account Tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) work too, as shown in [this example](https://github.com/banzaicloud/bank-vaults/blob/master/hack/oidc-pod.yaml).
 
-
 Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/) which became beta as of 1.13. This feature requires some changes in webhooks with side effects. Vault mutating admission webhook is `dry-run aware`.
-
 
 ## Common Annotations
 
-### PodSpec, Secret, ConfigMap and CRD annotations:
+### PodSpec, Secret, ConfigMap and CRD annotations
+
 |Annotation    |default     |Explanation |
 |--------------|------------|------------|
 `vault.security.banzaicloud.io/vault-addr`|`"https://vault:8200"`|Same as VAULT_ADDR|
@@ -196,8 +201,6 @@ Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernet
 `vault.security.banzaicloud.io/token-auth-mount`|`""`|`{volume:file}` to be injected as `.vault-token`. |
 `vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets by using `${{vault:secret#field}}` inside a string|
 `vault.security.banzaicloud.io/vault-auth-method`|`"kubernetes"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "gcp-gce", "jwt"]`|
-
-{{< include-headless "deploy-mutating-webhook.md" "bank-vaults" >}}
 
 ## Daemon mode
 
@@ -224,7 +227,7 @@ kubectl apply -f deploy/test-dynamic-env-vars.yaml
 kubectl logs -f deployment/hello-secrets
 ```
 
-## Getting secret data from Vault and replace it in Kubernetes Secret (and/or ConfigMap)
+## Get secret data from Vault and replace it in Kubernetes Secret (and/or ConfigMap)
 
 You can mutate Secrets (and ConfigMaps) as well if you set annotations and define proper Vault path in the `data` section:
 

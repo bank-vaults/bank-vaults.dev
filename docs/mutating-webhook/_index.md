@@ -38,15 +38,19 @@ The webhook checks if a container has *envFrom* and parses the defined ConfigMap
               name: aws-key-configmap
 ```
 
-Secret and ConfigMap examples:
+### Secret and ConfigMap examples:
 
+Secrets require their payload be base64 encoded by definition and the API will reject manifests with plaintext in them.
+The secret value should contain a base64 encoded template string referencing the vault path you want to insert.
+Run `echo -n "vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY" | base64` to get the correct string. 
+  
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
   name: aws-key-secret
 data:
-  AWS_SECRET_ACCESS_KEY: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY
+  AWS_SECRET_ACCESS_KEY: dmF1bHQ6c2VjcmV0L2RhdGEvYWNjb3VudHMvYXdzI0FXU19TRUNSRVRfQUNDRVNTX0tFWQ==
 type: Opaque
 ```
 

@@ -21,7 +21,7 @@ spec:
   caBundle: "vault:pki/cert/43138323834372136778363829719919055910246657114#ca"
 ```
 
-## Inline mutation
+## Inline mutation {#inline}
 
 The webhook also supports inline mutation when your secret needs to be replaced somewhere inside a string.
 

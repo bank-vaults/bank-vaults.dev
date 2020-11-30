@@ -3,7 +3,7 @@ title: Cloud permissions
 weight: 600
 ---
 
-The `bank-vaults` CLI command needs certain cloud permissions to function properly (init, unseal, configuration).
+The operator and the `bank-vaults` CLI command needs certain cloud permissions to function properly (init, unseal, configuration).
 
 ## Google Cloud
 

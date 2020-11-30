@@ -35,7 +35,7 @@ metadata:
 data:
   config.yaml: >
 foo: bar
-secret: ${{vault:secret/data/mysecret#supersecret}}
+secret: ${vault:secret/data/mysecret#supersecret}
 type: Opaque
 ```
 
@@ -74,6 +74,8 @@ Values starting with `"vault:"` issue a `read` (HTTP GET) request towards the Va
       value: "vault:database/creds/my-role#username"
     - name: MYSQL_PASSWORD
       value: "vault:database/creds/my-role#password"
+    - name: REDIS_URI
+      value: "redis://${vault:database/creds/my-role#username}:${vault:database/creds/my-role#password}@127.0.0.1:6739"
 ```
 
 ## Write a value into Vault

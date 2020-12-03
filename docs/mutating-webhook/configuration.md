@@ -199,7 +199,7 @@ You can also specify a default secret being used by the webhook for cases where 
 
 Future improvements:
 
-- on Azure/Alibaba get a credential dynamically with the specific SDK (for AWS ECR this is already done)
+- on Azure/Alibaba get a credential dynamically with the specific SDK (for AWS ECR and GCP GCR this is already done)
 
 ### Using a private image repository
 

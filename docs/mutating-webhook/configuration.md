@@ -52,6 +52,29 @@ Example:
           value: vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY#2
 ```
 
+## Define multiple inline-secrets in resources
+
+You can also inject multiple secrets under the same key in a Secret/ConfigMap/Object. This means that you can use multiple Vault paths in a value, for example:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-configmap
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "https://vault.default:8200"
+    vault.security.banzaicloud.io/vault-role: "default"
+    vault.security.banzaicloud.io/vault-tls-secret: vault-tls
+    vault.security.banzaicloud.io/vault-path: "kubernetes"
+    vault.security.banzaicloud.io/inline-mutation: "true"
+data:
+  aws-access-key-id: "vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID"
+  aws-access-template: "vault:secret/data/accounts/aws#AWS key in base64: ${.AWS_ACCESS_KEY_ID | b64enc}"
+  aws-access-inline: "AWS_ACCESS_KEY_ID: ${vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY: ${vault:secret/data/accounts/aws#AWS_SECRET_ACCESS_KEY}"
+```
+
+This example also shows how a CA certificate (created by the operator) can be used with the `vault.security.banzaicloud.io/vault-tls-secret: vault-tls` annotation to validate the TLS connection in case of a non-Pod resource.
+
 ## Request a Vault token
 
 There is a special `vault:login` reference format to request a working Vault token into an environment variable to be later consumed by your application:
@@ -108,7 +131,7 @@ Example:
       value: "vault:secret/data/accounts/dockerhub#My username on DockerHub is: ${title .DOCKER_USERNAME}"
 ```
 
-In this case, an init-container will be injected into the given Pod. This container copies the `vault-env` binary into an in-memory volume and mounts that Volume to every container which has an environment variable definition like that. It also changes the `command` of the container to run `vault-env` instead of your application directly. When `vault-env` starts up, it connects to Vault with the [Kubernetes Auth method](https://www.vaultproject.io/docs/auth/kubernetes.html) and checks the environment variables. The variables that have a reference to a value stored in Vault (`vault:secret/....`) are replaced with that value read from the Secret backend. After this, `vault-env` immediately executes (with `syscall.Exec()`) your process with the given arguments, replacing itself with that process (in non-daemon mode).
+In this case, an init-container will be injected into the given Pod. This container copies the `vault-env` binary into an in-memory volume and mounts that Volume to every container which has an environment variable definition like that. It also changes the `command` of the container to run `vault-env` instead of your application directly. When `vault-env` starts up, it connects to Vault to checks the environment variables. (By default, `vault-env` uses the [Kubernetes Auth method](https://www.vaultproject.io/docs/auth/kubernetes.html), but you can also [configure other authentication methods for the webhook](#webhook-auth).) The variables that have a reference to a value stored in Vault (`vault:secret/....`) are replaced with that value read from the Secret backend. After this, `vault-env` immediately executes (with `syscall.Exec()`) your process with the given arguments, replacing itself with that process (in non-daemon mode).
 
 **With this solution none of your Secrets stored in Vault will ever land in Kubernetes Secrets, thus in etcd.**
 
@@ -170,11 +193,13 @@ helm upgrade --install mysql stable/mysql \
 You can also specify a default secret being used by the webhook for cases where a pod has no `imagePullSecrets` specified. To make this work you have to set the environment variables `DEFAULT_IMAGE_PULL_SECRET` and `DEFAULT_IMAGE_PULL_SECRET_NAMESPACE` when deploying the vault-secrets-webhook. Have a look at the values.yaml of the
 [vault-secrets-webhook](https://github.com/banzaicloud/bank-vaults/blob/master/charts/vault-secrets-webhook/values.yaml) helm chart to see how this is done.
 
-**NOTE**: _If you EC2 nodes are having ECR instance role added the webhook can request an ECR access token through that role automatically, instead of an explicit `imagePullSecret`_
+> Note:
+> - If your EC2 nodes have the ECR instance role, the webhook can request an ECR access token through that role automatically, instead of an explicit `imagePullSecret`
+> - If your workload is running on GCP nodes, the webhook automatically authenticates to GCR.
 
 Future improvements:
 
-- on Azure/Alibaba and GKE get a credential dynamically with the specific SDK (for AWS ECR this is already done)
+- on Azure/Alibaba get a credential dynamically with the specific SDK (for AWS ECR and GCP GCR this is already done)
 
 ### Using a private image repository
 
@@ -204,4 +229,78 @@ kubectl create secret docker-registry ecr \
  --docker-password="${TOKEN}"
 
  helm upgrade --install mysql stable/mysql --set mysqlRootPassword=vault:secret/data/mysql#MYSQL_ROOT_PASSWORD --set "imagePullSecrets[0].name=ecr" --set-string "podAnnotations.vault\.security\.banzaicloud\.io/vault-skip-verify=true" --set image="171832738826.dkr.ecr.eu-west-1.amazonaws.com/mysql" --set-string imageTag=5.7
+```
+
+## Mount all keys from Vault secret to env
+
+This feature is very similar to Kubernetes' standard `envFrom:` [construct](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-as-container-environment-variables), but instead of a Kubernetes Secret/ConfigMap, all its keys are mounted from a Vault secret using the webhook and vault-env.
+
+You can set the Vault secret to mount using the `vault.security.banzaicloud.io/vault-env-from-path` annotation.
+
+Compared to the original environment variable definition in the Pod `env` construct, the only difference is that you won't see the actual environment variables in the definition, because they are dynamic, and are based on the contents of the Vault secret's, just like `envFrom:`.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-secrets
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hello-secrets
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hello-secrets
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "https://vault:8200"
+        vault.security.banzaicloud.io/vault-tls-secret: vault-tls
+        vault.security.banzaicloud.io/vault-env-from-path: "secret/data/accounts/aws"
+    spec:
+      initContainers:
+      - name: init-ubuntu
+        image: ubuntu
+        command: ["sh", "-c", "echo AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID && echo initContainers ready"]
+      containers:
+      - name: alpine
+        image: alpine
+        command: ["sh", "-c", "echo AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY && echo going to sleep... && sleep 10000"]
+```
+
+## Authenticate the webhook to Vault {#webhook-auth}
+
+By default, the webhook uses Kubernetes [ServiceAccount-based authentication](https://www.vaultproject.io/docs/auth/kubernetes) in Vault. Use the `vault.security.banzaicloud.io/vault-auth-method` annotation to request different authentication types from the following supported types: **"kubernetes", "aws-ec2", "gcp-gce", "jwt"**. The following deployment - if running on a GCP instance - will automatically receive a signed-JWT token from the metadata server of the cloud provider, and use it to authenticate against Vault. The same goes for `vault-auth-method: "aws-ec2"`, when running on an EC2 node with the right instance-role.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-env-gcp-auth
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vault-env-gcp-auth
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vault-env-gcp-auth
+      annotations:
+        # These annotations enable Vault GCP GCE auth, see:
+        # https://www.vaultproject.io/docs/auth/gcp#gce-login
+        vault.security.banzaicloud.io/vault-addr: "https://vault:8200"
+        vault.security.banzaicloud.io/vault-tls-secret: vault-tls
+        vault.security.banzaicloud.io/vault-role: "my-role"
+        vault.security.banzaicloud.io/vault-path: "gcp"
+        vault.security.banzaicloud.io/vault-auth-method: "gcp-gce"
+    spec:
+      containers:
+        - name: alpine
+          image: alpine
+          command:
+            - "sh"
+            - "-c"
+            - "echo $MYSQL_PASSWORD && echo going to sleep... && sleep 10000"
+          env:
+            - name: MYSQL_PASSWORD
+              value: vault:secret/data/mysql#MYSQL_PASSWORD
 ```

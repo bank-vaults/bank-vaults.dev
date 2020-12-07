@@ -4,39 +4,36 @@ shortTitle: Injecting secrets into Prometheus
 weight: 400
 ---
 
-This document assumes you have a working Kubernetes cluster which has a:
-
-- Working install of Vault.
-- Working install of the mutating webhook via helm or manually.
-- That you have a working knowledge of Kubernetes.
-- That you have the [CoreOS Prometheus Operator](https://github.com/coreos/prometheus-operator) installed and working.
-- That you have the ability to apply Deployments or PodSpec's to the cluster.
-- That you have the ability to change the configuration of the mutating webhook.
-
-## Background
-
-As of Vault 1.1 it is no longer required to use a statsD exporter to get vault metrics into Prometheus but instead there is a native Vault endpoint.
-The problem is you need to log into Vault to get access to this endpoint.
+To get vault metrics into Prometheus you need to log in to Vault to get access to a native Vault endpoint that provides the metrics.
 
 ## Workflow
 
-The webhook will inject `vault-agent` as an init container, based on the Kubernetes Auth role configuration `prometheus-operator-prometheus`
-provided below this will grab a token with the policy of `prometheus-operator-prometheus`.
+1. The webhook injects `vault-agent` as an init container, based on the Kubernetes Auth role configuration `prometheus-operator-prometheus`.
+1. The vault-agent grabs a token with the policy of `prometheus-operator-prometheus`.
+1. `consul-template` runs as a sidecar, and uses the token from the previous step to retrieve a new token using the Token Auth role `prometheus-metrics` which has the policy `prometheus-metrics` applied to it.
+1. Prometheus can now use this second token to read the Vault Prometheus endpoint.
 
-`consul-template` will be run as a sidecar that will use this token to retrieve a new token using the Token Auth role `prometheus-metrics` which has the
-policy `prometheus-metrics` applied to it.
+The trick here is that Prometheus runs with the SecurityContext UID of 1000 but the default `consul-template` image is running under the UID of 100. This is because of a Dockerfile Volume that is configured which dockerd mounts as 100 (/consul-template/data).
 
-Prometheus then can use this token to read the Vault Prometheus endpoint.
+Subsequently using this `consul-template` means it will never start, so we need to ensure we do not use this declared volume and change the UID using a custom Dockerfile and entrypoint.
 
-The trick here is that Prometheus is run with the SecurityContext UID of 1000 but the default `consul-template` image is running under the UID of 100. This
-is because of a Dockerfile Volume that is configured which dockerd mounts as 100 (/consul-template/data).
+## Prerequisites
 
-Subsequently using this `consul-template` means it will never start, so we need to ensure we do not use this declared volume and change the UID using a
-custom Dockerfile and entrypoint.
+This document assumes you have a working Kubernetes cluster which has a:
+
+- You have a working Kubernetes cluster which has:
+
+    - a working Vault installation
+    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
+
+- You have the [CoreOS Prometheus Operator](https://github.com/coreos/prometheus-operator) installed and working.
+- You have a working knowledge of Kubernetes.
+- You can apply Deployments or PodSpec's to the cluster.
+- You can change the configuration of the mutating webhook.
 
 ## Configuration
 
-### Custom consul-temlpate image; docker-entrypoint.sh
+### Custom consul-template image; docker-entrypoint.sh
 
 ```bash
 #!/bin/dumb-init /bin/sh
@@ -202,9 +199,9 @@ auth:
             ttl: 4h
 ```
 
-## Prometheus Operator Snippets:
+## Prometheus Operator Snippets
 
-### prometheusSpec:
+### prometheusSpec
 
 ```yaml
   prometheusSpec:

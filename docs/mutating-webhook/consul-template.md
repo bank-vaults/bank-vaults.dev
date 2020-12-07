@@ -4,7 +4,7 @@ shortTitle: Consul template
 weight: 100
 ---
 
-With Bank-Vaults you can use consul-template as an addition to vault-env to handle secrets that expire, and supply them to applications that read their configurations from a file.
+With Bank-Vaults you can use [Consul Template](https://github.com/hashicorp/consul-template) as an addition to vault-env to handle secrets that expire, and supply them to applications that read their configurations from a file.
 
 ## When to use consul-template
 
@@ -13,9 +13,7 @@ With Bank-Vaults you can use consul-template as an addition to vault-env to hand
 - You do not wish to be limited on which vault secrets backend you use.
 - You can also expire tokens/revoke tokens (to do this you need to have a ready/live probe that can send a HUP to consul-template when the current details fail).
 
-## General concept
-
-Based on various publications and tools ([Kubernetes Authenticator](https://github.com/sethvargo/vault-kubernetes-authenticator), [Consul Template](https://github.com/hashicorp/consul-template)) released and maintained by Hashicorp and [Seth Vargo](https://github.com/sethvargo).
+## Workflow
 
 The following shows the general workflow for using Consul Template:
 
@@ -25,17 +23,18 @@ The following shows the general workflow for using Consul Template:
 
 ## Prerequisites
 
-This document assumes you have a working Kubernetes cluster which has a:
+This document assumes the following.
 
-- Working Vault installation.
-- Working installation of the mutating webhook.
-- That you have a working knowledge of Kubernetes.
-- That you have the ability to apply Deployments or PodSpec's to the cluster.
-- That you have the ability to change the configuration of the mutating webhook.
+- You have a working Kubernetes cluster which has:
 
-## Pre Configuration
+    - a working Vault installation
+    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
 
-### Consul Template
+- You have a working knowledge of Kubernetes.
+- You can apply Deployments or PodSpec's to the cluster.
+- You can change the configuration of the [mutating webhook](/docs/bank-vaults/mutating-webhook/configuration/).
+
+## Use Vault TTLs
 
 If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Consul Template to execute a command](https://github.com/hashicorp/consul-template#configuration-file-format) when it writes a new configuration file using the `command` attribute. You can find a basic example below (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)):
 

@@ -38,37 +38,7 @@ This document assumes the following.
 
 If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Consul Template to execute a command](https://github.com/hashicorp/consul-template#configuration-file-format) when it writes a new configuration file using the `command` attribute. The following is a basic example (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)).
 
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app.kubernetes.io/name: my-app
-    my-app.kubernetes.io/name: my-app-consul-template
-    branches: "true"
-  name: my-app-consul-template
-data:
-  config.hcl: |
-    vault {
-      ssl {
-        ca_cert = "/etc/vault/tls/ca.crt"
-      }
-      retry {
-        backoff = "1s"
-      }
-    }
-    template {
-      contents = <<EOH
-        {{- with secret "database/creds/readonly" }}
-        username: {{ .Data.username }}
-        password: {{ .Data.password }}
-        {{ end }}
-      EOH
-      destination = "/etc/secrets/config"
-      command     = "/bin/sh -c \"kill -HUP $(pidof vault-demo-app) || true\""
-    }
-```
+{{< include-code "consul-template-example.yaml" "yaml" >}}
 
 ## Configuration
 

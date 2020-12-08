@@ -36,47 +36,7 @@ This document assumes the following.
 
 If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Vault Agent to execute a command](https://www.vaultproject.io/docs/agent/template/index.html) when it writes a new configuration file using the `command` attribute. The following is a basic example which uses the Kubernetes authentication method.
 
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app.kubernetes.io/name: my-app
-    my-app.kubernetes.io/name: my-app-vault-agent
-    branches: "true"
-  name: my-app-vault-agent
-data:
-  config.hcl: |
-    vault {
-      // This is needed until https://github.com/hashicorp/vault/issues/7889
-      // gets fixed, otherwise it is automated by the webhook.
-      ca_cert = "/vault/tls/ca.crt"
-    }
-    auto_auth {
-      method "kubernetes" {
-        mount_path = "auth/kubernetes"
-        config = {
-          role = "my-role"
-        }
-      }
-      sink "file" {
-        config = {
-          path = "/vault/.vault-token"
-        }
-      }
-    }
-    template {
-      contents = <<EOH
-        {{- with secret "database/creds/readonly" }}
-        username: {{ .Data.username }}
-        password: {{ .Data.password }}
-        {{ end }}
-      EOH
-      destination = "/etc/secrets/config"
-      command     = "/bin/sh -c \"kill -HUP $(pidof vault-demo-app) || true\""
-    }
-```
+{{< include-code "vault-agent-templating-example.yaml" "yaml" >}}
 
 ## Configuration
 

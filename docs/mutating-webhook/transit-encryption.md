@@ -3,31 +3,33 @@ title: Transit Encryption
 weight: 200
 ---
 
-The transit secrets engine handles cryptographic functions on data in-transit. Vault doesn't store the data sent to the secrets engine. It can also be viewed as "cryptography as a service" or "encryption as a service". Detailed information about transit encryption can be found in [official documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
+The transit secrets engine handles cryptographic functions on data in-transit, mainly to encrypt data from applications while still storing that encrypted data in some primary data store. Vault doesn't store the data sent to the secrets engine, it can also be viewed as "cryptography as a service" or "encryption as a service". For details about transit encryption, see the [official documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
 
-Currently transit encryption supported only on PODs mutation, Secrets and ConfigMaps will be supported in near future.
+> Note: Transit encryption supports only POD mutations.
 
-## Example
+## Enable Transit secrets engine
 
-Enable the Transit secrets engine:
+To enable and test the Transit secrets engine, complete the following steps.
 
-```bash
-vault secrets enable transit
-```
+1. Enable the Transit secrets engine:
 
-Create a named encryption key:
+    ```bash
+    vault secrets enable transit
+    ```
 
-```bash
-vault write -f transit/keys/my-key
-```
+1. Create a named encryption key:
 
-Encrypt data with encryption key:
+    ```bash
+    vault write -f transit/keys/my-key
+    ```
 
-```bash
-vault write transit/encrypt/my-key plaintext=$(base64 <<< "my secret data")
-```
+1. Encrypt data with encryption key:
 
-This deployment will be mutated by the webhook, since it has at least one environment variable having a value which is encrypted by Vault:
+    ```bash
+    vault write transit/encrypt/my-key plaintext=$(base64 <<< "my secret data")
+    ```
+
+1. After completing the previous steps, the webhook will mutate deployments that have at least one environment variable with a value which is encrypted by Vault. For example (in the last line of the example):
 
 ```yaml
 apiVersion: apps/v1

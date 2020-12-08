@@ -1,7 +1,7 @@
 ---
 title: Configuration examples and scenarios
 shorttitle: Configure the webhook
-weight: 50
+weight: 30
 ---
 
 The following examples show you how to configure the mutating webhook to best suit your environment.

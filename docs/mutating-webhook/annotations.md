@@ -1,6 +1,6 @@
 ---
 title: Annotations
-weight: 60
+weight: 40
 ---
 
 The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD annotations.

@@ -4,8 +4,8 @@ shorttitle: External Vault configuration
 weight: 30
 ---
 
-In addition to the [standard Vault configuration](https://www.vaultproject.io/docs/configuration/index.html), the operator and CLI can continuously configure Vault using an external YAML/JSON configuration.
-<!-- FIXME Explain how to use this feature and why is it good. CI/CD/gitops for vault? -->
+In addition to the [standard Vault configuration](https://www.vaultproject.io/docs/configuration/index.html), the operator and CLI can continuously configure Vault using an external YAML/JSON configuration. That way you can configure Vault declaratively using your usual automation tools and workflow.
+
 <!-- FIXME This page is way too long, consider splitting it into smaller pages -->
 
 The following sections describe the configuration sections you can use.
@@ -297,28 +297,6 @@ envsConfig:
         key: password
 ```
 
-## Identity Groups
-
-<!-- FIXME Does this section refer to https://www.vaultproject.io/docs/secrets/identity#identity-groups and if yes, should it be moved under the secrets engine section? -->
-
-NOTE: Only external groups are supported at the moment through the use of group-aliases. For supported authentication backends (for example JWT, which automatically matches those aliases to groups returned by the backend) the configuration files for the groups and group-aliases need to be parsed after the authentication backend has been mounted. Ideally they should be in the same file to avoid of errors.
-
-```yaml
-groups: 
-  - name: admin
-    policies:
-      - admin
-    metadata:
-      admin: "true"
-      priviliged: "true"
-    type: external
-
-group-aliases:
-  - name: admin
-    mountpath: jwt
-    group: admin
-```
-
 ## Register a new plugin
 
 To register a new plugin in [Vault's plugin catalog](https://www.vaultproject.io/api/system/plugins-catalog.html), set the **plugin_directory** option in the Vault server configuration to the directory where the plugin binary is located. Also, for some plugins readOnlyRootFilesystem Pod Security Policy should be disabled to allow RPC communication between plugin and Vault server via Unix socket. For details, see the [Hashicorp Go plugin documentation](https://github.com/hashicorp/go-plugin/blob/master/docs/internals.md).
@@ -378,6 +356,28 @@ secrets:
           creation_statements: "GRANT ALL ON *.* TO '{{name}}'@'%' IDENTIFIED BY '{{password}}';"
           default_ttl: "10m"
           max_ttl: "24h"
+```
+
+### Identity Groups
+
+Allows you to configure [identity groups](https://www.vaultproject.io/docs/secrets/identity#identity-groups).
+
+> Note: Only external groups are supported at the moment through the use of group-aliases. For supported authentication backends (for example JWT, which automatically matches those aliases to groups returned by the backend) the configuration files for the groups and group-aliases need to be parsed after the authentication backend has been mounted. Ideally they should be in the same file to avoid of errors.
+
+```yaml
+groups:
+  - name: admin
+    policies:
+      - admin
+    metadata:
+      admin: "true"
+      priviliged: "true"
+    type: external
+
+group-aliases:
+  - name: admin
+    mountpath: jwt
+    group: admin
 ```
 
 ### Key-Values

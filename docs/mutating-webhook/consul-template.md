@@ -36,7 +36,7 @@ This document assumes the following.
 
 ## Use Vault TTLs
 
-If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Consul Template to execute a command](https://github.com/hashicorp/consul-template#configuration-file-format) when it writes a new configuration file using the `command` attribute. You can find a basic example below (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)):
+If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Consul Template to execute a command](https://github.com/hashicorp/consul-template#configuration-file-format) when it writes a new configuration file using the `command` attribute. The following is a basic example (adapted from [here](https://github.com/sethvargo/vault-kubernetes-workshop/blob/master/k8s/db-sidecar.yaml#L79-L100)).
 
 ```yaml
 ---
@@ -72,14 +72,14 @@ data:
 
 ## Configuration
 
-There are two ways you can configure the webhook:
+To configure the webhook, you can either:
 
-- you can set some sane defaults in the [environment of the mutating webhook](#defaults), or
-- you can configure it via annotations in your [PodSpec](#podspec).
+- set some sane defaults in the [environment of the mutating webhook](#defaults), or
+- configure it via annotations in your [PodSpec](#podspec).
 
 ### Enable Consul Template in the webhook
 
-For the webhook to detect that it will need to mutate or change a PodSpec, it must have the annotation `vault.security.banzaicloud.io/vault-ct-configmap`, otherwise the PodSpec will be ignored for configuration with Consul Template.
+For the webhook to detect that it will need to mutate or change a PodSpec, add the `vault.security.banzaicloud.io/vault-ct-configmap` annotation to the Deployment or PodSpec you want to mutate, otherwise it will be ignored for configuration with Consul Template.
 
 ### Defaults via environment variables {#defaults}
 
@@ -87,7 +87,7 @@ For the webhook to detect that it will need to mutate or change a PodSpec, it mu
 |--------------|------------|------------|
 |VAULT_IMAGE   |vault:latest|the vault image to use for the init container|
 |VAULT_ENV_IMAGE|banzaicloud/vault-env:latest| the vault-env image to use |
-|VAULT_CT_IMAGE|hashicorp/consul-template:latest| the consule template image to use|
+|VAULT_CT_IMAGE|hashicorp/consul-template:latest| the consul template image to use|
 |VAULT_ADDR    |https://127.0.0.1:8200|Kubernetes service Vault endpoint URL|
 |VAULT_SKIP_VERIFY|"false"|should vault agent and consul template skip verifying TLS|
 |VAULT_TLS_SECRET|""|supply a secret with the vault TLS CA so TLS can be verified|

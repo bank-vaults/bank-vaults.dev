@@ -1,44 +1,43 @@
 ---
-title: Running the webhook an external Vault in different K8S clusters
+title: Running the webhook and Vault on different clusters
 shortTitle: External Vault
 weight: 600
 ---
 
-You have two different K8S clusters (or simply and external Vault outside of Kubernetes).
+This section describes how to configure the webhook and Vault when the webhook runs on a different cluster from Vault, or if Vault runs outside Kubernetes.
+
+Let's suppose you have two different K8S clusters:
 
 - `cluster1` contains `vault-operator`
 - `cluster2` contains `vault-secrets-webhook`
 
-You have a cluster with running `vault-operator` (`cluster1`), and you have to grant access to `Vault` from the other K8S cluster which contains `vault-secrets-webhook` (`cluster2`).
+Basically, you have to grant `cluster2` access to the Vault running on `cluster1`. To achieve this, complete the following steps.
 
-1. In your `vaults.vault.banzaicloud.com` under `operator/deploy/cr.yaml` custom resource you have to define proper `externalConfig` containing the `cluster2` config.
-
-    from your (`cluster2`) kubeconfig file:
-    You can get K8S cert and host:
+1. Extract the *cluster.certificate-authority-data* and the *cluster.server* fields from your `cluster2` kubeconfig file. You will need them in the `externalConfig` section of the `cluster1` configuration. For example:
 
     ```bash
     kubectl config view -o yaml --minify=true --raw=true
     ```
 
-    you need to decode the cert before passing it in your `externalConfig`:
+1. Decode the certificate from the *cluster.certificate-authority-data* field, for example::
 
     ```bash
     grep 'certificate-authority-data' $HOME/.kube/config | awk '{print $2}' | base64 --decode
     ```
 
-1. on `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
+1. On `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
 
     ```bash
-    kubectl apply -f operator/deployment/rbac.yaml
+    kubectl apply -f https://github.com/banzaicloud/bank-vaults/raw/master/operator/deploy/rbac.yaml
     ```
 
-    You can use vault the ServiceSccount token as a `token_reviewer_jwt` in the auth configuration:
+    You can use the `vault` ServiceAccount token as a `token_reviewer_jwt` in the auth configuration. To retrieve the token, run the following command:
 
     ```bash
     kubectl get secret $(kubectl get sa vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode
     ```
 
-1. Authentication against Vault is based on [Kubernetes Service Accounts](https://www.vaultproject.io/docs/auth/kubernetes). Now you can use a proper `kubernetes_ca_cert`, `kubernetes_host` and `token_reviewer_jwt` in your (`cluster1`) CR yaml file (or configure Vault manually according to the official docs):
+1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/banzaicloud/bank-vaults/raw/master/operator/deploy/cr.yaml](https://github.com/banzaicloud/bank-vaults/raw/master/operator/deploy/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
 
     ```yaml
       externalConfig:
@@ -50,12 +49,12 @@ You have a cluster with running `vault-operator` (`cluster1`), and you have to g
         auth:
           - type: kubernetes
             config:
-              token_reviewer_jwt: webhook.cluster.token.reviewer.token
+              token_reviewer_jwt: <token-for-cluster2-service-account>
               kubernetes_ca_cert: |
                 -----BEGIN CERTIFICATE-----
-                webhook.cluster.cert
+                <certificate-from-certificate-authority-data-on-cluster2>
                 -----END CERTIFICATE-----
-              kubernetes_host: https://webhook-cluster
+              kubernetes_host: <cluster.server-field-on-cluster2>
             roles:
               # Allow every pod in the default namespace to use the secret kv store
               - name: default
@@ -84,13 +83,13 @@ You have a cluster with running `vault-operator` (`cluster1`), and you have to g
             secretName: vault-ingress-tls-secret
     ```
 
-1. Deploy `Vault` with the operator in your `cluster1`:
+1. Deploy the `Vault` custom resource containing the `externalConfig` section to `cluster1`:
 
     ```bash
     kubectl apply -f your-proper-vault-cr.yaml
     ```
 
-1. After Vault started in `cluster1` you can use `vault-secrets-webhook` in `cluster2` with proper annotations:
+1. After Vault started in `cluster1`, you can use the `vault-secrets-webhook` in `cluster2` with the proper annotations. For example:
 
     ```yaml
     spec:

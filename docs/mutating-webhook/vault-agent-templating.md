@@ -4,13 +4,7 @@ shortTitle: Vault Agent Templating
 weight: 50
 ---
 
-This document assumes you have a working Kubernetes cluster which has a:
-
-- Working install of Vault.
-- Working install of the mutating webhook via helm or manually.
-- That you have a working knowledge of Kubernetes.
-- That you have the ability to apply Deployments or PodSpec's to the cluster.
-- That you have the ability to change the configuration of the mutating webhook.
+With Bank-Vaults you can use [Vault Agent](https://www.vaultproject.io/docs/agent/) to handle secrets that expire, and supply them to applications that read their configurations from a file.
 
 ## When to use vault-agent
 
@@ -18,66 +12,44 @@ This document assumes you have a working Kubernetes cluster which has a:
 - You wish to have secrets that have a TTL and expire.
 - You have no issues with running your application with a sidecar.
 
-## General concept
+> Note: If you need to revoke tokens, or use additional secret backends, see {{% xref "/docs/bank-vaults/mutating-webhook/consul-template.md" %}}.
+
+## Workflow
 
 - Your pod starts up, the webhook will inject one container into the pods lifecycle.
 - The sidecar container is running Vault, using the [vault agent](https://www.vaultproject.io/docs/agent/) that accesses Vault using the configuration specified inside a configmap and writes a configuration file based on a pre configured template (written inside the same configmap) onto a temporary file system which your application can use.
 
-## Pre Configuration
+## Prerequisites
 
-### ShareProcessNamespace
+This document assumes the following.
 
-As of Kubernetes 1.10 you can [share](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) the process list of all containers in a pod, please check your Kubernetes API server FeatureGates configuration to find if it is on or not, it is default on in 1.12. The webhook will disable it by default in any version less than 1.12 and enable it by default for version 1.12 and above. You can override this configuration using the `vault.security.banzaicloud.io/vault-agent-share-process-namespace` annotation or webhook `vault_agent_share_process_namespace` environment variable.
+- You have a working Kubernetes cluster which has:
 
-If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. Vault Agent can be [configured](https://www.vaultproject.io/docs/agent/template/index.html) to do that with a `command` attribute which will run when it writes a new configuration file. You can find a basic example below which uses/requires the ShareProcessNamespace feature and the Kubernetes Auth:
+    - a working Vault installation
+    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
 
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app.kubernetes.io/name: my-app
-    my-app.kubernetes.io/name: my-app-vault-agent
-    branches: "true"
-  name: my-app-vault-agent
-data:
-  config.hcl: |
-    vault {
-      // This is needed until https://github.com/hashicorp/vault/issues/7889
-      // gets fixed, otherwise it is automated by the webhook.
-      ca_cert = "/vault/tls/ca.crt"
-    }
-    auto_auth {
-      method "kubernetes" {
-        mount_path = "auth/kubernetes"
-        config = {
-          role = "my-role"
-        }
-      }
-      sink "file" {
-        config = {
-          path = "/vault/.vault-token"
-        }
-      }
-    }
-    template {
-      contents = <<EOH
-        {{- with secret "database/creds/readonly" }}
-        username: {{ .Data.username }}
-        password: {{ .Data.password }}
-        {{ end }}
-      EOH
-      destination = "/etc/secrets/config"
-      command     = "/bin/sh -c \"kill -HUP $(pidof vault-demo-app) || true\""
-    }
-```
+- You have a working knowledge of Kubernetes.
+- You can apply Deployments or PodSpec's to the cluster.
+- You can change the configuration of the [mutating webhook](/docs/bank-vaults/mutating-webhook/configuration/).
+
+## Use Vault TTLs
+
+If you wish to use Vault TTLs, you need a way to HUP your application on configuration file change. You can [configure the Vault Agent to execute a command](https://www.vaultproject.io/docs/agent/template/index.html) when it writes a new configuration file using the `command` attribute. The following is a basic example which uses the Kubernetes authentication method.
+
+{{< include-code "vault-agent-templating-example.yaml" "yaml" >}}
 
 ## Configuration
 
-There are two places to configure the Webhook, you can set some sane defaults in the environment of the mutating webhook or you can configure it via annotations in your PodSpec.
+To configure the webhook, you can either:
 
-### Defaults via environment variables:
+- set some sane defaults in the [environment of the mutating webhook](#defaults), or
+- configure it via annotations in your [PodSpec](#podspec).
+
+### Enable vault agent in the webhook
+
+For the webhook to detect that it will need to mutate or change a PodSpec, add the `vault.security.banzaicloud.io/vault-agent-configmap` annotation to the Deployment or PodSpec you want to mutate, otherwise it will be ignored for configuration with Vault Agent.
+
+### Defaults via environment variables {#defaults}
 
 |Variable      |default     |Explanation|
 |--------------|------------|------------|
@@ -87,7 +59,7 @@ There are two places to configure the Webhook, you can set some sane defaults in
 |VAULT_TLS_SECRET|""|supply a secret with the vault TLS CA so TLS can be verified|
 |VAULT_AGENT_SHARE_PROCESS_NAMESPACE|Kubernetes version <1.12 default off, 1.12 or higher default on|ShareProcessNamespace override|as above|
 
-### PodSpec annotations:
+### PodSpec annotations {#podspec}
 
 |Annotation    |default     |Explanation|
 |--------------|------------|------------|
@@ -99,7 +71,3 @@ vault.security.banzaicloud.io/vault-agent-share-process-namespace|Same as VAULT_
 vault.security.banzaicloud.io/vault-agent-cpu|"100m"|Specify the vault-agent container CPU resource limit|
 vault.security.banzaicloud.io/vault-agent-memory|"128Mi"|Specify the vault-agent container memory resource limit|
 vault.security.banzaicloud.io/vault-configfile-path|"/vault/secrets"|Mount path of Vault Agent rendered files|
-
-### How to enable vault agent in the webhook?
-
-For the webhook to detect that it will need to mutate or change a PodSpec, it must have the annotation `vault.security.banzaicloud.io/vault-agent-configmap` otherwise the PodSpec will be ignored for configuration with Vault Agent.

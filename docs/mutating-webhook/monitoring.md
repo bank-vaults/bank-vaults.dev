@@ -37,8 +37,14 @@ To monitor the webhook with Prometheus and Grafana, complete the following steps
 1. Create a Grafana instance and expose it:
 
     ```bash
-    kubectl run grafana --image grafana/grafana
+    kubectl create deployment grafana --image grafana/grafana
     kubectl expose deployment grafana --port 3000 --type LoadBalancer
+    ```
+
+1. Fetch the external IP address of the Grafana instance, and open it in your browser on port 3000.
+
+    ```bash
+    kubectl get service grafana
     ```
 
 1. [Create a Prometheus Data Source](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source) in this Grafana instance which grabs data from http://prometheus-operated:9090/.

@@ -34,6 +34,8 @@ In this case, `vault-configurer` evaluates the value of `MY_ENVIRONMENT_VARIABLE
 
 Note that you can also use [Sprig functions](#sprig-functions) and [custom Kubernetes-related functions](#custom-functions) in your templates.
 
+For a detailed example, see the [Using templates for injecting dynamic configuration in Vault]({{< blogref "bank-vaults-templates.md#full-example" >}}) blog post.
+
 ## Sprig functions
 
 In addition to the default functions in Go templates, you can also use [Sprig functions](http://masterminds.github.io/sprig/) in your configuration.

@@ -57,6 +57,18 @@ Parameter         | Type                           | Required
 encodedString     | Base64-encoded string          | Yes
 encryptionContext | Variadic list of strings       | No
 
+For example:
+
+```yaml
+password: '${ awskms (env `ENCRYPTED_DB_CREDS`) }'
+```
+
+You can also nest functions in the template, for example:
+
+```yaml
+password: '${ awskms (blob `s3://bank-vaults/encrypted/db-creds?region=eu-west-1`) }'
+```
+
 ### `gcpkms`
 
 Takes a base64-encoded string, encrypted with a Google Cloud Platform (GCP) symmetric key and returns the decrypted string.
@@ -87,6 +99,18 @@ Valid values for the URL parameters are listed below, for more fine grained opti
 Parameter | Type   | Required
 ----------|--------|---------
 url       | String | Yes
+
+For example:
+
+```yaml
+password: '${ blob `s3://bank-vaults/encrypted/db-creds?region=eu-west-1` }'
+```
+
+You can also nest functions in the template, for example:
+
+```yaml
+password: '${ awskms (blob `s3://bank-vaults/encrypted/db-creds?region=eu-west-1`) }'
+```
 
 ### `file`
 

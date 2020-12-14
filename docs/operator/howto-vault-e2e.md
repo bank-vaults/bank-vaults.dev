@@ -56,7 +56,7 @@ controller:
 ### Install nginx-ingress via helm
 
 ```bash
-helm install nginx-stable/nginx-ingress --name my-release -f vaules.yaml
+helm install nginx-stable/nginx-ingress --name my-release -f values.yaml
 ```
 
 ## Configuration

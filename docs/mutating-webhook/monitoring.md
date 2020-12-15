@@ -25,7 +25,7 @@ To monitor the webhook with Prometheus and Grafana, complete the following steps
         banzaicloud-stable/vault-secrets-webhook \
         --namespace vault-infra \
         --set metrics.enabled=true \
-        --set metrics.serviceMonitor.enabled=true
+        --set metrics.serviceMonitor.enabled={}
     ```
 
 1. Create a Prometheus instance which monitors the components of Bank-Vaults:

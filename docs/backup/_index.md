@@ -18,48 +18,46 @@ To configure the vault-operator to create backups of the Vault cluster, complete
 
     1. Add the Velero Helm repository:
 
-    ```bash
-    helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
-    ```
+        ```bash
+        helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
+        ```
 
     1. Create a namespace for Velero:
 
-    ```bash
-    kubectl create namespace velero
-    ```
+        ```bash
+        kubectl create namespace velero
+        ```
 
     1. Install Velero with [Restic](https://restic.net/) so you can create PV snapshots as well:
 
-    ```bash
-    BUCKET=bank-vaults-velero
-    REGION=eu-north-1
-    KMS_KEY_ID=alias/bank-vaults-velero
-    SECRET_FILE=~/.aws/credentials
+        ```bash
+        BUCKET=bank-vaults-velero
+        REGION=eu-north-1
+        KMS_KEY_ID=alias/bank-vaults-velero
+        SECRET_FILE=~/.aws/credentials
 
-    helm upgrade --install velero --namespace velero \
-              --set configuration.provider=aws \
-              --set-file credentials.secretContents.cloud=${SECRET_FILE} \
-              --set deployRestic=true \
-              --set configuration.backupStorageLocation.name=aws \
-              --set configuration.backupStorageLocation.bucket=${BUCKET} \
-              --set configuration.backupStorageLocation.config.region=${REGION} \
-              --set configuration.backupStorageLocation.config.kmsKeyId=${KMS_KEY_ID} \
-              --set configuration.volumeSnapshotLocation.name=aws \
-              --set configuration.volumeSnapshotLocation.config.region=${REGION} \
-              --set "initContainers[0].name"=velero-plugin-for-aws \
-              --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.0.0 \
-              --set "initContainers[0].volumeMounts[0].mountPath"=/target \
-              --set "initContainers[0].volumeMounts[0].name"=plugins \
-              vmware-tanzu/velero
-    ```
+        helm upgrade --install velero --namespace velero \
+                  --set configuration.provider=aws \
+                  --set-file credentials.secretContents.cloud=${SECRET_FILE} \
+                  --set deployRestic=true \
+                  --set configuration.backupStorageLocation.name=aws \
+                  --set configuration.backupStorageLocation.bucket=${BUCKET} \
+                  --set configuration.backupStorageLocation.config.region=${REGION} \
+                  --set configuration.backupStorageLocation.config.kmsKeyId=${KMS_KEY_ID} \
+                  --set configuration.volumeSnapshotLocation.name=aws \
+                  --set configuration.volumeSnapshotLocation.config.region=${REGION} \
+                  --set "initContainers[0].name"=velero-plugin-for-aws \
+                  --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.0.0 \
+                  --set "initContainers[0].volumeMounts[0].mountPath"=/target \
+                  --set "initContainers[0].volumeMounts[0].name"=plugins \
+                  vmware-tanzu/velero
+        ```
 
 1. Install the vault-operator to the cluster:
 
     ```bash
     helm upgrade --install vault-operator banzaicloud-stable/vault-operator
-    ```
 
-    ```bash
     kubectl apply -f operator/deploy/rbac.yaml
     kubectl apply -f operator/deploy/cr-raft.yaml
     ```
@@ -142,40 +140,40 @@ To configure the vault-operator to create backups of the Vault cluster, complete
 
     1. Scale down the vault-operator, so it won't reconcile during the restore process:
 
-    ```bash
-    kubectl scale deployment vault-operator --replicas 0
-    ```
+        ```bash
+        kubectl scale deployment vault-operator --replicas 0
+        ```
 
     1. Restore all Vault-related resources from the backup:
 
-    ```bash
-    velero restore create --from-backup vault-1
-    ```
+        ```bash
+        velero restore create --from-backup vault-1
+        ```
 
     1. Check that the restore has finished properly:
 
-    ```bash
-    velero restore get
-    NAME                    BACKUP   STATUS      WARNINGS   ERRORS   CREATED                         SELECTOR
-    vault1-20200129142409   vault1   Completed   0          0        2020-01-29 14:24:09 +0100 CET   <none>
-    ```
+        ```bash
+        velero restore get
+        NAME                    BACKUP   STATUS      WARNINGS   ERRORS   CREATED                         SELECTOR
+        vault1-20200129142409   vault1   Completed   0          0        2020-01-29 14:24:09 +0100 CET   <none>
+        ```
 
     1. Check that the Vault cluster got actually restored:
 
-    ```bash
-    kubectl get pods
-    NAME                                READY   STATUS    RESTARTS   AGE
-    vault-0                             4/4     Running   0          1m42s
-    vault-1                             4/4     Running   0          1m42s
-    vault-2                             4/4     Running   0          1m42s
-    vault-configurer-5499ff64cb-g75vr   1/1     Running   0          1m42s
-    ```
+        ```bash
+        kubectl get pods
+        NAME                                READY   STATUS    RESTARTS   AGE
+        vault-0                             4/4     Running   0          1m42s
+        vault-1                             4/4     Running   0          1m42s
+        vault-2                             4/4     Running   0          1m42s
+        vault-configurer-5499ff64cb-g75vr   1/1     Running   0          1m42s
+        ```
 
     1. Scale the operator back after the restore process:
 
-    ```bash
-    kubectl scale deployment vault-operator --replicas 1
-    ```
+        ```bash
+        kubectl scale deployment vault-operator --replicas 1
+        ```
 
 1. Delete the backup if you don't wish to keep it anymore:
 

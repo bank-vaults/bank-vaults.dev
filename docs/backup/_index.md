@@ -3,175 +3,180 @@ title: Backing up Vault
 weight: 650
 ---
 
-The vault-operator has support for backing up the cluster with Velero.
+You can configure the vault-operator to create backups of the Vault cluster with [Velero](https://velero.io/).
 
-## Velero
+## Prerequisites
 
-First, in this example we will install [Velero](https://velero.io/) on the target cluster with Helm:
+- The [Velero CLI](https://velero.io/docs/v1.5/basic-install/#install-the-cli) must be installed on your computer.
+- To create Persistent Volume (PV) snapshots, you need access to an object storage. The following example uses an Amazon S3 bucket called `bank-vaults-velero` in the Stockholm region.
 
-Add the Velero Helm repository:
+## Install Velero
 
-```bash
-helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
-```
+To configure the vault-operator to create backups of the Vault cluster, complete the following steps.
 
-Create a namespace for Velero:
+1. Install Velero on the target cluster with Helm.
 
-```bash
-kubectl create namespace velero
-```
+    1. Add the Velero Helm repository:
 
-Install Velero with [Restic](https://restic.net/) so we get PV snapshots as well (in this example we use AWS), I have created a bucket called `bank-vaults-velero` in the Stockholm region beforehand:
+        ```bash
+        helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
+        ```
 
-```bash
-BUCKET=bank-vaults-velero
-REGION=eu-north-1
-KMS_KEY_ID=alias/bank-vaults-velero
-SECRET_FILE=~/.aws/credentials
+    1. Create a namespace for Velero:
 
-helm upgrade --install velero --namespace velero \
-          --set configuration.provider=aws \
-          --set-file credentials.secretContents.cloud=${SECRET_FILE} \
-          --set deployRestic=true \
-          --set configuration.backupStorageLocation.name=aws \
-          --set configuration.backupStorageLocation.bucket=${BUCKET} \
-          --set configuration.backupStorageLocation.config.region=${REGION} \
-          --set configuration.backupStorageLocation.config.kmsKeyId=${KMS_KEY_ID} \
-          --set configuration.volumeSnapshotLocation.name=aws \
-          --set configuration.volumeSnapshotLocation.config.region=${REGION} \
-          --set "initContainers[0].name"=velero-plugin-for-aws \
-          --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.0.0 \
-          --set "initContainers[0].volumeMounts[0].mountPath"=/target \
-          --set "initContainers[0].volumeMounts[0].name"=plugins \
-          vmware-tanzu/velero
-```
+        ```bash
+        kubectl create namespace velero
+        ```
 
-Install the vault-operator to the cluster:
+    1. Install Velero with [Restic](https://restic.net/) so you can create PV snapshots as well:
 
-```bash
-helm upgrade --install vault-operator banzaicloud-stable/vault-operator
-```
+        ```bash
+        BUCKET=bank-vaults-velero
+        REGION=eu-north-1
+        KMS_KEY_ID=alias/bank-vaults-velero
+        SECRET_FILE=~/.aws/credentials
 
-```bash
-kubectl apply -f operator/deploy/rbac.yaml
-kubectl apply -f operator/deploy/cr-raft.yaml
-```
+        helm upgrade --install velero --namespace velero \
+                  --set configuration.provider=aws \
+                  --set-file credentials.secretContents.cloud=${SECRET_FILE} \
+                  --set deployRestic=true \
+                  --set configuration.backupStorageLocation.name=aws \
+                  --set configuration.backupStorageLocation.bucket=${BUCKET} \
+                  --set configuration.backupStorageLocation.config.region=${REGION} \
+                  --set configuration.backupStorageLocation.config.kmsKeyId=${KMS_KEY_ID} \
+                  --set configuration.volumeSnapshotLocation.name=aws \
+                  --set configuration.volumeSnapshotLocation.config.region=${REGION} \
+                  --set "initContainers[0].name"=velero-plugin-for-aws \
+                  --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.0.0 \
+                  --set "initContainers[0].volumeMounts[0].mountPath"=/target \
+                  --set "initContainers[0].volumeMounts[0].name"=plugins \
+                  vmware-tanzu/velero
+        ```
 
-NOTE: The Vault CR in cr-raft.yaml has a special flag called `veleroEnabled`,
-this is useful for file-based Vault storage backends (`file`, `raft`), please
-see the [Velero documentation](https://velero.io/docs/v1.2.0/hooks/):
+1. Install the vault-operator to the cluster:
 
-```yaml
-  # Add Velero fsfreeze sidecar container and supporting hook annotations to Vault Pods:
-  # https://velero.io/docs/v1.2.0/hooks/
-  veleroEnabled: true
-```
+    ```bash
+    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
 
-Create a backup with the Velero CLI or with the predefined Velero Backup CR:
+    kubectl apply -f operator/deploy/rbac.yaml
+    kubectl apply -f operator/deploy/cr-raft.yaml
+    ```
 
-```bash
-velero backup create --selector vault_cr=vault vault-1
+    > Note: The Vault CR in cr-raft.yaml has a special flag called `veleroEnabled`. This is useful for file-based Vault storage backends (`file`, `raft`), see the [Velero documentation](https://velero.io/docs/v1.2.0/hooks/):
 
-# OR
+    ```yaml
+      # Add Velero fsfreeze sidecar container and supporting hook annotations to Vault Pods:
+      # https://velero.io/docs/v1.2.0/hooks/
+      veleroEnabled: true
+    ```
 
-kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/backup.yaml
-```
+1. Create a backup with the [Velero CLI](https://velero.io/docs/v1.5/basic-install/#install-the-cli) or with the predefined Velero Backup CR:
 
-Check that the Velero backup got created successfully:
+    ```bash
+    velero backup create --selector vault_cr=vault vault-1
 
-```bash
-velero backup describe --details vault-1
-```
+    # OR
 
-Output:
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/backup.yaml
+    ```
 
-```shell
-Name:         vault-1
-Namespace:    velero
-Labels:       velero.io/backup=vault-1
-              velero.io/pv=pvc-6eb4d9c1-25cd-4a28-8868-90fa9d51503a
-              velero.io/storage-location=default
-Annotations:  <none>
+    > Note: For a daily scheduled backup, see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/schedule.yaml).
 
-Phase:  Completed
+1. Check that the Velero backup got created successfully:
 
-Namespaces:
-  Included:  *
-  Excluded:  <none>
+    ```bash
+    velero backup describe --details vault-1
+    ```
 
-Resources:
-  Included:        *
-  Excluded:        <none>
-  Cluster-scoped:  auto
+    Expected output:
 
-Label selector:  vault_cr=vault
+    ```shell
+    Name:         vault-1
+    Namespace:    velero
+    Labels:       velero.io/backup=vault-1
+                  velero.io/pv=pvc-6eb4d9c1-25cd-4a28-8868-90fa9d51503a
+                  velero.io/storage-location=default
+    Annotations:  <none>
 
-Storage Location:  default
+    Phase:  Completed
 
-Snapshot PVs:  auto
+    Namespaces:
+      Included:  *
+      Excluded:  <none>
 
-TTL:  720h0m0s
+    Resources:
+      Included:        *
+      Excluded:        <none>
+      Cluster-scoped:  auto
 
-Hooks:  <none>
+    Label selector:  vault_cr=vault
 
-Backup Format Version:  1
+    Storage Location:  default
 
-Started:    2020-01-29 14:17:41 +0100 CET
-Completed:  2020-01-29 14:17:45 +0100 CET
+    Snapshot PVs:  auto
 
-Expiration:  2020-02-28 14:17:41 +0100 CET
-```
+    TTL:  720h0m0s
 
-Remove Vault entirely from the cluster (emulate a catastrophe!):
+    Hooks:  <none>
 
-```bash
-kubectl delete vault -l vault_cr=vault
-kubectl delete pvc -l vault_cr=vault
-```
+    Backup Format Version:  1
 
-Now we will restore Vault from the backup
+    Started:    2020-01-29 14:17:41 +0100 CET
+    Completed:  2020-01-29 14:17:45 +0100 CET
 
-Scale down the vault-operator, so it won't reconcile during the restore process (it is advised):
+    Expiration:  2020-02-28 14:17:41 +0100 CET
+    ```
 
-```bash
-kubectl scale deployment vault-operator --replicas 0
-```
+## Test the backup
 
-Now restore all Vault related resources from the backup:
+1. To emulate a catastrophe, remove Vault entirely from the cluster:
 
-```bash
-velero restore create --from-backup vault-1
-```
+    ```bash
+    kubectl delete vault -l vault_cr=vault
+    kubectl delete pvc -l vault_cr=vault
+    ```
 
-Check that the restore has finished properly:
+1. Now restore Vault from the backup.
 
-```bash
-velero restore get
-NAME                    BACKUP   STATUS      WARNINGS   ERRORS   CREATED                         SELECTOR
-vault1-20200129142409   vault1   Completed   0          0        2020-01-29 14:24:09 +0100 CET   <none>
-```
+    1. Scale down the vault-operator, so it won't reconcile during the restore process:
 
-Check that all the Vault cluster got actually restored:
+        ```bash
+        kubectl scale deployment vault-operator --replicas 0
+        ```
 
-```bash
-kubectl get pods
-NAME                                READY   STATUS    RESTARTS   AGE
-vault-0                             4/4     Running   0          1m42s
-vault-1                             4/4     Running   0          1m42s
-vault-2                             4/4     Running   0          1m42s
-vault-configurer-5499ff64cb-g75vr   1/1     Running   0          1m42s
-```
+    1. Restore all Vault-related resources from the backup:
 
-Scale the operator back after the restore process:
+        ```bash
+        velero restore create --from-backup vault-1
+        ```
 
-```bash
-kubectl scale deployment vault-operator --replicas 1
-```
+    1. Check that the restore has finished properly:
 
-Delete the backup if you don't wish to keep it anymore:
+        ```bash
+        velero restore get
+        NAME                    BACKUP   STATUS      WARNINGS   ERRORS   CREATED                         SELECTOR
+        vault1-20200129142409   vault1   Completed   0          0        2020-01-29 14:24:09 +0100 CET   <none>
+        ```
 
-```bash
-velero backup delete vault-1
-```
+    1. Check that the Vault cluster got actually restored:
 
-For a daily scheduled backup please see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/schedule.yaml).
+        ```bash
+        kubectl get pods
+        NAME                                READY   STATUS    RESTARTS   AGE
+        vault-0                             4/4     Running   0          1m42s
+        vault-1                             4/4     Running   0          1m42s
+        vault-2                             4/4     Running   0          1m42s
+        vault-configurer-5499ff64cb-g75vr   1/1     Running   0          1m42s
+        ```
+
+    1. Scale the operator back after the restore process:
+
+        ```bash
+        kubectl scale deployment vault-operator --replicas 1
+        ```
+
+1. Delete the backup if you don't wish to keep it anymore:
+
+    ```bash
+    velero backup delete vault-1
+    ```

@@ -5,9 +5,13 @@ weight: 690
 
 Bank-Vaults offers a lot of alternatives for encrypting and storing the `unseal-keys` and the `root-token` for Vault. One of the encryption technics is the HSM - Hardware Security Module. HSM offers an industry-standard way to encrypt your data in on-premise environments.
 
-You can use a Hardware Security Module (HSM) to generate and store the private keys used by Bank-Vaults. Some articles still point out the speed of HSM devices as their main selling point, but an average PC can do more cryptographic operations. Rather the main benefit is from the security point of view. An HSM protects your private keys and handles cryptographic operations, which allows the encryption of protected information without exposing the private keys (they are not extractable). Bank-Vaults currently supports the [PKCS11](https://en.wikipedia.org/wiki/PKCS_11) software standard to communicate with an HSM. Fulfilling compliance requirements (for example, PCI DSS) is also a great benefit of HSMs, so from now on you can achieve that with Bank-Vaults.
+You can use a Hardware Security Module (HSM) to generate and store the private keys used by Bank-Vaults. Some articles still point out the speed of HSM devices as their main selling point, but an average PC can do more cryptographic operations. Actually, the main benefit is from the security point of view. An HSM protects your private keys and handles cryptographic operations, which allows the encryption of protected information without exposing the private keys (they are not extractable). Bank-Vaults currently supports the [PKCS11](https://en.wikipedia.org/wiki/PKCS_11) software standard to communicate with an HSM. Fulfilling compliance requirements (for example, PCI DSS) is also a great benefit of HSMs, so from now on you can achieve that with Bank-Vaults.
+
+<iframe width="704" height="438"  src="https://www.youtube.com/embed/4iUSoxPMVXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Implementation in Bank-Vaults
+
+![Vault HSM](/img/blog/vault-hsm/hsm.png)
 
 To support HSM devices for encrypting unseal-keys and root-tokens, Bank-Vaults:
 
@@ -60,115 +64,144 @@ kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/maste
 
 ## NitroKey HSM support (OpenSC)
 
-[Nitrokey HSM](https://www.nitrokey.com/) is a USB HSM device based on the [OpenSC project](https://github.com/OpenSC/OpenSC). We are using NitroKey to develop real hardware-based HSM support for Bank-Vaults. This device is not a cryptographic accelerator. Only key generation and the private key operations (sign and decrypt) are supported. Public key operations should be done by extracting the public key and working on the computer, and this is how it is implemented in Bank-Vaults. It is not possible to extract private keys from NitroKey HSM, the device is tamper-resistant.
+[Nitrokey HSM](https://www.nitrokey.com/) is a USB HSM device based on the [OpenSC project](https://github.com/OpenSC/OpenSC). We are using NitroKey to develop real hardware-based HSM support for Bank-Vaults. This device is not a cryptographic accelerator, only key generation and the private key operations (sign and decrypt) are supported. Public key operations should be done by extracting the public key and working on the computer, and this is how it is implemented in Bank-Vaults. It is not possible to extract private keys from NitroKey HSM, the device is tamper-resistant.
 
 This device supports only RSA based encryption/decryption, and thus this is implemented in Bank-Vaults currently. It supports ECC keys as well, but only for sign/verification operations.
 
-Install OpenSC and initialize the NitroKey HSM stick:
+To start using a NitroKey HSM, complete the following steps.
 
-```bash
-brew install opensc
-sc-hsm-tool --initialize --label bank-vaults --pin banzai --so-pin banzaicloud
-pkcs11-tool --module /usr/local/lib/opensc-pkcs11.so --keypairgen --key-type rsa:2048 --pin banzai --token-label bank-vaults --label bank-vaults
-```
+1. Install OpenSC and initialize the NitroKey HSM stick:
 
-Check that in you got a keypair object in slot 0:
+    ```bash
+    brew install opensc
+    sc-hsm-tool --initialize --label bank-vaults --pin banzai --so-pin banzaicloud
+    pkcs11-tool --module /usr/local/lib/opensc-pkcs11.so --keypairgen --key-type rsa:2048 --pin banzai --token-label bank-vaults --label bank-vaults
+    ```
 
-```bash
-pkcs11-tool --list-objects
-```
-```
-Using slot 0 with a present token (0x0)
-Public Key Object; RSA 2048 bits
-  label:      bank-vaults
-  ID:         a9548075b20243627e971873826ead172e932359
-  Usage:      encrypt, verify, wrap
-  Access:     none
-```
+1. Check that you got a keypair object in slot 0:
 
-```bash
-pkcs15-tool --list-keys
-```
-```
-Using reader with a card: Nitrokey Nitrokey HSM
-Private RSA Key [bank-vaults]
-	Object Flags   : [0x03], private, modifiable
-	Usage          : [0x0E], decrypt, sign, signRecover
-	Access Flags   : [0x1D], sensitive, alwaysSensitive, neverExtract, local
-	ModLength      : 2048
-	Key ref        : 1 (0x01)
-	Native         : yes
-	Auth ID        : 01
-	ID             : a9548075b20243627e971873826ead172e932359
-	MD:guid        : a6b2832c-1dc5-f4ef-bb0f-7b3504f67015
-```
+    ```bash
+    pkcs11-tool --list-objects
 
-### Setup on Minikube for testing (optional)
 
-On OSX where you run Docker in VMs you need to do some extra steps before developing to mount your HSM device to Kubernetes, on Linux you can skip the next section, where we [configure the HSM device](#unseal-hsm).
+    Using slot 0 with a present token (0x0)
+    Public Key Object; RSA 2048 bits
+      label:      bank-vaults
+      ID:         a9548075b20243627e971873826ead172e932359
+      Usage:      encrypt, verify, wrap
+      Access:     none
+    ```
 
-Here we use Minikube to test and validate the NitroKey setup, the following steps are needed to mount it into the `minikube` Kubernetes cluster:
+    ```bash
+    pkcs15-tool --list-keys
 
-```bash
-# Specify VirtualBox as the VM backend
-minikube config set vm-driver virtualbox
+    Using reader with a card: Nitrokey Nitrokey HSM
+    Private RSA Key [bank-vaults]
+      Object Flags   : [0x03], private, modifiable
+      Usage          : [0x0E], decrypt, sign, signRecover
+      Access Flags   : [0x1D], sensitive, alwaysSensitive, neverExtract, local
+      ModLength      : 2048
+      Key ref        : 1 (0x01)
+      Native         : yes
+      Auth ID        : 01
+      ID             : a9548075b20243627e971873826ead172e932359
+      MD:guid        : a6b2832c-1dc5-f4ef-bb0f-7b3504f67015
+    ```
 
-# You need to the Oracle VM VirtualBox Extension Pack for USB 2.0 support, make sure it is installed
-VBoxManage list extpacks
+1. If you are testing the HSM on macOS, [setup minikube](#nitrokey-minikube). Otherwise, continue with the next step.
 
-# Create a minikube cluster with the virtualbox driver and stop it (we need to modify the VM)
-minikube start
-minikube stop
+1. Configure the operator to use NitroKey HSM for unsealing.
 
-# Enable USB 2.0 support for the minikube VM
-VBoxManage modifyvm minikube --usbehci on
+    You must adjust the `unsealConfig` section in the vault-operator configuration, so the operator can communicate with OpenSC HSM devices correctly. Adjust your configuration based on the following snippet:
 
-# Find the vendorid and productid for your Nitrokey HSM device
-VBoxManage list usbhost
+    ```yaml
+      # This example relies on an OpenSC HSM (NitroKey HSM) device initialized and plugged in to the Kubernetes Node.
+      unsealConfig:
+        hsm:
+          # OpenSC daemon is needed in this case to communicate with the device
+          daemon: true
+          # The HSM SO module path (opensc is built into the bank-vaults image)
+          modulePath: /usr/lib/opensc-pkcs11.so
+          # For OpenSC slotId is the preferred way instead of tokenLabel
+          # (OpenSC appends/prepends some extra stuff to labels)
+          slotId: 0
+          pin: banzai # This can be specified in the BANK_VAULTS_HSM_PIN environment variable as well, from a Secret
+          keyLabel: bank-vaults
+    ```
 
-VENDORID=0x20a0
-PRODUCTID=0x4230
+1. [Configure your Kubernetes node](#node-setup) that has the HSM attached so Bank-Vaults can access it.
 
-# Create a filter for it
-VBoxManage usbfilter add 1 --target minikube --name "Nitrokey HSM" --vendorid ${VENDORID} --productid ${PRODUCTID}
+### Setup on Minikube for testing (optional) {#nitrokey-minikube}
 
-# Restart the minikube VM
-minikube start
+On macOS where you run Docker in VMs you need to do some extra steps before mounting your HSM device to Kubernetes. On Linux, skip to the next section to [configure the operator to use the HSM for unsealing](#unseal-hsm).
 
-# Plug in the USB device now to your computer
+Complete the following steps to mount NitroKey into the `minikube` Kubernetes cluster:
 
-# Check that minikube captured your NitorKey HSM
-minikube ssh lsusb | grep ${VENDORID:2}:${PRODUCTID:2}
-```
+1. Make sure that the Oracle VM VirtualBox Extension Pack for USB 2.0 support is installed.
+
+    ```bash
+    VBoxManage list extpacks
+    ```
+
+1. Remove the HSM device from your computer if it is already plugged in.
+
+1. Specify VirtualBox as the VM backend for Minikube.
+
+    ```bash
+    minikube config set vm-driver virtualbox
+    ```
+
+1. Create a minikube cluster with the virtualbox driver and stop it, so you can modify the VM.
+
+    ```bash
+    minikube start
+    minikube stop
+    ```
+
+1. Enable USB 2.0 support for the minikube VM.
+
+    ```bash
+    VBoxManage modifyvm minikube --usbehci on
+    ```
+
+1. Find the vendorid and productid for your Nitrokey HSM device.
+
+    ```bash
+    VBoxManage list usbhost
+
+    VENDORID=0x20a0
+    PRODUCTID=0x4230
+    ```
+
+1. Create a filter for it.
+
+    ```bash
+    VBoxManage usbfilter add 1 --target minikube --name "Nitrokey HSM" --vendorid ${VENDORID} --productid ${PRODUCTID}
+    ```
+
+1. Restart the minikube VM.
+
+    ```bash
+    minikube start
+    ```
+
+1. Plug in the USB device.
+
+1. Check that minikube captured your NitorKey HSM.
+
+    ```bash
+    minikube ssh lsusb | grep ${VENDORID:2}:${PRODUCTID:2}
+    ```
 
 Now your `minikube` Kubernetes cluster has access to the HSM device through USB.
 
-### Configuring the operator to use NitroKey HSM based unsealing {#unseal-hsm}
-
-In the vault-operator the `unsealConfig` becomes a bit different for OpenSC HSM devices, there are certain things that the operator needs to be aware of to communicate with the device correctly:
-
-```yaml
-  # This example relies on an OpenSC HSM (NitroKey HSM) device initialized and plugged in to the Kubernetes Node.
-  unsealConfig:
-    hsm:
-      # OpenSC daemon is needed in this case to communicate with the device
-      daemon: true
-      # The HSM SO module path (opensc is built into the bank-vaults image)
-      modulePath: /usr/lib/opensc-pkcs11.so
-      # For OpenSC slotId is the preferred way instead of tokenLabel
-      # (OpenSC appends/prepends some extra stuff to labels)
-      slotId: 0
-      pin: banzai # This can be specified in the BANK_VAULTS_HSM_PIN environment variable as well, from a Secret
-      keyLabel: bank-vaults
-```
-
-## Kubernetes node setup
+## Kubernetes node setup {#node-setup}
 
 Some HSM vendors offer network daemons to enhance the reach of their HSM equipment to different servers. Unfortunately, there is no networking standard defined for PKCS11 access and thus currently Bank-Vaults has to be scheduled to the same node where the HSM device is attached directly (if not using a Cloud HSM).
 
-Since the HSM is a hardware device connected to a physical node, Bank-Vaults has to find its way to that node. To make this work, we create an HSM [extended resource](https://kubernetes.io/docs/tasks/administer-cluster/extended-resource-node/) on the Kubernetes nodes for which the HSM device is plugged in. Extended resources must be advertised in integer amounts. For example, a Node can advertise four HSM devices, but not 4.5.
+Since the HSM is a hardware device connected to a physical node, Bank-Vaults has to find its way to that node. To make this work, create an HSM [extended resource](https://kubernetes.io/docs/tasks/administer-cluster/extended-resource-node/) on the Kubernetes nodes for which the HSM device is plugged in. Extended resources must be advertised in integer amounts, for example, a Node can advertise four HSM devices, but not 4.5.
 
-1. You need to patch the node to specify that it has an HSM device as a resource. 
+1. You need to patch the node to specify that it has an HSM device as a resource.
     Because of the integer constraint and because all Bank-Vaults related Pods has to land on a Node where an HSM resource is available we need to advertise two units for 1 device, one will be allocated by each Vault Pod and one by the Configurer. If you would like to run Vault in HA mode - multiple Vault instances in different nodes - you will need multiple HSM devices plugged into those nodes, having the same key and slot setup.
 
     ```bash
@@ -314,4 +347,4 @@ Since the HSM is a hardware device connected to a physical node, Bank-Vaults has
 
 ## Additional HSM implementations
 
-AWS CloudHSM supports the PKCS11 API as well, so it should probably work, though it needs a custom Docker image. If you need help with that, [contact us for the details](/contact/).
+AWS CloudHSM supports the PKCS11 API as well, so it probably works, though it needs a custom Docker image. If you need help with that, [contact us for the details](/contact/).

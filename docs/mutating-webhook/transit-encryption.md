@@ -5,7 +5,10 @@ weight: 200
 
 The transit secrets engine handles cryptographic functions on data in-transit, mainly to encrypt data from applications while still storing that encrypted data in some primary data store. Vault doesn't store the data sent to the secrets engine, it can also be viewed as "cryptography as a service" or "encryption as a service". For details about transit encryption, see the [official documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
 
-> Note: Transit encryption supports only POD mutations.
+> Note:
+>
+> - Transit encryption supports only POD mutations.
+> - You can also [use Bank-Vaults with Istio](/docs/bank-vaults/istio/).
 
 ## Enable Transit secrets engine
 

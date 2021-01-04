@@ -127,7 +127,7 @@ spec:
     - name: wildcard-ssl
       secret:
         defaultMode: 420
-        secretName: wildcard.examlpe.com
+        secretName: wildcard.example.com
 
   volumeMounts:
     - name: wildcard-ssl

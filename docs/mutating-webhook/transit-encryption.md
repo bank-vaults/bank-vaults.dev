@@ -29,7 +29,7 @@ To enable and test the Transit secrets engine, complete the following steps.
     vault write transit/encrypt/my-key plaintext=$(base64 <<< "my secret data")
     ```
 
-1. After completing the previous steps, the webhook will mutate deployments that have at least one environment variable with a value which is encrypted by Vault. For example (in the last line of the example):
+1. After completing the previous steps, the webhook will mutate pods that have at least one environment variable with a value which is encrypted by Vault. For example (in the last line of the example):
 
 ```yaml
 apiVersion: apps/v1

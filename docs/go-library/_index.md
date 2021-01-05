@@ -4,9 +4,9 @@ shortTitle: Go library
 weight: 800
 ---
 
-This repository contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/banzaicloud/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
+The [Bank-Vaults repository](https://github.com/banzaicloud/bank-vaults/) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/banzaicloud/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
 
-- `pkg/sdk/auth`
+- [pkg/sdk/auth](https://github.com/banzaicloud/bank-vaults/tree/master/pkg/sdk/auth)
 
     Stores JWT bearer tokens in Vault.
 
@@ -14,19 +14,19 @@ This repository contains several Go packages for interacting with Vault, these p
 
     ![authn](images/authn-vault-flow.png)
 
-- `pkg/sdk/vault`
+- [pkg/sdk/vault](https://github.com/banzaicloud/bank-vaults/tree/master/pkg/sdk/vault)
 
     A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.
 
     ![token](images/token-request-vault-flow.png)
 
-- `pkg/sdk/db`
+- [pkg/sdk/db](https://github.com/banzaicloud/bank-vaults/tree/master/pkg/sdk/db)
 
     A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of `username:password`).
 
     ![token](images/vault-mySQL.gif)
 
-- `pkg/sdk/tls`
+- [pkg/sdk/tls](https://github.com/banzaicloud/bank-vaults/tree/master/pkg/sdk/tls)
 
     A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can't use Vault's [PKI secret engine](https://www.vaultproject.io/docs/secrets/pki/index.html).
 

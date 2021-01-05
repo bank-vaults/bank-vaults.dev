@@ -4,19 +4,26 @@ shortTitle: External Secrets
 weight: 1100
 ---
 
-In some setup it might be needed to restart the Vault Statefulset when secrets, external to the operator control, are changed. 
+In some cases, you might have to restart the Vault Statefulset when secrets that are not managed by the operator control are changed. For example:
 
-Some Examples include:
+- Cert-Manager managing a public Certificate for vault using Let's Encrypt.
+- Cloud IAM Credentials created with an external tool (like terraform) to allow vault to interact with the cloud services.
 
-- Cert-Manager managing a public Certificate for vault using let's Encrypt 
-  **Starting with version 0.11 of cert-manager no label is available anymore so use the `watchedSecretsAnnotations` field**
-- Cloud IAM Credentials created with an external tool ( like terraform ) to allow vault to interact with the cloud services
+The operator can watch a set of secrets in the namespace of the Vault resource using either a list of label selectors or an annotations selector. When the content of any of those secrets changes, the operator updates the statefulset and triggers a rolling restart.
 
-The Operator can watch a set of secrets in the namespace of the Vault resource using either a list of labels selector or an annotations selector. The Operator can update the statefulset, triggering a rolling restart, when the content of any of those secrets changes.
+## Configure label selectors
 
-How to configure labels selectors
+Set the secrets to watch using the **watchedSecretsAnnotations** and **watchedSecretsLabels** fields in your Vault custom resource.
 
-```shell
+> Note: For cert-manager 0.11 or newer, use the `watchedSecretsAnnotations` field.
+
+In the following example, the Vault StatefulSet is restarted when:
+
+- A secret with label _certmanager.k8s.io/certificate-name: vault-letsencrypt-cert_ changes its contents (cert-manager 0.10 and earlier).
+- A secret with label _test.com/scope: gcp_ AND _test.com/credentials: vault_ changes its contents.
+- A secret with annotation _cert-manager.io/certificate-name: vault-letsencrypt-cert_ changes its contents (cert-manager 0.11 and newer).
+
+```yaml
 watchedSecretsLabels:
   - certmanager.k8s.io/certificate-name: vault-letsencrypt-cert
   - test.com/scope: gcp
@@ -26,13 +33,7 @@ watchedSecretsAnnotations:
   - cert-manager.io/certificate-name: vault-letsencrypt-cert
 ```
 
-in the example above a restart would be trigger if:
-
-- secret with label _certmanager.k8s.io/certificate-name: vault-letsencrypt-cert_ change in contents
-- secret with label _test.com/scope: gcp_ AND _test.com/credentials: vault_ change in contents
-- secret with annotation _cert-manager.io/certificate-name: vault-letsencrypt-cert_ change in contents
-
-The operator will control the restart of the statefulset by adding an _annotation_ to the _spec.template_ of the vault resource
+The operator controls the restart of the statefulset by adding an _annotation_ to the _spec.template_ of the vault resource
 
 ```bash
 kubectl get -n vault statefulset vault -o json | jq .spec.template.metadata.annotations

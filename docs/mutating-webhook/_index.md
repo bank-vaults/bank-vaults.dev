@@ -25,6 +25,13 @@ For further examples and use cases, see [Configuration examples and scenarios](/
 
 {{< include-headless "deploy-mutating-webhook.md" "bank-vaults" >}}
 
+## Deploy the webhook from a private registry
+
+If you are getting the **x509: certificate signed by unknown authority app=vault-secrets-webhook** error when the webhook is trying to download the manifest from a private image registry, you can:
+
+- Build a docker image where the CA store of the OS layer of the image contains the CA certificate of the registry.
+- Alternatively, you can disable certificate verification for the registry by using the **REGISTRY_SKIP_VERIFY="true"** environment variable in the deployment of the webhook.
+
 ## Deploy in daemon mode {#daemon-mode}
 
 `vault-env` by default replaces itself with the original process of the Pod after reading the secrets from Vault, but with the `vault.security.banzaicloud.io/vault-env-daemon: "true"` annotation this behavior can be changed. So `vault-env` can change to `daemon mode`, so `vault-env` starts the original process as a child process and remains in memory, and renews the lease of the requested Vault token and of the dynamic secrets (if requested any) until their final expiration time.

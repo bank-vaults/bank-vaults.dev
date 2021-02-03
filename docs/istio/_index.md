@@ -18,9 +18,7 @@ We support the following three scenarios:
 
 1. First of all, you need to install the [Backyards CLI](https://github.com/banzaicloud/backyards-cli) on your cluster:
 
-    ```bash
-    curl https://getbackyards.sh | sh
-    ```
+    {{< include-headless "download-backyards.md" >}}
 
 1. Install the [Istio operator](https://github.com/banzaicloud/istio-operator) using Backyards.
     You need only the Istio operator, but you can experiment with the Backyards UI/CLI and the large collection of automated Istio features provided by Backyards like observability, traffic routing, canary, circuit breakers, and so on - check out this [long list of features](https://banzaicloud.com/docs/backyards/features/).

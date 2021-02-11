@@ -43,14 +43,14 @@ First, complete the {{% xref "/docs/bank-vaults/istio/_index.md#prerequisites" %
         apiVersion: authentication.istio.io/v1alpha1
         kind: Policy
         metadata:
-        name: default
-        namespace: vault
-        labels:
+          name: default
+          namespace: vault
+          labels:
             app: security
         spec:
-        peers:
-        - mtls:
-            mode: PERMISSIVE
+          peers:
+          - mtls:
+              mode: PERMISSIVE
         EOF
         ```
 

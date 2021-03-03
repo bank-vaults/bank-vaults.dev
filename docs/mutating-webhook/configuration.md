@@ -39,7 +39,7 @@ secret: ${vault:secret/data/mysecret#supersecret}
 type: Opaque
 ```
 
-This works also for ConfigMap resources when `configMapMutation` is enabled.
+This works also for ConfigMap resources when `configMapMutation: true` is set in the webhook's Helm chart.
 To enable inline mutation globally, set the env variable `INLINE_MUTATION: true` on the webhook.
 
 You can specify the version of the injected Vault secret as well in the special reference, the format is: `vault:PATH#KEY_OR_TEMPLATE#VERSION`

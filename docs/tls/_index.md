@@ -97,14 +97,14 @@ You can use the following [cert-manager custom resource](https://cert-manager.io
 
 ```bash
 kubectl apply -f - <<EOF
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: test-selfsigned
 spec:
   selfSigned: {}
 ---
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: selfsigned-cert

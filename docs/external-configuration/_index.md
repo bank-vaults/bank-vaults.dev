@@ -475,6 +475,10 @@ secrets:
           key_type: "ca"
           default_user: "ubuntu"
           ttl: "24h"
+          default_extensions:
+            permit-pty: ""
+            permit-port-forwarding: ""
+            permit-agent-forwarding: ""
 ```
 
 ## Startup secrets

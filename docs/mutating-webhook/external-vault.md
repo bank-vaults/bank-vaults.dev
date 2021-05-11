@@ -107,3 +107,19 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
             vault.security.banzaicloud.io/vault-skip-verify: "true"
             vault.security.banzaicloud.io/vault-path: "kubernetes"
     ```
+
+--- 
+
+Also you can use directly cloud identity to auth the mutating-webhook against the external vault.
+
+1. Add your cloud auth method in your external vault [https://www.vaultproject.io/docs/auth/azure](https://www.vaultproject.io/docs/auth/azure)
+
+2. Configure your `vault-secrets-webhook` to use the good method. For example:
+```yaml
+env:
+  VAULT_ADDR: https://external-vault.example.com
+  VAULT_AUTH_METHOD: azure
+  VAULT_PATH: azure
+  VAULT_ROLE: default
+```
+For `VAULT_AUTH_METHOD` env var, these types: **"kubernetes", "aws-ec2", "gcp-gce", "gcp-iam", "jwt", "azure"** are supported.

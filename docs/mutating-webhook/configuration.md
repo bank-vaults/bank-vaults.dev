@@ -269,9 +269,10 @@ spec:
 
 ## Authenticate the webhook to Vault {#webhook-auth}
 
-By default, the webhook uses Kubernetes [ServiceAccount-based authentication](https://www.vaultproject.io/docs/auth/kubernetes) in Vault. Use the `vault.security.banzaicloud.io/vault-auth-method` annotation to request different authentication types from the following supported types: **"kubernetes", "aws-ec2", "gcp-gce", "gcp-iam", "jwt"**.
+By default, the webhook uses Kubernetes [ServiceAccount-based authentication](https://www.vaultproject.io/docs/auth/kubernetes) in Vault. Use the `vault.security.banzaicloud.io/vault-auth-method` annotation to request different authentication types from the following supported types: **"kubernetes", "aws-ec2", "gcp-gce", "gcp-iam", "jwt", "azure"**.
 
 > Note: GCP IAM authentication (**gcp-iam**) only allows for authentication with the 'default' service account of the caller, and a new token is generated at every request.
+> Note: Azure MSI authentication (**azure**) a new token is generated at every request.
 
 The following deployment - if running on a GCP instance - will automatically receive a signed JWT token from the metadata server of the cloud provider, and use it to authenticate against Vault. The same goes for `vault-auth-method: "aws-ec2"`, when running on an EC2 node with the right instance-role.
 

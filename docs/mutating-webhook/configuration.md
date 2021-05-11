@@ -8,6 +8,16 @@ The following examples show you how to configure the mutating webhook to best su
 
 {{< include-headless "mutating-webhook-config-examples-basic.md" "bank-vaults" >}}
 
+## Pre-requisites for inline injection to work
+
+Vault needs to be properly configured for mutation to function; namely
+`externalConfig.auth` and `externConfig.roles` (from the perspective of the
+vault operator CR) need to be properly configured. If you're not using the vault
+operator then you must make sure that your Vault configuration for `Kubernetes`
+auth methods [1][are properly configured]. This configuration is outside the scope
+of this document. If you use the operator for managing Vault in your cluster, please
+read documentation in [2][this directory].
+
 ## Inject secret into resources
 
 The webhook can inject into any kind of resources, even into CRDs, for example:
@@ -308,3 +318,6 @@ spec:
             - name: MYSQL_PASSWORD
               value: vault:secret/data/mysql#MYSQL_PASSWORD
 ```
+
+[1]:https://www.vaultproject.io/docs/auth/kubernetes
+[2]:https://github.com/banzaicloud/bank-vaults-docs/tree/master/docs/operator

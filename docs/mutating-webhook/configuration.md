@@ -8,15 +8,14 @@ The following examples show you how to configure the mutating webhook to best su
 
 {{< include-headless "mutating-webhook-config-examples-basic.md" "bank-vaults" >}}
 
-## Pre-requisites for inline injection to work
+## Prerequisites for inline injection to work
 
 Vault needs to be properly configured for mutation to function; namely
 `externalConfig.auth` and `externConfig.roles` (from the perspective of the
 vault operator CR) need to be properly configured. If you're not using the vault
 operator then you must make sure that your Vault configuration for `Kubernetes`
-auth methods [1][are properly configured]. This configuration is outside the scope
-of this document. If you use the operator for managing Vault in your cluster, please
-read documentation in [2][this directory].
+auth methods [are properly configured](https://www.vaultproject.io/docs/auth/kubernetes). This configuration is outside the scope
+of this document. If you use the operator for managing Vault in your cluster, see the [Vault operator documentation](../../operator/).
 
 ## Inject secret into resources
 

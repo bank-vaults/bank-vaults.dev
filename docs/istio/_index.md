@@ -57,12 +57,12 @@ We support the following three scenarios:
         apiVersion: authentication.istio.io/v1alpha1
         kind: MeshPolicy
         metadata:
-        name: default
-        labels:
+          name: default
+          labels:
             app: security
         spec:
-        peers:
-        - mtls: {}
+          peers:
+          - mtls: {}
         ```
 
     - With `backyards`:
@@ -93,16 +93,16 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
         apiVersion: authentication.istio.io/v1alpha1
         kind: Policy
         metadata:
-        name: vault-secrets-webhook
-        namespace: vault-system
-        labels:
+          name: vault-secrets-webhook
+          namespace: vault-system
+          labels:
             app: security
         spec:
-        targets:
-        - name: vault-secrets-webhook
-        peers:
-        - mtls:
-            mode: PERMISSIVE
+          targets:
+          - name: vault-secrets-webhook
+          peers:
+          - mtls:
+              mode: PERMISSIVE
         EOF
         ```
 

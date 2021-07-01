@@ -26,3 +26,5 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 `vault.security.banzaicloud.io/token-auth-mount`|`""`|`{volume:file}` to be injected as `.vault-token`. |
 `vault.security.banzaicloud.io/inline-mutation`|`"false"`|Enables inline mutation of secrets and configmaps by using `${{vault:secret#field}}` inside a string. For details, see {{< relref "/docs/bank-vaults/mutating-webhook/configuration.md#inline" >}}.|
 `vault.security.banzaicloud.io/vault-auth-method`|`"kubernetes"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "gcp-gce", "jwt"]`|
+`vault.security.banzaicloud.io/vault-namespace`|`""`|The [Vault Namespace](https://www.vaultproject.io/docs/enterprise/namespaces) secrets will be pulled from.  This annotation sets the `VAULT_NAMESPACE` environment variable. More information on `namespaces` within Vault can be found [here](https://learn.hashicorp.com/tutorials/vault/namespaces)|
+

@@ -34,8 +34,6 @@ spec:
 
 The webhook also supports inline mutation when your secret needs to be replaced somewhere inside a string.
 
-Set the annotation `vault.security.banzaicloud.io/inline-mutation` to `true` and:
-
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -49,7 +47,6 @@ type: Opaque
 ```
 
 This works also for ConfigMap resources when `configMapMutation: true` is set in the webhook's Helm chart.
-To enable inline mutation globally, set the env variable `INLINE_MUTATION: true` on the webhook.
 
 You can specify the version of the injected Vault secret as well in the special reference, the format is: `vault:PATH#KEY_OR_TEMPLATE#VERSION`
 
@@ -75,7 +72,6 @@ metadata:
     vault.security.banzaicloud.io/vault-role: "default"
     vault.security.banzaicloud.io/vault-tls-secret: vault-tls
     vault.security.banzaicloud.io/vault-path: "kubernetes"
-    vault.security.banzaicloud.io/inline-mutation: "true"
 data:
   aws-access-key-id: "vault:secret/data/accounts/aws#AWS_ACCESS_KEY_ID"
   aws-access-template: "vault:secret/data/accounts/aws#AWS key in base64: ${.AWS_ACCESS_KEY_ID | b64enc}"

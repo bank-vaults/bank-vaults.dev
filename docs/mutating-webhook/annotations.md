@@ -27,4 +27,7 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 `vault.security.banzaicloud.io/vault-auth-method`|`"kubernetes"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "gcp-gce", "jwt"]`|
 `vault.security.banzaicloud.io/vault-serviceaccount`|`""`| The ServiceAccount in the objects namespace to use, useful for non-pod resources |
 `vault.security.banzaicloud.io/vault-namespace`|`""`|The [Vault Namespace](https://www.vaultproject.io/docs/enterprise/namespaces) secrets will be pulled from.  This annotation sets the `VAULT_NAMESPACE` environment variable. More information on `namespaces` within Vault can be found [here](https://learn.hashicorp.com/tutorials/vault/namespaces)|
-
+`vault.security.banzaicloud.io/run-as-non-root`|`"false"`|When enabled will add `runAsNonRoot: true` to the `securityContext` of all injected containers|
+`vault.security.banzaicloud.io/run-as-user`|`"0"`|Set the UID (`runAsUser`) for all injected containers. The default value of `"0"` means that no modifications will be made to the `securityContext` of injected containers.|
+`vault.security.banzaicloud.io/run-as-group`|`"0"`|Set the GID (`runAsGroup`) for all injected containers. The default value of `"0"` means that no modifications will be made to the `securityContext` of injected containers.|
+`vault.security.banzaicloud.io/readonly-root-fs`|`"false"`|When enabled will add `readOnlyRootFilesystem: true` to the `securityContext` of all injected containers|

@@ -142,6 +142,11 @@ This YAML representation of configuration is flexible enough to work with any
 auth methods available to Vault as documented [in the Vault documentation](https://www.vaultproject.io/api/auth/kubernetes#configure-method).
 For now, we'll stick with this kubernetes configuration.
 
+### externalConfig.purgeUnmanagedConfig
+
+Delete any configuration that in Vault but not in `externalConfig`. For more details please check
+[Purge unmanaged configuration]({{< relref "/docs/bank-vaults/external-configuration/purge-unmanaged-configuration.md" >}})
+
 ### externalConfig.policies
 
 Correlates 1:1 to the creation of the specified policy in conjunction with [Vault

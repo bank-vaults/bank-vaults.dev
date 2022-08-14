@@ -119,3 +119,21 @@ Reads the content of a file from disk at the given path and returns it. This ass
 Parameter | Type   | Required
 ----------|--------|---------
 path      | String | Yes
+
+### `accessor`
+
+Looks up the accessor id of the given auth path and returns it. This function is only useful in policies that use [templated policies](https://www.vaultproject.io/docs/concepts/policies#templated-policies), to generalize the `<mount accessor>` field.
+
+Parameter | Type   | Required
+----------|--------|---------
+path      | String | Yes
+
+For example:
+
+```yaml
+policies:
+  - name: allow_secrets
+    rules: path "secret/data/{{identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace}}/*" {
+             capabilities = ["read"]
+           }
+```

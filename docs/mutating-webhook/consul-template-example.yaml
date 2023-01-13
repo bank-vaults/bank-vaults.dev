@@ -9,6 +9,7 @@ metadata:
 data:
   config.hcl: |
     vault {
+      vault_agent_token_file = "/vault/.vault-token"
       ssl {
         ca_cert = "/etc/vault/tls/ca.crt"
       }

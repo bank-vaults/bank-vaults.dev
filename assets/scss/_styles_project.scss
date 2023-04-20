@@ -1,0 +1,41 @@
+/*
+
+Nothing defined here. The Hugo project that uses this theme can override Bootstrap by adding a file to:
+
+assets/scss/_styles_project.scss
+
+*/
+.warning-block {
+    border-left: 6px solid red;
+    background: #FFFFFF;
+    padding: 16px;
+  }
+
+/*
+h3[class*="type-"]::before {
+  background-color: $primary;
+  content: "type";
+  font-size: 14px;
+  line-height: 22px;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
+*/
+
+.property-optional::after {
+  content: "optional";
+  background-color: $secondary;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
+.property-required::after {
+  content: "required";
+  background-color: $primary;
+  color: white;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}

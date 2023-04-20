@@ -7,7 +7,7 @@ weight: 500
 #### Legend
 
 - &#9989;: Implemented
-- {{% emoji ":o:" %}}: Planned/In-progress
+- o: Planned/In-progress
 
 | Feature    | Banzai Cloud Webhook | HashiCorp Webhook |
 |------------|----------------------|-------------------|
@@ -18,5 +18,5 @@ weight: 500
 | Injecting into K8S ConfigMaps | &#9989; |   |
 | Injecting into K8S CRDs | &#9989; |   |
 | Sidecar-less dynamic secrets  | &#9989; |   |
-| CSI Driver                    | {{% emoji ":o:" %}} |   |
-| Native Kubernetes sidecar     | {{% emoji ":o:" %}} |   |
+| CSI Driver                    | o |   |
+| Native Kubernetes sidecar     | o |   |

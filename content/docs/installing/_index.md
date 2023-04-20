@@ -6,11 +6,11 @@ weight: 10
 Bank-Vaults is a swiss-army knife with multiple manifestations, so the first steps depend on what you want to achieve.
 Check one of the following guides to get an overview:
 
-- [Dynamic credentials with Vault using Kubernetes Service Accounts](https://banzaicloud.com/blog/vault-dynamic-secrets/)
-- [Vault Operator](https://banzaicloud.com/blog/vault-operator/)
-- [Vault unseal flow with KMS](https://banzaicloud.com/blog/vault-unsealing/)
-- [Monitoring Vault on Kubernetes using Cloud Native technologies](https://banzaicloud.com/blog/monitoring-vault-grafana/)
-- [Inject secrets directly into pods from Vault](https://banzaicloud.com/blog/inject-secrets-into-pods-vault-revisited/)
+- [Dynamic credentials with Vault using Kubernetes Service Accounts](https://techblog.cisco.com/vault-dynamic-secrets/)
+- [Vault Operator](https://techblog.cisco.com/vault-operator/)
+- [Vault unseal flow with KMS](https://techblog.cisco.com/vault-unsealing/)
+- [Monitoring Vault on Kubernetes using Cloud Native technologies](https://techblog.cisco.com/monitoring-vault-grafana/)
+- [Inject secrets directly into pods from Vault](https://techblog.cisco.com/inject-secrets-into-pods-vault-revisited/)
 
 ## Deploy with Helm
 

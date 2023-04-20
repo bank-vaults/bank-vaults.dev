@@ -12,19 +12,10 @@ To run Vault inside the mesh, complete the following steps.
 
 1. Turn off Istio in the `app` namespace by removing the `istio-injection` label:
 
-    - With `kubectl`:
-
-        ```bash
-        kubectl label namespace app istio-injection-
-        kubectl label namespace vault istio-injection=enabled
-        ```
-
-    - With `backyards`:
-
-        ```bash
-        backyards sidecar-proxy auto-inject off app
-        backyards sidecar-proxy auto-inject on vault
-        ```
+    ```bash
+    kubectl label namespace app istio-injection-
+    kubectl label namespace vault istio-injection=enabled
+    ```
 
 1. Delete the Vault pods in the `vault` namespace, so they will get recreated with the `istio-proxy` sidecar:
 

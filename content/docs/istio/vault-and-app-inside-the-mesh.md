@@ -11,19 +11,10 @@ In this scenario, both Vault and the app are running inside the mesh.
 1. Complete the [Prerequisites]({{< relref "/docs/istio/_index.md#prerequisites" >}}).
 1. Enable sidecar auto-injection for both namespaces:
 
-    - With `kubectl`:
-
-        ```bash
-        kubectl label namespace app   istio-injection=enabled
-        kubectl label namespace vault istio-injection=enabled
-        ```
-
-    - With `backyards`:
-
-        ```bash
-        backyards sidecar-proxy auto-inject on app
-        backyards sidecar-proxy auto-inject on vault
-        ```
+    ```bash
+    kubectl label namespace app   istio-injection=enabled
+    kubectl label namespace vault istio-injection=enabled
+    ```
 
 1. Delete all pods so they are getting injected with the proxy:
 

@@ -36,35 +36,21 @@ First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [in
 1. The `vault-secrets-webhook` can't inject Vault secrets into `initContainers` in an Istio-enabled namespace when the `STRICT` authentication policy is applied to the Vault service, because Istio needs a sidecar container to do mTLS properly, and in the phase when `initContainers` are running the Pod doesn't have a sidecar yet.
     If you wish to inject into `initContainers` as well, you need to apply a `PERMISSIVE` authentication policy in the `vault` namespace, since it has its own TLS certificate outside of Istio scope (so this is safe to do from networking security point of view).
 
-    - With `kubectl`:
-
-        ```bash
-        $ kubectl apply -f - <<EOF
-        apiVersion: authentication.istio.io/v1alpha1
-        kind: Policy
-        metadata:
-          name: default
-          namespace: vault
-          labels:
-            app: security
-        spec:
-          peers:
-          - mtls:
-              mode: PERMISSIVE
-        EOF
-        ```
-
-    - With `backyards`:
-
-        ```bash
-        $ backyards mtls allow vault
-        INFO[0001] policy peers for vault/ set successfully
-
-        mTLS rule for vault/
-
-        Policy         Targets  MtlsMode
-        vault/default  []       PERMISSIVE
-        ```
+    ```bash
+    kubectl apply -f - <<EOF
+    apiVersion: authentication.istio.io/v1alpha1
+    kind: Policy
+    metadata:
+      name: default
+      namespace: vault
+      labels:
+        app: security
+    spec:
+      peers:
+      - mtls:
+          mode: PERMISSIVE
+    EOF
+    ```
 
 ## Install the application inside a mesh {#install-application-inside-mesh}
 
@@ -74,19 +60,8 @@ In this scenario Vault is running outside the Istio mesh (as we have installed i
 
     ```bash
     kubectl create namespace app
+    kubectl label namespace app istio-injection=enabled
     ```
-
-    - With `kubectl`:
-
-        ```bash
-        kubectl label namespace app istio-injection=enabled
-        ```
-
-    - With `backyards`:
-
-        ```bash
-        backyards sidecar-proxy auto-inject on app
-        ```
 
 1. Install the application [manifest](../app.yaml) to the cluster:
 

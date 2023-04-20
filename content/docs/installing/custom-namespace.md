@@ -7,9 +7,9 @@ To deploy vault into a custom namespace (not into `default`), you have to deploy
 
 In the RBAC resources:
 
-- [subjects.namespace of the ClusterRoleBinding](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/rbac.yaml#L49)
+- [subjects.namespace of the ClusterRoleBinding](https://github.com/bank-vaults/bank-vaults/blob/master/operator/deploy/rbac.yaml#L49)
 
 In the Vault CR:
 
-- [unsealConfig.kubernetes.secretNamespace](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/cr.yaml#L101)
-- [secrets.configuration.config.issuing_certificates and crl_distribution_points:](https://github.com/banzaicloud/bank-vaults/blob/master/operator/deploy/cr.yaml#L155-L157)
+- [unsealConfig.kubernetes.secretNamespace](https://github.com/bank-vaults/bank-vaults/blob/master/operator/deploy/cr.yaml#L101)
+- [secrets.configuration.config.issuing_certificates and crl_distribution_points:](https://github.com/bank-vaults/bank-vaults/blob/master/operator/deploy/cr.yaml#L155-L157)

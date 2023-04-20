@@ -80,7 +80,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     1. Now you can interact with Vault. For example, add a secret by running `vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t`
         If you want to access the Vault web interface, open *https://127.0.0.1:8200* in your browser using the root token (to reveal the token, run `echo $VAULT_TOKEN`).
 
-For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/banzaicloud/bank-vaults/tree/master/operator/deploy) (we use these for testing), and our various [blog posts](/tags/bank-vaults/). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
+For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/bank-vaults/bank-vaults/tree/master/operator/deploy) (we use these for testing), and our various [blog posts](/tags/bank-vaults/). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
 kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml

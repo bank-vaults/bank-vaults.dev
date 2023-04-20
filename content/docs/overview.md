@@ -3,7 +3,7 @@ title: Overview
 weight: 5
 ---
 
-{{% include-headless "doc/bank-vaults-intro.md" %}}
+{{% include-headless "bank-vaults-intro.md" %}}
 
 Bank-Vaults provides the following tools for Hashicorp Vault to make its use easier and more automated:
 

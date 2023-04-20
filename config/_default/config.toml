@@ -146,7 +146,7 @@ twitter = "calisti12"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]
     name = "Slack"
-    url = "https://banzaicloud.com/invite-slack/"
+    url = "https://join.slack.com/t/emergingtechcommunity/shared_invite/zt-1rw2jl0ht-yNdyFgBFlc%7Eyzo9AnE4FbA"
     icon = "fab fa-slack"
     desc = "Chat with the project developers"
   #[[params.links.developer]]

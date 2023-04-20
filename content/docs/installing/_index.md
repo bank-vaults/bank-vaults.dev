@@ -6,10 +6,7 @@ weight: 10
 Bank-Vaults is a swiss-army knife with multiple manifestations, so the first steps depend on what you want to achieve.
 Check one of the following guides to get an overview:
 
-- [Authentication and authorization of Pipeline users with OAuth2 and Vault](https://banzaicloud.com/blog/oauth2-vault/)
 - [Dynamic credentials with Vault using Kubernetes Service Accounts](https://banzaicloud.com/blog/vault-dynamic-secrets/)
-- [Dynamic SSH with Vault and Pipeline](https://banzaicloud.com/blog/vault-dynamic-ssh/)
-- [Secure Kubernetes Deployments with Vault and Pipeline](https://banzaicloud.com/blog/hashicorp-guest-post/)
 - [Vault Operator](https://banzaicloud.com/blog/vault-operator/)
 - [Vault unseal flow with KMS](https://banzaicloud.com/blog/vault-unsealing/)
 - [Monitoring Vault on Kubernetes using Cloud Native technologies](https://banzaicloud.com/blog/monitoring-vault-grafana/)

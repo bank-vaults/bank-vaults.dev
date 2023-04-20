@@ -145,7 +145,7 @@ For now, we'll stick with this kubernetes configuration.
 ### externalConfig.purgeUnmanagedConfig
 
 Delete any configuration that in Vault but not in `externalConfig`. For more details please check
-[Purge unmanaged configuration]({{< relref "/docs/bank-vaults/external-configuration/purge-unmanaged-configuration.md" >}})
+[Purge unmanaged configuration]({{< relref "/docs/external-configuration/purge-unmanaged-configuration.md" >}})
 
 ### externalConfig.policies
 

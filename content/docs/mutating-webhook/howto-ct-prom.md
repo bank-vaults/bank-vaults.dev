@@ -24,7 +24,7 @@ This document assumes you have a working Kubernetes cluster which has a:
 - You have a working Kubernetes cluster which has:
 
     - a working Vault installation
-    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
+    - a working installation of the [mutating webhook](/docs/mutating-webhook/).
 
 - You have the [CoreOS Prometheus Operator](https://github.com/coreos/prometheus-operator) installed and working.
 - You have a working knowledge of Kubernetes.

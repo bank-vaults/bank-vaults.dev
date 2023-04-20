@@ -8,7 +8,7 @@ To monitor the webhook with Prometheus and Grafana, complete the following steps
 
 ## Prerequisites
 
-- An already deployed and configured mutating webhook. For details, see {{% xref "/docs/bank-vaults/mutating-webhook/_index.md" %}}.
+- An already deployed and configured mutating webhook. For details, see {{% xref "/docs/mutating-webhook/_index.md" %}}.
 
 ## Steps
 

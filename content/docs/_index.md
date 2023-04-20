@@ -1,6 +1,6 @@
 ---
 title: Bank-Vaults
-rewrite: /docs/bank-vaults/overview/
+rewrite: /docs/overview/
 weight: 300
 cascade:
   module: bank-vaults

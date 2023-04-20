@@ -28,11 +28,11 @@ This document assumes the following.
 - You have a working Kubernetes cluster which has:
 
     - a working Vault installation
-    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
+    - a working installation of the [mutating webhook](/docs/mutating-webhook/).
 
 - You have a working knowledge of Kubernetes.
 - You can apply Deployments or PodSpec's to the cluster.
-- You can change the configuration of the [mutating webhook](/docs/bank-vaults/mutating-webhook/configuration/).
+- You can change the configuration of the [mutating webhook](/docs/mutating-webhook/configuration/).
 
 ## Use Vault TTLs
 

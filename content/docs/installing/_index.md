@@ -27,9 +27,9 @@ With the help of these charts you can run a HA Vault instance with automatic ini
 
 > Note: Starting with Bank-Vaults version 1.6.0, only Helm 3 is supported. If you have installed the chart with Helm 2 and now you are trying to upgrade with Helm3, see the [Bank-Vaults 1.6.0 release notes](https://github.com/banzaicloud/bank-vaults/releases/tag/1.6.0) for detailed instructions.
 
-{{< include-headless "deploy-operator-local.md" "bank-vaults" >}}
+{{< include-headless "deploy-operator-local.md" >}}
 
-{{< include-headless "deploy-mutating-webhook.md" "bank-vaults" >}}
+{{< include-headless "deploy-mutating-webhook.md" >}}
 
 ## Install the CLI tool
 

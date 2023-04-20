@@ -16,8 +16,8 @@ Features:
   - Dev Mode (useful for `vault server -dev` dev mode Vault servers)
   - Files (backed by files, should be used only for development purposes)
 - Automatically unseals Vault with these keys
-- In addition to the [standard Vault configuration](https://www.vaultproject.io/docs/configuration/index.html), the operator and CLI can continuously configure Vault using an [external YAML/JSON configuration](/docs/bank-vaults/external-configuration/)
+- In addition to the [standard Vault configuration](https://www.vaultproject.io/docs/configuration/index.html), the operator and CLI can continuously configure Vault using an [external YAML/JSON configuration](/docs/external-configuration/)
   - If the configuration is updated Vault will be reconfigured
   - It supports configuring Vault secret engines, plugins, auth methods, and policies
 
-The `bank-vaults` CLI command needs certain [cloud permissions](/docs/bank-vaults/cloud-permissions/) to function properly (init, unseal, configuration).
+The `bank-vaults` CLI command needs certain [cloud permissions](/docs/cloud-permissions/) to function properly (init, unseal, configuration).

@@ -15,9 +15,9 @@ The operator flow is the following:
 
 The source code can be found in the [operator](https://github.com/banzaicloud/bank-vaults/tree/master/operator) directory.
 
-The operator requires the following [cloud permissions](/docs/bank-vaults/cloud-permissions/).
+The operator requires the following [cloud permissions](/docs/cloud-permissions/).
 
-{{< include-headless "deploy-operator-local.md" "bank-vaults" >}}
+{{< include-headless "deploy-operator-local.md"  >}}
 
 ## HA setup with Raft
 

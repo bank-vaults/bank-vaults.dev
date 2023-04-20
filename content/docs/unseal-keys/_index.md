@@ -25,7 +25,7 @@ Vault data and the unseal keys live together: if you delete a Vault instance ins
     1. Decrypts the unseal keys with the configured KMS key.
     1. Unseals Vault with the decrypted unseal keys.
     1. Flushes the keys from its memory with explicit GC as soon as possible.
-1. If the [external configuration file](/docs/bank-vaults/external-configuration/) was changed and an OS signal is received, then Bank-Vaults:
+1. If the [external configuration file](/docs/external-configuration/) was changed and an OS signal is received, then Bank-Vaults:
     1. Parses the configuration file.
     1. Reads the encrypted root token from the cloud provider's object storage.
     1. Decrypts the root token with the configured KMS key.

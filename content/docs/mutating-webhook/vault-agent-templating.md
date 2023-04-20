@@ -12,7 +12,7 @@ With Bank-Vaults you can use [Vault Agent](https://www.vaultproject.io/docs/agen
 - You wish to have secrets that have a TTL and expire.
 - You have no issues with running your application with a sidecar.
 
-> Note: If you need to revoke tokens, or use additional secret backends, see {{% xref "/docs/bank-vaults/mutating-webhook/consul-template.md" %}}.
+> Note: If you need to revoke tokens, or use additional secret backends, see {{% xref "/docs/mutating-webhook/consul-template.md" %}}.
 
 ## Workflow
 
@@ -26,11 +26,11 @@ This document assumes the following.
 - You have a working Kubernetes cluster which has:
 
     - a working Vault installation
-    - a working installation of the [mutating webhook](/docs/bank-vaults/mutating-webhook/).
+    - a working installation of the [mutating webhook](/docs/mutating-webhook/).
 
 - You have a working knowledge of Kubernetes.
 - You can apply Deployments or PodSpec's to the cluster.
-- You can change the configuration of the [mutating webhook](/docs/bank-vaults/mutating-webhook/configuration/).
+- You can change the configuration of the [mutating webhook](/docs/mutating-webhook/configuration/).
 
 ## Use Vault TTLs
 

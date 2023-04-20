@@ -8,7 +8,7 @@ The transit secrets engine handles cryptographic functions on data in-transit, m
 > Note:
 >
 > - Transit encryption supports only POD mutations.
-> - You can also [use Bank-Vaults with Istio](/docs/bank-vaults/istio/).
+> - You can also [use Bank-Vaults with Istio](/docs/istio/).
 
 ## Enable Transit secrets engine
 

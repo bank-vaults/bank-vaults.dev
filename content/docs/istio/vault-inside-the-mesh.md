@@ -8,7 +8,7 @@ To run Vault inside the mesh, complete the following steps.
 
 <p align="center"><img src="/img/blog/istio-vault/istio_vault2.png" ></p>
 
-> Note: These instructions assume that you have [Scenario 1]({{< relref "/docs/bank-vaults/istio/vault-outside-the-mesh.md" >}}) up and running, and modifying it to run Vault inside the mesh.
+> Note: These instructions assume that you have [Scenario 1]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}) up and running, and modifying it to run Vault inside the mesh.
 
 1. Turn off Istio in the `app` namespace by removing the `istio-injection` label:
 

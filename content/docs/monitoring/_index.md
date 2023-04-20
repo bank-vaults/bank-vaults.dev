@@ -12,4 +12,4 @@ At Banzai Cloud we prefer Prometheus for monitoring and use it also for Vault. I
 
 You may find the [generic Prometheus kubernetes client Go Process runtime monitoring dashboard](https://grafana.com/grafana/dashboards/240) useful for monitoring the webhook or any other Go process.
 
-To monitor the [mutating webhook](/docs/bank-vaults/mutating-webhook/), see {{% xref "/docs/bank-vaults/mutating-webhook/monitoring.md" %}}.
+To monitor the [mutating webhook](/docs/mutating-webhook/), see {{% xref "/docs/mutating-webhook/monitoring.md" %}}.

@@ -3,7 +3,7 @@ title: Deploy the webhook
 weight: 10
 ---
 
-{{< include-headless "deploy-mutating-webhook.md" "bank-vaults" >}}
+{{< include-headless "deploy-mutating-webhook.md"  >}}
 
 ## Deploy the webhook from a private registry
 

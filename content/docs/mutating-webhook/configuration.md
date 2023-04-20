@@ -6,7 +6,7 @@ weight: 30
 
 The following examples show you how to configure the mutating webhook to best suit your environment.
 
-{{< include-headless "mutating-webhook-config-examples-basic.md" "bank-vaults" >}}
+{{< include-headless "mutating-webhook-config-examples-basic.md"  >}}
 
 ## Prerequisites for inline injection to work
 

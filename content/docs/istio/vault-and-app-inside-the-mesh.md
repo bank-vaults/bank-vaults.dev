@@ -8,7 +8,7 @@ In this scenario, both Vault and the app are running inside the mesh.
 
 <p align="center"><img src="/img/blog/istio-vault/istio_vault3.png" ></p>
 
-1. Complete the [Prerequisites]({{< relref "/docs/bank-vaults/istio/_index.md#prerequisites" >}}).
+1. Complete the [Prerequisites]({{< relref "/docs/istio/_index.md#prerequisites" >}}).
 1. Enable sidecar auto-injection for both namespaces:
 
     - With `kubectl`:

@@ -11,7 +11,7 @@ The mutating webhook of Bank-Vaults is a solution that bypasses the Kubernetes s
 
 ![Kubernetes API requests](/img/blog/vault-webhook/vault-mutating-webhook-revisited.gif)
 
-An important and unique aspect of the webhook is that it is a *daemonless* solution (although if you need it, you can [deploy the webhook in daemon mode]({{< relref "/docs/bank-vaults/mutating-webhook/deploy.md#daemon-mode" >}}) as well).
+An important and unique aspect of the webhook is that it is a *daemonless* solution (although if you need it, you can [deploy the webhook in daemon mode]({{< relref "/docs/mutating-webhook/deploy.md#daemon-mode" >}}) as well).
 
 ## Why is this more secure than using Kubernetes secrets or any other custom sidecar container?
 
@@ -19,6 +19,6 @@ Our solution is particularly lightweight and uses only existing Kubernetes const
 
 If you want to make this solution even more robust, you can disable *kubectl exec*-ing in running containers. If you do so, no one will be able to hijack injected environment variables from a process.
 
-{{< include-headless "mutating-webhook-config-examples-basic.md" "bank-vaults" >}}
+{{< include-headless "mutating-webhook-config-examples-basic.md"  >}}
 
-For further examples and use cases, see [Configuration examples and scenarios](/docs/bank-vaults/mutating-webhook/configuration/).
+For further examples and use cases, see [Configuration examples and scenarios](/docs/mutating-webhook/configuration/).

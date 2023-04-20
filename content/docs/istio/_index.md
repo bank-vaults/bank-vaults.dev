@@ -8,9 +8,9 @@ Both the `vault-operator` and the `vault-secrets-webhook` can work on Istio enab
 
 We support the following three scenarios:
 
-- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/bank-vaults/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
-- [Scenario 2]({{< relref "/docs/bank-vaults/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
-- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/bank-vaults/istio/vault-and-app-inside-the-mesh.md" >}})
+- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
+- [Scenario 2]({{< relref "/docs/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
+- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/istio/vault-and-app-inside-the-mesh.md" >}})
 
 ## Prerequisites
 
@@ -79,7 +79,7 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
 
 ### Install the Bank-Vaults components
 
-1. You are recommended to create a separate namespace for [Bank-Vaults](https://banzaicloud.com/docs/bank-vaults/overview/) called `vault-system`. You can enable Istio sidecar injection here as well, but Kubernetes won't be able to call back the webhook properly since mTLS is enabled (and Kubernetes is outside of the Istio mesh). To overcome this, apply a `PERMISSIVE` Istio authentication policy to the `vault-secrets-webhook` Service itself, so Kubernetes can call it back without Istio mutual TLS authentication.
+1. You are recommended to create a separate namespace for [Bank-Vaults](https://banzaicloud.com/docs/overview/) called `vault-system`. You can enable Istio sidecar injection here as well, but Kubernetes won't be able to call back the webhook properly since mTLS is enabled (and Kubernetes is outside of the Istio mesh). To overcome this, apply a `PERMISSIVE` Istio authentication policy to the `vault-secrets-webhook` Service itself, so Kubernetes can call it back without Istio mutual TLS authentication.
 
     ```bash
     kubectl create namespace vault-system
@@ -130,6 +130,6 @@ Soon the webhook and the operator become up and running. Check that the `istio-p
 
 Proceed to the description of your scenario:
 
-- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/bank-vaults/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
-- [Scenario 2]({{< relref "/docs/bank-vaults/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
-- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/bank-vaults/istio/vault-and-app-inside-the-mesh.md" >}})
+- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
+- [Scenario 2]({{< relref "/docs/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
+- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/istio/vault-and-app-inside-the-mesh.md" >}})

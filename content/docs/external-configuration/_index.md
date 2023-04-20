@@ -8,10 +8,10 @@ In addition to the [standard Vault configuration](https://www.vaultproject.io/do
 
 The following sections describe the configuration sections you can use.
 
-- [Purge unmanaged configuration]({{< relref "/docs/bank-vaults/external-configuration/purge-unmanaged-configuration.md" >}})
-- [Audit devices]({{< relref "/docs/bank-vaults/external-configuration/audit-devices.md" >}})
-- [Authentication]({{< relref "/docs/bank-vaults/external-configuration/authentication.md" >}})
-- [Plugins]({{< relref "/docs/bank-vaults/external-configuration/plugins.md" >}})
-- [Policies]({{< relref "/docs/bank-vaults/external-configuration/policies.md" >}})
-- [Secrets engines]({{< relref "/docs/bank-vaults/external-configuration/secrets-engines.md" >}})
-- [Startup secrets]({{< relref "/docs/bank-vaults/external-configuration/startup-secrets.md" >}})
+- [Purge unmanaged configuration]({{< relref "/docs/external-configuration/purge-unmanaged-configuration.md" >}})
+- [Audit devices]({{< relref "/docs/external-configuration/audit-devices.md" >}})
+- [Authentication]({{< relref "/docs/external-configuration/authentication.md" >}})
+- [Plugins]({{< relref "/docs/external-configuration/plugins.md" >}})
+- [Policies]({{< relref "/docs/external-configuration/policies.md" >}})
+- [Secrets engines]({{< relref "/docs/external-configuration/secrets-engines.md" >}})
+- [Startup secrets]({{< relref "/docs/external-configuration/startup-secrets.md" >}})

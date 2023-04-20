@@ -6,7 +6,7 @@ weight: 200
 
 To run Vault inside the mesh, complete the following steps.
 
-<p align="center"><img src="/img/blog/istio-vault/istio_vault2.png" ></p>
+<p align="center"><img src="/img/istio_vault2.png" ></p>
 
 > Note: These instructions assume that you have [Scenario 1]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}) up and running, and modifying it to run Vault inside the mesh.
 

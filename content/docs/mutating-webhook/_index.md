@@ -9,7 +9,7 @@ Kubernetes secrets are the standard way in which applications consume secrets an
 
 The mutating webhook of Bank-Vaults is a solution that bypasses the Kubernetes secrets mechanism and injects the secrets retrieved from Vault directly into the Pods. Specifically, the mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions.
 
-![Kubernetes API requests](/img/blog/vault-webhook/vault-mutating-webhook-revisited.gif)
+![Kubernetes API requests](/img/vault-mutating-webhook-revisited.gif)
 
 An important and unique aspect of the webhook is that it is a *daemonless* solution (although if you need it, you can [deploy the webhook in daemon mode]({{< relref "/docs/mutating-webhook/deploy.md#daemon-mode" >}}) as well).
 

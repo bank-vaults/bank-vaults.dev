@@ -11,7 +11,7 @@ You can use a Hardware Security Module (HSM) to generate and store the private k
 
 ## Implementation in Bank-Vaults
 
-![Vault HSM](/img/blog/vault-hsm/hsm.png)
+![Vault HSM](/img/hsm.png)
 
 To support HSM devices for encrypting unseal-keys and root-tokens, Bank-Vaults:
 

@@ -1,6 +1,6 @@
 ---
 title: Scenario 2 - Running Vault inside the mesh
-shorttitle: Vault inside the mesh
+linktitle: Vault inside the mesh
 weight: 200
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Using templates for injecting dynamic configuration
-shortTitle: Templating configuration
+linktitle: Templating configuration
 weight: 20
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Injecting consul-template into the Prometheus operator for Vault metrics
-shortTitle: Injecting secrets into Prometheus
+linktitle: Injecting secrets into Prometheus
 weight: 400
 ---
 

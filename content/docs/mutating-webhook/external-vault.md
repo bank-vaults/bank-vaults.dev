@@ -1,6 +1,6 @@
 ---
 title: Running the webhook and Vault on different clusters
-shortTitle: External Vault
+linktitle: External Vault
 weight: 600
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Deploy vault into a custom namespace
-shorttitle: Custom namespace
+linktitle: Custom namespace
 ---
 
 To deploy vault into a custom namespace (not into `default`), you have to deploy the vault CustomResource to the custom namespace. Also, you have to use the custom namespace in the following fields:

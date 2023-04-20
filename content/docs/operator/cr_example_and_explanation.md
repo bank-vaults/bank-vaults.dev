@@ -1,6 +1,6 @@
 ---
 title: Operator Configuration for Functioning Webhook Secrets Mutation
-shorttitle: Operator and mutating webhook
+linktitle: Operator and mutating webhook
 weight: 100
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Scenario 3 - Both Vault and the app are running inside the mesh
-shorttitle: Vault and app inside the mesh
+linktitle: Vault and app inside the mesh
 weight: 300
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Configuration examples and scenarios
-shorttitle: Configure the webhook
+linktitle: Configure the webhook
 weight: 30
 ---
 

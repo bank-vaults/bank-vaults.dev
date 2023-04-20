@@ -1,6 +1,6 @@
 ---
 title: Using Vault Agent Templating in the mutating webhook
-shortTitle: Vault Agent Templating
+linktitle: Vault Agent Templating
 weight: 50
 ---
 

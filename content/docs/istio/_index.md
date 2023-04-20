@@ -1,6 +1,6 @@
 ---
 title: Running the Bank-Vaults secret webhook alongside Istio
-shorttitle: Istio and Bank-Vaults
+linktitle: Istio and Bank-Vaults
 weight: 680
 ---
 

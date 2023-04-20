@@ -1,6 +1,6 @@
 ---
 title: Fully or partially purging unmanaged configuration in Vault
-shorttitle: Purge unmanaged configuration 
+linktitle: Purge unmanaged configuration 
 weight: 100
 ---
 

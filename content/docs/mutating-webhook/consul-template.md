@@ -1,6 +1,6 @@
 ---
 title: Using consul-template in the mutating webhook
-shortTitle: Consul template
+linktitle: Consul template
 weight: 100
 ---
 

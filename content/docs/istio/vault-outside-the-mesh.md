@@ -1,6 +1,6 @@
 ---
 title: Scenario 1 - Vault runs outside, the application inside the mesh
-shorttitle: Vault outside the mesh
+linktitle: Vault outside the mesh
 weight: 100
 ---
 

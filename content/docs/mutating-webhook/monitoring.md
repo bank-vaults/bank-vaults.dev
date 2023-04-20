@@ -1,6 +1,6 @@
 ---
 title: Monitoring the Webhook with Grafana and Prometheus
-shortTitle: Monitoring
+linktitle: Monitoring
 weight: 300
 ---
 

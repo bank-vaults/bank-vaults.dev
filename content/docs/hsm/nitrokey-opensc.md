@@ -1,6 +1,6 @@
 ---
 title: NitroKey HSM support (OpenSC)
-shorttitle: Nitrokey
+linktitle: Nitrokey
 weight: 100
 ---
 

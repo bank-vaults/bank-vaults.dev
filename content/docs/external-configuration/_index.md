@@ -1,6 +1,6 @@
 ---
 title: External configuration for Vault
-shorttitle: External Vault configuration
+linktitle: External Vault configuration
 weight: 30
 ---
 

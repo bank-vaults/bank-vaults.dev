@@ -1,6 +1,6 @@
 ---
 title: Upgrade Vault with the Bank-Vaults operator
-shorttitle: Upgrade Vault
+linktitle: Upgrade Vault
 weight: 50
 ---
 

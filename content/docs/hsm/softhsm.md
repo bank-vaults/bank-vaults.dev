@@ -1,6 +1,6 @@
 ---
 title: SoftHSM support for testing
-shorttitle: SoftHSM
+linktitle: SoftHSM
 weight: 200
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Running Vault with external end to end encryption
-shortTitle: External encryption
+linktitle: External encryption
 weight: 10
 ---
 

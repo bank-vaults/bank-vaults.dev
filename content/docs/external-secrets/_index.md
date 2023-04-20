@@ -1,6 +1,6 @@
 ---
 title: Watching External Secrets
-shortTitle: External Secrets
+linktitle: External Secrets
 weight: 1100
 ---
 

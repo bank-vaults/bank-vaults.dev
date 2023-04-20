@@ -1,6 +1,6 @@
 ---
 title: The Go library
-shortTitle: Go library
+linktitle: Go library
 weight: 800
 ---
 

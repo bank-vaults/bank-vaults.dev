@@ -1,6 +1,6 @@
 ---
 title: Comparison of Banzai Cloud and HashiCorp mutating webhook for Vault
-shortTitle: Comparison
+linktitle: Comparison
 weight: 500
 ---
 

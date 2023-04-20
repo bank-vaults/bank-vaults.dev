@@ -11,11 +11,11 @@ The Vault operator builds on Bank-Vaults features such as:
 
 The operator flow is the following:
 
-![operator](images/vaultoperator.png)
+![operator](vaultoperator.png)
 
 The source code can be found in the [operator](https://github.com/bank-vaults/bank-vaults/tree/master/operator) directory.
 
-The operator requires the following [cloud permissions](/docs/cloud-permissions/).
+The operator requires the following [cloud permissions]({{< relref "/docs/cloud-permissions/_index.md" >}}).
 
 {{< include-headless "deploy-operator-local.md"  >}}
 
@@ -38,7 +38,7 @@ In a production environment you want to run Vault as a cluster. The following CR
     ```
 
 {{< warning >}}
-Backing up the storage backend to prevent data loss, is not handled by the Vault operator. We recommend using [Velero](../backup/) for backups.
+Backing up the storage backend to prevent data loss, is not handled by the Vault operator. We recommend using [Velero]({{< relref "/docs/backup/_index.md" >}}) for backups.
 {{< /warning >}}
 
 ## Pod anti-affinity

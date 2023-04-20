@@ -15,7 +15,7 @@ Vault needs to be properly configured for mutation to function; namely
 vault operator CR) need to be properly configured. If you're not using the vault
 operator then you must make sure that your Vault configuration for `Kubernetes`
 auth methods [are properly configured](https://www.vaultproject.io/docs/auth/kubernetes). This configuration is outside the scope
-of this document. If you use the operator for managing Vault in your cluster, see the [Vault operator documentation](../../operator/).
+of this document. If you use the operator for managing Vault in your cluster, see the [Vault operator documentation]({{< relref "/docs/operator/_index.md" >}}).
 
 ## Inject secret into resources
 

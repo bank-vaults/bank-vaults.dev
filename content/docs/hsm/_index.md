@@ -23,7 +23,6 @@ The HSM offers an encryption mechanism, but the unseal-keys and root-token have 
 
 - Some HSM devices can store a limited quantity of arbitrary data (like Nitrokey HSM), and Bank-Vaults can store the unseal-keys and root-token here.
 - If the HSM does not support that, Bank-Vaults uses the HSM to encrypt the unseal-keys and root-token, then stores them in [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/). We believe that it is safe to store these keys in Kubernetes Secrets in encrypted format.
-- In future versions, we will probably offer more storage backends, [contact us if you have a specific use case](/contact/).
 
 Bank-Vaults offers the ability to use the pre-created the cryptographic encryption keys on the HSM device, or generate a key pair on the fly if there isn't any with the specified label in the specified slot.
 
@@ -33,6 +32,6 @@ Since Bank-Vaults is written in Go, it uses the [github.com/miekg/pkcs11](https:
 
 Bank-Vaults currently supports the following HSM solutions:
 
-- [SoftHSM](softhsm/), recommended for testing
-- [NitroKey HSM](nitrokey-opensc/).
-- AWS CloudHSM supports the PKCS11 API as well, so it probably works, though it needs a custom Docker image. If you need help with that, [contact us for the details](/contact/).
+- [SoftHSM]({{< relref "/docs/hsm/softhsm.md" >}}), recommended for testing
+- [NitroKey HSM]({{< relref "/docs/hsm/nitrokey-opensc.md" >}}).
+- AWS CloudHSM supports the PKCS11 API as well, so it probably works, though it needs a custom Docker image.

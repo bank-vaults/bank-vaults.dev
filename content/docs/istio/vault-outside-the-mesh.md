@@ -18,7 +18,7 @@ First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [in
     kubectl create namespace vault
     ```
 
-1. Apply the [RBAC](../rbac.yaml) and [CR](../cr-istio.yaml) files to the cluster to create a Vault instance in the `vault` namespace with the operator:
+1. Apply the [RBAC](/docs/istio/rbac.yaml) and [CR](/docs/istio/cr-istio.yaml) files to the cluster to create a Vault instance in the `vault` namespace with the operator:
 
     ```bash
     kubectl apply -f rbac.yaml -f cr-istio.yaml
@@ -63,7 +63,7 @@ In this scenario Vault is running outside the Istio mesh (as we have installed i
     kubectl label namespace app istio-injection=enabled
     ```
 
-1. Install the application [manifest](../app.yaml) to the cluster:
+1. Install the application [manifest](/docs/istio/app.yaml) to the cluster:
 
     ```bash
     kubectl apply -f app.yaml

@@ -12,19 +12,19 @@ The [Bank-Vaults repository](https://github.com/bank-vaults/bank-vaults/) contai
 
     (*NOTE: The Gin handler has been moved out to [gin-utilz](https://github.com/banzaicloud/gin-utilz/tree/master/auth)* )
 
-    ![authn](images/authn-vault-flow.png)
+    ![authn](authn-vault-flow.png)
 
 - [pkg/sdk/vault](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/vault)
 
     A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.
 
-    ![token](images/token-request-vault-flow.png)
+    ![token](token-request-vault-flow.png)
 
 - [pkg/sdk/db](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/db)
 
     A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of `username:password`).
 
-    ![token](images/vault-mySQL.gif)
+    ![token](vault-mySQL.gif)
 
 - [pkg/sdk/tls](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/tls)
 

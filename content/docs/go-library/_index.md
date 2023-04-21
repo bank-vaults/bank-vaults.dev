@@ -4,7 +4,7 @@ linktitle: Go library
 weight: 800
 ---
 
-The [Bank-Vaults repository](https://github.com/bank-vaults/bank-vaults/) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/banzaicloud/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
+The [Bank-Vaults repository](https://github.com/bank-vaults/bank-vaults/) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/bank-vaults/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
 
 - [pkg/sdk/auth](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/auth)
 

@@ -11,16 +11,16 @@ Vault data and the unseal keys live together: if you delete a Vault instance ins
 
 ## The Bank-Vaults Init and Unseal process
 
-[Bank-Vaults](https://github.com/banzaicloud/bank-vaults) runs in an endless loop and does the following:
+[Bank-Vaults](https://github.com/bank-vaults/bank-vaults) runs in an endless loop and does the following:
 
 ![Vault Unseal Flow](VaultUnsealFlow.png)
 
-1. [Bank-Vaults](https://github.com/banzaicloud/bank-vaults) checks if Vault is initialized. If yes, it continues to step 2, otherwise Bank-Vaults:
+1. [Bank-Vaults](https://github.com/bank-vaults/bank-vaults) checks if Vault is initialized. If yes, it continues to step 2, otherwise Bank-Vaults:
     1. Calls Vault init, which returns the root token and the configured number of unseal keys.
     1. Encrypts the received token and keys with the configured KMS key.
     1. Stores the encrypted token and keys in the cloud provider's object storage.
     1. Flushes the root token and keys from its memory with explicit GC as soon as possible.
-1. [Bank-Vaults](https://github.com/banzaicloud/bank-vaults) checks if Vault is sealed. If it isn't, it continues to step 3, otherwise Bank-Vaults:
+1. [Bank-Vaults](https://github.com/bank-vaults/bank-vaults) checks if Vault is sealed. If it isn't, it continues to step 3, otherwise Bank-Vaults:
     1. Reads the encrypted unseal keys from the cloud provider's object storage.
     1. Decrypts the unseal keys with the configured KMS key.
     1. Unseals Vault with the decrypted unseal keys.

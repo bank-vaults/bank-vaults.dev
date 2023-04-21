@@ -39,8 +39,8 @@ brew install banzaicloud/tap/bank-vaults
 Alternatively, fetch the source code and compile it using go get:
 
 ```bash
-go get github.com/banzaicloud/bank-vaults/cmd/bank-vaults
-go get github.com/banzaicloud/bank-vaults/cmd/vault-env
+go get github.com/bank-vaults/bank-vaults/cmd/bank-vaults
+go get github.com/bank-vaults/bank-vaults/cmd/vault-env
 ```
 
 ## Docker images

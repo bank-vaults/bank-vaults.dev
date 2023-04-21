@@ -21,4 +21,4 @@ If you want to make this solution even more robust, you can disable *kubectl exe
 
 {{< include-headless "mutating-webhook-config-examples-basic.md"  >}}
 
-For further examples and use cases, see [Configuration examples and scenarios](/docs/mutating-webhook/configuration/).
+For further examples and use cases, see [Configuration examples and scenarios]({{< relref "/docs/mutating-webhook/configuration.md" >}}).

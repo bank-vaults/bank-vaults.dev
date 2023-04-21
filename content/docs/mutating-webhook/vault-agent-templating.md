@@ -26,11 +26,11 @@ This document assumes the following.
 - You have a working Kubernetes cluster which has:
 
     - a working Vault installation
-    - a working installation of the [mutating webhook](/docs/mutating-webhook/).
+    - a working installation of the [mutating webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}).
 
 - You have a working knowledge of Kubernetes.
 - You can apply Deployments or PodSpec's to the cluster.
-- You can change the configuration of the [mutating webhook](/docs/mutating-webhook/configuration/).
+- You can change the configuration of the [mutating webhook]({{< relref "/docs/mutating-webhook/configuration.md" >}}).
 
 ## Use Vault TTLs
 

@@ -25,7 +25,7 @@ To login to the Vault web UI, you can use the root token, or any configured auth
 
 ## Can changing the vault CR delete the Vault instance and data?
 
-Bank-Vaults never ever deletes the Vault instance from the cluster. However, if you delete the Vault CR, then the Kubernetes garbage controller deletes the vault pods. You are recommended to [keep backups](/docs/backup/).
+Bank-Vaults never ever deletes the Vault instance from the cluster. However, if you delete the Vault CR, then the Kubernetes garbage controller deletes the vault pods. You are recommended to [keep backups]({{< relref "/docs/backup/_index.md" >}}).
 
 ## Set default for vault.security.banzaicloud.io/vault-addr
 

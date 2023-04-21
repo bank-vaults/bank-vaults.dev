@@ -26,7 +26,12 @@ To run Vault inside the mesh, complete the following steps.
 1. Check that they both come back with an extra container (4/4 and 2/2 now):
 
     ```bash
-    $ kubectl get pods -n vault
+    kubectl get pods -n vault
+    ```
+
+    Expected output:
+
+    ```bash
     NAME                                READY   STATUS    RESTARTS   AGE
     vault-0                             4/4     Running   0          1m
     vault-configurer-6d9b98c856-l4flc   2/2     Running   0          1m
@@ -41,11 +46,23 @@ To run Vault inside the mesh, complete the following steps.
 The app pod got recreated with only the `app` container (1/1) and Vault access still works:
 
 ```bash
-$ kubectl get pods -n app
+kubectl get pods -n app
+```
+
+Expected output:
+
+```bash
 NAME                  READY   STATUS    RESTARTS   AGE
 app-5df5686c4-4n6r7   1/1     Running   0          71s
+```
 
-$ kubectl logs -f -n app deployment/app
+```bash
+kubectl logs -f -n app deployment/app
+```
+
+Expected output:
+
+```bash
 time="2020-02-18T14:41:20Z" level=info msg="Received new Vault token"
 time="2020-02-18T14:41:20Z" level=info msg="Initial Vault token arrived"
 s3cr3t

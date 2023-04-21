@@ -25,7 +25,12 @@ First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [in
     ```
 
     ```bash
-    $ kubectl get pods -n vault
+    kubectl get pods -n vault
+    ```
+
+    Expected output:
+
+    ```bash
     NAME                               READY   STATUS    RESTARTS   AGE
     vault-0                            3/3     Running   0          22h
     vault-configurer-6458cc4bf-6tpkz   1/1     Running   0          22h
@@ -72,13 +77,23 @@ In this scenario Vault is running outside the Istio mesh (as we have installed i
 1. Check that the application is up and running. It should have two containers, the `app` itself and the `istio-proxy`:
 
     ```bash
-    $ kubectl get pods -n app
+    kubectl get pods -n app
+    ```
+
+    Expected output:
+
+    ```bash
     NAME                  READY   STATUS    RESTARTS   AGE
     app-5df5686c4-sl6dz   2/2     Running   0          119s
     ```
 
     ```bash
-    $ kubectl logs -f -n app deployment/app app
+    kubectl logs -f -n app deployment/app app
+    ```
+
+    Expected output:
+
+    ```bash
     time="2020-02-18T14:26:01Z" level=info msg="Received new Vault token"
     time="2020-02-18T14:26:01Z" level=info msg="Initial Vault token arrived"
     s3cr3t

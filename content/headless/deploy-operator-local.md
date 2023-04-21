@@ -22,7 +22,11 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     ```bash
     kubectl get pods
+    ```
 
+    Expected output:
+
+    ```bash
     NAME                                                        READY     STATUS    RESTARTS   AGE
     vault-0                                                     3/3       Running   0          10s
     vault-configurer-6c545cb6b4-dmvb5                           1/1       Running   0          10s
@@ -55,7 +59,12 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     1. Check that you can access the vault:
 
         ```bash
-        $ vault status
+        vault status
+        ```
+
+        Expected output:
+
+        ```bash
         Key             Value
         ---             -----
         Seal Type       shamir

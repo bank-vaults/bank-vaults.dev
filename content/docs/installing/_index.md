@@ -33,7 +33,7 @@ With the help of these charts you can run a HA Vault instance with automatic ini
 On macOs, you can directly install the CLI from Homebrew:
 
 ```bash
-$ brew install banzaicloud/tap/bank-vaults
+brew install banzaicloud/tap/bank-vaults
 ```
 
 Alternatively, fetch the source code and compile it using go get:

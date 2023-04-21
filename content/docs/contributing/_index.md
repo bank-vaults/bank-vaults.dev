@@ -59,7 +59,7 @@ The operator consists of two parts, the *bank-vaults sidecar* running inside a c
 You can fire up the operator on your machine, so you can debug it locally (yes you don't have to build a container from it), if your kube context points to the development cluster:
 
 ```bash
-$ make operator-up
+make operator-up
 ```
 
 This installs all the necessary RBAC rules and other CRDs that you need to create a Vault instance. If you change the code of the operator you have to `CTRL + C` this `make` command and rerun it again.
@@ -67,13 +67,13 @@ This installs all the necessary RBAC rules and other CRDs that you need to creat
 Now it is time create a Vault instance for yourself, which you can work on:
 
 ```bash
-$ kubectl apply -f operator/deploy/cr.yaml
+kubectl apply -f operator/deploy/cr.yaml
 ```
 
 If you change the *bank-vaults sidecar* code you have to build a new Docker image from it:
 
 ```bash
-$ DOCKER_LATEST=1 make docker
+DOCKER_LATEST=1 make docker
 ```
 
 There are at least four ways to distribute this image in your Kubernetes cluster, by default `IfNotPresent` image pull policy is used:
@@ -92,11 +92,11 @@ This will deploy the webhook via the Helm chart, scale it to 0, start it locally
 You will need Helm and `kurun` [installed](https://github.com/banzaicloud/kurun#installation) to run this:
 
 ```bash
-$ make webhook-up -j
+make webhook-up -j
 ```
 
 Now you can try out with mutating a Deployment:
 
 ```bash
-$ kubectl apply -f deploy/test-deployment.yaml
+kubectl apply -f deploy/test-deployment.yaml
 ```

@@ -44,8 +44,12 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 1. Write a secret into Vault (the Vault CLI must be installed on your computer):
 
     ```bash
-    $ vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t
+    vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t
+    ```
 
+    Expected output:
+
+    ```bash
     Key              Value
     ---              -----
     created_time     2020-11-04T11:39:01.863988395Z

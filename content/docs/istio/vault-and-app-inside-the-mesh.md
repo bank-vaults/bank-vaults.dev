@@ -26,7 +26,12 @@ In this scenario, both Vault and the app are running inside the mesh.
 1. Check the logs in the app container. It should sill show success:
 
     ```bash
-    $ kubectl logs -f -n app deployment/app
+    kubectl logs -f -n app deployment/app
+    ```
+
+    Expected output:
+
+    ```bash
     time="2020-02-18T15:04:03Z" level=info msg="Initial Vault token arrived"
     time="2020-02-18T15:04:03Z" level=info msg="Renewed Vault Token"
     s3cr3t

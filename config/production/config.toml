@@ -1,4 +1,4 @@
-baseurl = "https://bank-vaults.github.io/"
+baseurl = "https://bank-vaults.dev/"
 buildDrafts = false
 #googleAnalytics = "G-FIXME"
 
@@ -9,4 +9,4 @@ buildDrafts = false
 
 [params]
 
-url_latest_version = "https://bank-vaults.github.io/"
+url_latest_version = "https://bank-vaults.dev/"

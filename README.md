@@ -1,6 +1,6 @@
-# bank-vaults.github.io - Bank-Vaults documentation
+# bank-vaults.dev - Bank-Vaults documentation
 
-This repository is the source of the Bank-Vaults documentation, published at [https://bank-vaults.github.io](https://bank-vaults.github.io/docs/).
+This repository is the source of the Bank-Vaults documentation, published at [https://bank-vaults.dev](https://bank-vaults.dev/docs/).
 
 The documentation is built using [Hugo](https://gohugo.io/) and the [Docsy theme](https://www.docsy.dev/docs/).
 
@@ -17,8 +17,8 @@ To use this repository, you need the following installed locally:
 1. Install the dependencies. Clone the repository and navigate to the directory:
 
     ```bash
-    git clone https://github.com/bank-vaults/bank-vaults.github.io/
-    cd bank-vaults.github.io
+    git clone https://github.com/bank-vaults/bank-vaults.dev/
+    cd bank-vaults.dev
     ```
 
 1. The Bank-Vaults website uses the [Docsy Hugo theme](https://github.com/google/docsy#readme). Pull in the submodule:

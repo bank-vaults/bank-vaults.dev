@@ -1,0 +1,29 @@
+{{- $file := .Get 0 -}}
+{{- $ext := (.Get 1 | default "bash" ) -}}
+{{- $opts := .Get 2 -}}
+{{- $url := "" -}}
+{{- $found_file := false -}}
+
+{{ if (fileExists (print .Page.File.Dir $file)) -}}
+  <!-- First try as relative path -->
+  {{- $url = (print .Page.Site.BaseURL .Page.File.Dir $file) -}}
+  {{- $found_file = true -}}
+{{ else }}
+  {{ if (fileExists $file) -}}
+    <!-- Then as project-relative path-->
+    {{- $url = (print .Page.Site.BaseURL $file) -}}
+    {{- $found_file = true -}}
+  {{- end }}
+{{- end }}
+
+{{ if not $found_file -}}
+  {{ if in $opts "optional" }}
+    {{- warnf "Cannot find file to include %q %s" $file .Position -}}
+  {{ else if in $opts "suppress" }}
+    <!-- Silently fail without any error or warning -->
+  {{ else }}
+    {{- errorf "Cannot find file to include %q %s" $file .Position -}}
+  {{- end }}
+{{- end }}
+
+<pre data-src='{{ $url }}' data-download-link data-download-link-label="Download this file" $opts></pre>

@@ -24,8 +24,8 @@ Read the Bank-Vaults documentation.
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa-brands fa-github" title="Contributions welcome!" url="https://github.com/bank-vaults/bank-vaults" %}}
-We do a [Pull Request](https://github.com/bank-vaults/bank-vaults/pulls) contributions workflow on **GitHub**. New users and developers are always welcome!
+{{% blocks/feature icon="fa-brands fa-github" title="Contributions welcome!" url="https://github.com/bank-vaults/" %}}
+We do a [Pull Request](https://github.com/banzaicloud/bank-vaults/pulls) contributions workflow on **GitHub**. New users and developers are always welcome!
 {{% /blocks/feature %}}
 
 

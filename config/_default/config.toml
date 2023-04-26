@@ -77,7 +77,7 @@ twitter = "calisti12"
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo = "https://github.com/bank-vaults/bank-vaults.dev"
   # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-  github_project_repo = "https://github.com/bank-vaults/bank-vaults"
+  github_project_repo = "https://github.com/banzaicloud/bank-vaults"
 
   # Specify a value here if your content directory is not in your repo's root directory
   # github_subdir = ""
@@ -141,7 +141,7 @@ twitter = "calisti12"
   # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
   [[params.links.developer]]
     name = "GitHub"
-    url = "https://github.com/bank-vaults/bank-vaults"
+    url = "https://github.com/bank-vaults/"
     icon = "fab fa-github"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]
@@ -164,11 +164,6 @@ twitter = "calisti12"
     weight = -110
     #pre = "<i class='fas fa-rss pr-2'></i>"
     url = "https://github.com/bank-vaults/bank-vaults"
-#  [[menu.main]]
-#    name = "Blog"
-#    weight = -120
-#    pre = "<i class='fas fa-blog pr-2'></i>"
-#    url = "https://github.com/bank-vaults/bank-vaults"
   [[menu.main]]
     name = "Documentation"
     weight = -100

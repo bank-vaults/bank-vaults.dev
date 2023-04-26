@@ -13,7 +13,7 @@ The operator flow is the following:
 
 ![operator](vaultoperator.png)
 
-The source code can be found in the [operator](https://github.com/bank-vaults/bank-vaults/tree/master/operator) directory.
+The source code can be found in the [operator](https://github.com/banzaicloud/bank-vaults/tree/master/operator) directory.
 
 The operator requires the following [cloud permissions]({{< relref "/docs/cloud-permissions/_index.md" >}}).
 

@@ -28,7 +28,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 1. On `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
 
     ```bash
-    kubectl apply -f https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/rbac.yaml
+    kubectl apply -f https://github.com/banzaicloud/bank-vaults/raw/main/operator/deploy/rbac.yaml
     ```
 
     You can use the `vault` ServiceAccount token as a `token_reviewer_jwt` in the auth configuration. To retrieve the token, run the following command:
@@ -37,7 +37,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
     kubectl get secret $(kubectl get sa vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode
     ```
 
-1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/cr.yaml](https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
+1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/banzaicloud/bank-vaults/raw/main/operator/deploy/cr.yaml](https://github.com/banzaicloud/bank-vaults/raw/main/operator/deploy/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
 
     ```yaml
       externalConfig:

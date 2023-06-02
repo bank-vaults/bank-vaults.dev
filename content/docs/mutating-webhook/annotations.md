@@ -22,6 +22,7 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 `vault.security.banzaicloud.io/mutate-configmap`|`"false"`|Mutate the annotated ConfigMap as well (only Secrets and Pods are mutated by default)|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|
+`vault.security.banzaicloud.io/mutate-probes`|`"false"`|Mutate the ENV passed to a liveness or readiness probe.|
 `vault.security.banzaicloud.io/vault-env-from-path`|`""`|Comma-delimited list of vault paths to pull in all secrets as environment variables|
 `vault.security.banzaicloud.io/token-auth-mount`|`""`|`{volume:file}` to be injected as `.vault-token`. |
 `vault.security.banzaicloud.io/vault-auth-method`|`"jwt"`| The [Vault authentication method](https://www.vaultproject.io/docs/auth) to be used, one of `["kubernetes", "aws-ec2", "aws-iam", "gcp-gce", "gcp-iam", "jwt", "azure", "namespaced"]`|

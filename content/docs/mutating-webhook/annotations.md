@@ -19,7 +19,6 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 `vault.security.banzaicloud.io/vault-env-daemon`|`"false"`|Run `vault-env` as a daemon instead of replacing itself with the main process. For details, see {{< relref "/docs/mutating-webhook/deploy.md#daemon-mode" >}}.|
 `vault.security.banzaicloud.io/vault-env-image`|`"banzaicloud/vault-env:latest"`|vault-env image|
 `vault.security.banzaicloud.io/vault-env-image-pull-policy`|`IfNotPresent`|the Pull policy for the vault-env container|
-`vault.security.banzaicloud.io/mutate-configmap`|`"false"`|Mutate the annotated ConfigMap as well (only Secrets and Pods are mutated by default)|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|
 `vault.security.banzaicloud.io/mutate`|`""`|Defines the mutation of the given resource, possible values: `"skip"` which prevents it.|
 `vault.security.banzaicloud.io/mutate-probes`|`"false"`|Mutate the ENV passed to a liveness or readiness probe.|

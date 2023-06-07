@@ -121,6 +121,9 @@ twitter = "calisti12"
   # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
   sidebar_search_disable = false
 
+  [params.jstoc]
+  enable = true
+
   [params.links]
   # End user relevant links. These will show up on left side of footer and in the community page if you have one.
   #[[params.links.user]]

@@ -5,6 +5,8 @@ Nothing defined here. The Hugo project that uses this theme can override Bootstr
 assets/scss/_styles_project.scss
 
 */
+@import "tocbot";
+
 .warning-block {
     border-left: 6px solid red;
     background: #FFFFFF;

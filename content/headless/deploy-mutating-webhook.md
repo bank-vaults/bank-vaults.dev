@@ -36,12 +36,17 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 
     ```bash
     kubectl get pods --namespace vault-infra
+    ```
+
+    Expected output:
+
+    ```bash
     NAME                                     READY   STATUS    RESTARTS   AGE
     vault-secrets-webhook-58b97c8d6d-qfx8c   1/1     Running   0          22s
     vault-secrets-webhook-58b97c8d6d-rthgd   1/1     Running   0          22s
     ```
 
-1. Write a secret into Vault (the Vault CLI must be installed on your computer):
+1. Write a secret into Vault (the [Vault CLI](https://developer.hashicorp.com/vault/downloads) must be installed on your computer):
 
     ```bash
     vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t

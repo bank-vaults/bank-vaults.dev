@@ -6,7 +6,7 @@ weight: 100
 
 In this scenario, Vault runs outside an Istio mesh, whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled.
 
-<p align="center"><img src="/img/istio_vault1.png" ></p>
+![Running Vault outside the Istio mesh](/img/istio_vault1.png)
 
 First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [install Vault outside the mesh](#install-vault-outside-mesh), and finally [install an application within the mesh](#install-application-inside-mesh).
 

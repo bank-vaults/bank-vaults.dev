@@ -30,7 +30,7 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
     helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
     ```
 
-    For further details, see the [webhook's Helm chart repository](https://github.com/bank-vaults/bank-vaults/tree/master/charts/vault-secrets-webhook).
+    For further details, see the [webhook's Helm chart repository](https://github.com/bank-vaults/vault-secrets-webhook/tree/main/deploy/charts/vault-secrets-webhook).
 
 1. Check that the pods are running:
 

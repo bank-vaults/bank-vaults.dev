@@ -16,9 +16,9 @@ Check one of the following guides to get an overview:
 
 We have some fully fledged, production-ready Helm charts for deploying:
 
-- [Vault](https://github.com/bank-vaults/bank-vaults/tree/master/charts/vault) using `bank-vaults`,
-- the [Vault Operator](https://github.com/bank-vaults/bank-vaults/tree/master/charts/vault-operator), and also
-- the [Vault Secrets Webhook](https://github.com/bank-vaults/bank-vaults/tree/master/charts/vault-secrets-webhook).
+- [Vault](https://github.com/bank-vaults/vault-helm-chart/tree/main/vault) using `bank-vaults`,
+- the [Vault Operator](FIXME), and also
+- the [Vault Secrets Webhook](https://github.com/bank-vaults/vault-secrets-webhook/tree/main/deploy/charts/vault-secrets-webhook).
 
 With the help of these charts you can run a HA Vault instance with automatic initialization, unsealing, and external configuration which would otherwise be a tedious manual operation. Also secrets from Vault can be injected into your Pods directly as environment variables (without using Kubernetes Secrets). These charts can be used easily for development purposes as well.
 

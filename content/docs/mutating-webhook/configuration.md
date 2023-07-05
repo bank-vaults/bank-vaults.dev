@@ -144,8 +144,8 @@ In this case, an init-container will be injected into the given Pod. This contai
 
 Currently, the Kubernetes Service Account-based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into.
 
-- [GCP](https://www.vaultproject.io/docs/auth/gcp) and general [OIDC/JWT](https://www.vaultproject.io/docs/auth/gcp) authentication methods are supported as well, see the [example manifest](https://github.com/bank-vaults/bank-vaults/blob/master/deploy/test-deployment-gcp.yaml).
-- Kubernetes [Projected Service Account Tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) work too, as shown in [this example](https://github.com/bank-vaults/bank-vaults/blob/master/hack/oidc-pod.yaml).
+- [GCP](https://www.vaultproject.io/docs/auth/gcp) and general [OIDC/JWT](https://www.vaultproject.io/docs/auth/gcp) authentication methods are supported as well, see the [example manifest](https://github.com/bank-vaults/vault-operator/blob/main/test/deploy/test-deployment-gcp.yaml).
+- Kubernetes [Projected Service Account Tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) work too, as shown in [this example](https://github.com/bank-vaults/vault-operator/blob/main/test/oidc-pod.yaml).
 
 Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/) which became beta as of 1.13. This feature requires some changes in webhooks with side effects. Vault mutating admission webhook is `dry-run aware`.
 
@@ -195,16 +195,12 @@ helm upgrade --install mysql stable/mysql \
 
 ## Registry access
 
-You can also specify a default secret being used by the webhook for cases where a pod has no `imagePullSecrets` specified. To make this work you have to set the environment variables `DEFAULT_IMAGE_PULL_SECRET` and `DEFAULT_IMAGE_PULL_SECRET_NAMESPACE` when deploying the vault-secrets-webhook. Have a look at the values.yaml of the
-[vault-secrets-webhook](https://github.com/bank-vaults/bank-vaults/blob/master/charts/vault-secrets-webhook/values.yaml) helm chart to see how this is done.
+You can also specify a default secret being used by the webhook for cases where a pod has no `imagePullSecrets` specified. To make this work you have to set the environment variables `DEFAULT_IMAGE_PULL_SECRET` and `DEFAULT_IMAGE_PULL_SECRET_NAMESPACE` when deploying the vault-secrets-webhook. Have a look at the [values.yaml of the
+vault-secrets-webhook](https://github.com/bank-vaults/vault-secrets-webhook/blob/main/deploy/charts/vault-secrets-webhook/values.yaml) helm chart to see how this is done.
 
 > Note:
 > - If your EC2 nodes have the ECR instance role, the webhook can request an ECR access token through that role automatically, instead of an explicit `imagePullSecret`
 > - If your workload is running on GCP nodes, the webhook automatically authenticates to GCR.
-
-Future improvements:
-
-- on Azure/Alibaba get a credential dynamically with the specific SDK (for AWS ECR and GCP GCR this is already done)
 
 ### Using a private image repository
 

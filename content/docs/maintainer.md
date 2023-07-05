@@ -14,7 +14,7 @@ This guide explains the tasks and responsibilities of maintainers.
 
 ## Development
 
-Please read the [Development](development.md) guide.
+Please read the {{% xref "/docs/development.md" %}} guide.
 
 ## Keeping dependencies up-to-date
 

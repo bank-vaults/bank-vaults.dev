@@ -5,7 +5,7 @@ weight: 100
 ---
 
 You can find several examples of the vault operator CR manifest in
-[the project repository](https://github.com/bank-vaults/bank-vaults/blob/master/operator/deploy). The following examples use only this [vanilla CR](https://github.com/bank-vaults/bank-vaults/blob/master/operator/deploy/cr.yaml)
+[the project repository](https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/). The following examples use only this [vanilla CR](https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml)
 to demonstrate some main points about how to properly configure the
 operator for secrets mutations to function.
 

@@ -15,7 +15,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     ```bash
     kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+    kubectl apply -f https://github.com/bank-vaults/vault-operator/raw/main/deploy/examples/cr.yaml
     ```
 
 1. Wait a few seconds, then check the operator and the vault pods:
@@ -89,9 +89,9 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     1. Now you can interact with Vault. For example, add a secret by running `vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t`
         If you want to access the Vault web interface, open *https://127.0.0.1:8200* in your browser using the root token (to reveal the token, run `echo $VAULT_TOKEN`).
 
-For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/bank-vaults/bank-vaults/tree/master/operator/deploy) (we use these for testing). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
+For other configuration examples of the Vault CustomResource, see the YAML files in the [deploy/examples](https://github.com/bank-vaults/vault-operator/tree/main/deploy/examples) and [test/deploy](https://github.com/bank-vaults/vault-operator/tree/main/test/deploy) directories of the vault-operator repository. After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
 kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+kubectl delete -f https://github.com/bank-vaults/vault-operator/raw/main/deploy/examples/cr.yaml
 ```

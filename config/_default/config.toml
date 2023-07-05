@@ -90,6 +90,9 @@ twitter = "calisti12"
   # Enable Lunr.js offline search
   offlineSearch = true
 
+  # Add CTA partial to navbar
+  navbar_cta = true
+
   #####
   # Code highlighting
   #####
@@ -165,18 +168,23 @@ twitter = "calisti12"
   [[menu.main]]
     name = "Project page"
     weight = -110
-    #pre = "<i class='fas fa-rss pr-2'></i>"
+    pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/banzaicloud/bank-vaults"
 #  [[menu.main]]
 #    name = "Blog"
 #    weight = -120
 #    pre = "<i class='fas fa-blog pr-2'></i>"
-#    url = "https://github.com/bank-vaults/bank-vaults"
+#    url = "https://github.com/bank-vaults/"
   [[menu.main]]
     name = "Documentation"
     weight = -100
     #pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
+  [[menu.main]]
+    name = "Community"
+    url = "https://eti.cisco.com/slack"
+    pre = "<i class='fab fa-slack pr-2'></i>"
+    weight = 150
 
 ###############################################################################
 # Misc customizations

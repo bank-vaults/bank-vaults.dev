@@ -310,6 +310,3 @@ spec:
             - name: MYSQL_PASSWORD
               value: vault:secret/data/mysql#MYSQL_PASSWORD
 ```
-
-[1]:https://www.vaultproject.io/docs/auth/kubernetes
-[2]:https://github.com/bank-vaults/bank-vaults-docs/tree/master/docs/operator

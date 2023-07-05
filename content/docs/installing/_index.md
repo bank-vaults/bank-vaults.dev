@@ -22,7 +22,7 @@ We have some fully fledged, production-ready Helm charts for deploying:
 
 With the help of these charts you can run a HA Vault instance with automatic initialization, unsealing, and external configuration which would otherwise be a tedious manual operation. Also secrets from Vault can be injected into your Pods directly as environment variables (without using Kubernetes Secrets). These charts can be used easily for development purposes as well.
 
-> Note: Starting with Bank-Vaults version 1.6.0, only Helm 3 is supported. If you have installed the chart with Helm 2 and now you are trying to upgrade with Helm3, see the [Bank-Vaults 1.6.0 release notes](https://github.com/bank-vaults/bank-vaults/releases/tag/1.6.0) for detailed instructions.
+> Note: Starting with Bank-Vaults version 1.6.0, only Helm 3 is supported.
 
 {{< include-headless "deploy-operator-local.md" >}}
 

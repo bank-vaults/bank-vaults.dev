@@ -7,8 +7,6 @@ Bank-Vaults offers a lot of alternatives for encrypting and storing the `unseal-
 
 You can use a Hardware Security Module (HSM) to generate and store the private keys used by Bank-Vaults. Some articles still point out the speed of HSM devices as their main selling point, but an average PC can do more cryptographic operations. Actually, the main benefit is from the security point of view. An HSM protects your private keys and handles cryptographic operations, which allows the encryption of protected information without exposing the private keys (they are not extractable). Bank-Vaults currently supports the [PKCS11](https://en.wikipedia.org/wiki/PKCS_11) software standard to communicate with an HSM. Fulfilling compliance requirements (for example, PCI DSS) is also a great benefit of HSMs, so from now on you can achieve that with Bank-Vaults.
 
-<iframe width="704" height="438"  src="https://www.youtube.com/embed/4iUSoxPMVXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Implementation in Bank-Vaults
 
 ![Vault HSM](/img/hsm.png)

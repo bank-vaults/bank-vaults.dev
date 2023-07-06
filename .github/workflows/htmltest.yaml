@@ -1,0 +1,56 @@
+# .github/workflows/htmltest.yml
+# Run htmltest link checker on generated HTML output from user guide
+
+name: Link check with htmltest
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  htmltest:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+            - name: Checkout code
+              uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+              with:
+                submodules: 'recursive'
+      
+            - name: Set up Hugo
+              uses: peaceiris/actions-hugo@16361eb4acea8698b220b76c0d4e84e1fd22c61d # v2.6.0
+              with:
+                hugo-version: '0.110.0'
+                extended: true
+      
+            - name: Set up Node
+              uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+              with:
+                node-version: 16
+      
+            - name: Install dependencies
+              run: |
+                cd themes/docsy
+                npm install
+      
+            - name: Set up PostCSS
+              run: npm install --save-dev autoprefixer postcss-cli postcss
+      
+            - name: Build
+              run: hugo
+
+            - name: Test HTML
+              # https://github.com/wjdp/htmltest-action/
+              continue-on-error: false # <- Set to true if run shouldn't fail with broken links
+              uses: wjdp/htmltest-action@master
+              with:
+                config: .htmltest.yml
+                path: public
+
+            - name: Archive htmltest results
+              uses: actions/upload-artifact@v3
+              with:
+                name: htmltest-report
+                path: tmp/.htmltest/htmltest.log
+                retention-days: 7 # default is 90 days

@@ -6,4 +6,4 @@ IgnoreDirs: [_print]
 IgnoreEmptyHref: false
 IgnoreInternalEmptyHash: true
 IgnoreURLs: [http://localhost:1313, http://localhost, https://github.com/bank-vaults/bank-vaults.dev/commit/, https://github.com/orgs/bank-vaults/projects/]
-TestFilesConcurrently: true
+TestFilesConcurrently: false

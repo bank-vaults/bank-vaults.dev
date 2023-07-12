@@ -75,7 +75,7 @@ twitter = "calisti12"
   url_latest_version = "/"
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-  github_repo = "https://github.com/bank-vaults/bank-vaults.dev"
+  github_repo = "https://github.com/bank-vaults/.dev"
   # An optional link to a related project repo. For example, the sibling repository where your product code lives.
   github_project_repo = "https://github.com/banzaicloud/bank-vaults"
 
@@ -152,7 +152,7 @@ twitter = "calisti12"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]
     name = "Slack"
-    url = "https://eti.cisco.com/slack"
+    url = "https://outshift.slack.com"
     icon = "fab fa-slack"
     desc = "Chat with the project developers"
   #[[params.links.developer]]
@@ -169,7 +169,7 @@ twitter = "calisti12"
     name = "Project page"
     weight = -110
     pre = "<i class='fab fa-github pr-2'></i>"
-    url = "https://github.com/banzaicloud/bank-vaults"
+    url = "https://github.com/bank-vaults"
 #  [[menu.main]]
 #    name = "Blog"
 #    weight = -120
@@ -178,11 +178,11 @@ twitter = "calisti12"
   [[menu.main]]
     name = "Documentation"
     weight = -100
-    #pre = "<i class='fas fa-book pr-2'></i>"
+    pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
   [[menu.main]]
     name = "Community"
-    url = "https://eti.cisco.com/slack"
+    url = "https://outshift.slack.com"
     pre = "<i class='fab fa-slack pr-2'></i>"
     weight = 150
 

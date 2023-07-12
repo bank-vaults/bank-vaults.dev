@@ -1,0 +1,16 @@
+{{ if .Site.Params.versions -}}
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	{{ .Site.Params.version_menu }}
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	{{ if .Page.IsHome -}}
+	<div w3-include-html="/docs/releases.releases" w3-include-html-default='<a class="dropdown-item" href="/docs/releases.releases">Latest</a>'></div>
+	{{ else -}}
+	<div w3-include-html="/{{ strings.TrimLeft (printf "/%s" .Site.Params.version) .Page.RelPermalink }}/releases.releases" w3-include-html-default='<a class="dropdown-item" href="/docs/releases.releases">Latest</a>'></div>
+	{{ end -}}
+
+<script type="application/x-javascript">
+w3.includeHTML();
+</script>
+</div>
+{{ end }}

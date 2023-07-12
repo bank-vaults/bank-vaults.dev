@@ -1,0 +1,10 @@
+<script src="/js/w3.js" type="application/x-javascript"></script>
+
+<!-- If the site hosts multiple versions of the docs, set the canonical url to the latest -->
+{{ if .Site.Params.version_menu_canonicallinks }}
+    {{ if and .Site.Params.url_latest_version .Site.Params.versions }}
+    {{ range first 1 .Site.Params.versions }}
+        <link rel="canonical" href="{{ $.Site.Params.url_latest_version }}{{ with $.Page.File }}{{ .Dir }}{{ end }}" />
+    {{ end }}
+    {{ end }}
+{{ end }}

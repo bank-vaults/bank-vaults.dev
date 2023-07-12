@@ -1,0 +1,86 @@
+name: Publish version 1.19
+
+env:
+  doc_versionnumber: "1.19"
+
+on:
+  push:
+    branches:
+      - release-1.19
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    
+    environment:
+      name: github-pages-test
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+        with:
+          ref: release-1.19
+          submodules: 'recursive'
+
+      - name: Set up Pages
+        id: pages
+        uses: actions/configure-pages@f156874f8191504dae5b037505266ed5dda6c382 # v3.0.6
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@16361eb4acea8698b220b76c0d4e84e1fd22c61d # v2.6.0
+        with:
+          hugo-version: '0.110.0'
+          extended: true
+
+      - name: Set up Node
+        uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: |
+          cd themes/docsy
+          npm install
+
+      - name: Set up PostCSS
+        run: npm install --save-dev autoprefixer postcss-cli postcss
+
+      - name: Build
+        run: hugo --environment production --baseURL ${{ steps.pages.outputs.base_url }}/${{ env.doc_versionnumber }}/
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@64bcae551a7b18bcb9a09042ddf1960979799187 # v1.0.8
+      #   with:
+      #     path: ./public/
+
+      - name: Checkout code to update
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+        with:
+          ref: 'gh-pages-test'
+          path: 'tmp/gh-pages'
+      # - name: Display file structure
+      #   run: ls -R
+      - name: Copy built site to GH pages
+        run: |
+          rm -rf tmp/gh-pages/${{ env.doc_versionnumber }}
+          mkdir -p tmp/gh-pages/${{ env.doc_versionnumber }}
+          mv public/* tmp/gh-pages/${{ env.doc_versionnumber }}
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'Publish updated docs for ${{ env.doc_versionnumber }}, ${{ github.event.repository.pushed_at}}'
+          branch: 'gh-pages-test'
+          directory: 'tmp/gh-pages'

@@ -77,7 +77,7 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
     ```bash
     helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
     helm upgrade --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook --namespace vault-system
-    helm upgrade --install vault-operator banzaicloud-stable/vault-operator --namespace vault-system
+    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator --namespace vault-system
     ```
 
 Soon the webhook and the operator become up and running. Check that the `istio-proxy` got injected into all Pods in `vault-system`.

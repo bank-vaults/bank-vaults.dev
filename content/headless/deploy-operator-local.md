@@ -8,7 +8,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     ```bash
     helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
+    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
     ```
 
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:

@@ -56,7 +56,7 @@ To configure the vault-operator to create backups of the Vault cluster, complete
 1. Install the vault-operator to the cluster:
 
     ```bash
-    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
+    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
 
     kubectl apply -f operator/deploy/rbac.yaml
     kubectl apply -f operator/deploy/cr-raft.yaml

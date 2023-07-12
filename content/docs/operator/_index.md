@@ -27,7 +27,7 @@ In a production environment you want to run Vault as a cluster. The following CR
 
     ```bash
     helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --install vault-operator banzaicloud-stable/vault-operator
+    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
     ```
 
 1. Create a Vault instance using the `cr-raft.yaml` custom resource. This will create a Kubernetes `CustomResource` called `vault` that uses the Raft backend:

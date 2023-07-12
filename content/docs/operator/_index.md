@@ -38,7 +38,7 @@ In a production environment you want to run Vault as a cluster. The following CR
     ```
 
 {{< warning >}}
-Backing up the storage backend to prevent data loss, is not handled by the Vault operator. We recommend using [Velero]({{< relref "/docs/backup/_index.md" >}}) for backups.
+Make sure to set up a solution for backing up the storage backend to prevent data loss. Bank-Vaults doesn't do this automatically. We recommend using [Velero]({{< relref "/docs/backup/_index.md" >}}) for backups.
 {{< /warning >}}
 
 ## Pod anti-affinity

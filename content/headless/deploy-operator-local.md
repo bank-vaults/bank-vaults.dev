@@ -14,8 +14,27 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
 
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+    kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl apply -f -
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr.yaml
+    ```
+
+    Or, if you would like to use another namespace, ensure that you have required permissions. This can be done via:
+    ```bash
+    export NAMESPACE="example-namespace"
+    cat <<EOF > kustomization.yaml | kubectl kustomize | kubectl apply -f -
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    kind: Kustomization
+    resources:
+    - https://github.com/bank-vaults/vault-operator/deploy/rbac
+    transformers:
+    - |-
+      apiVersion: builtin
+      kind: NamespaceTransformer
+      metadata:
+        name: vault-namespace-transform
+        namespace: $NAMESPACE
+      setRoleBindingSubjects: defaultOnly
+    EOF
     ```
 
 1. Wait a few seconds, then check the operator and the vault pods:
@@ -92,6 +111,6 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/bank-vaults/bank-vaults/tree/master/operator/deploy) (we use these for testing). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
-kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl delete -f -
+kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
 ```

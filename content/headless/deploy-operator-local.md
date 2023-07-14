@@ -11,7 +11,21 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
     ```
 
+    Expected output:
+
+    ```bash
+    Release "vault-operator" does not exist. Installing it now.
+    NAME: vault-operator
+    LAST DEPLOYED: Fri Jul 14 14:41:18 2023
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    ```
+
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
+
+    > Note: The following commands use a specific version of the CRs, because the current version is not yet working, as we are in the process of migrating the Bank-Vaults repositories.
 
     ```bash
     kubectl apply -f https://github.com/bank-vaults/vault-operator/raw/main/deploy/default/rbac.yaml
@@ -56,7 +70,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
         Alternatively, you can instruct the Vault client to skip verifying the certificate of Vault by running: `export VAULT_SKIP_VERIFY=true`
 
-    1. Check that you can access the vault:
+    1. If you already have the [Vault CLI installed](https://developer.hashicorp.com/vault/downloads), check that you can access the Vault:
 
         ```bash
         vault status

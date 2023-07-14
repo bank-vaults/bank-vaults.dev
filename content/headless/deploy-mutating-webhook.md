@@ -30,6 +30,18 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
     helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
     ```
 
+    Expected output:
+
+    ```bash
+    Release "vault-secrets-webhook" does not exist. Installing it now.
+    NAME: vault-secrets-webhook
+    LAST DEPLOYED: Fri Jul 14 15:42:36 2023
+    NAMESPACE: vault-infra
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    ```
+
     For further details, see the [webhook's Helm chart repository](https://github.com/bank-vaults/vault-secrets-webhook/tree/main/deploy/charts/vault-secrets-webhook).
 
 1. Check that the pods are running:
@@ -46,7 +58,7 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
     vault-secrets-webhook-58b97c8d6d-rthgd   1/1     Running   0          22s
     ```
 
-1. Write a secret into Vault (the [Vault CLI](https://developer.hashicorp.com/vault/downloads) must be installed on your computer):
+1. If you already have the [Vault CLI installed](https://developer.hashicorp.com/vault/downloads), write a secret into Vault:
 
     ```bash
     vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t
@@ -65,7 +77,13 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 
 1. Apply the following deployment to your cluster. The webhook will mutate this deployment because it has an environment variable having a value which is a reference to a path in Vault:
 
-    {{< include-code "webhook-demo-deployment.yaml" "yaml" >}}
+    {{< include-code "webhook-demo-deployment.yaml" "yaml" "eof" >}}
+
+    Expected output:
+
+    ```bash
+    deployment.apps/vault-test created
+    ```
 
 1. Check the mutated deployment.
 

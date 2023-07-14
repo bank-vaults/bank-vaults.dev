@@ -14,8 +14,8 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
 
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/v1.15.3/operator/deploy/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/v1.15.3/operator/deploy/cr.yaml
     ```
 
 1. Wait a few seconds, then check the operator and the vault pods:

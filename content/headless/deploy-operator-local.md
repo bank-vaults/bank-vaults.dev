@@ -70,7 +70,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
         Alternatively, you can instruct the Vault client to skip verifying the certificate of Vault by running: `export VAULT_SKIP_VERIFY=true`
 
-    1. If you already have the [Vault CLI installed](https://developer.hashicorp.com/vault/downloads), you can check that you can access the vault:
+    1. If you already have the [Vault CLI installed](https://developer.hashicorp.com/vault/downloads), check that you can access the Vault:
 
         ```bash
         vault status

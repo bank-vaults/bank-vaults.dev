@@ -55,7 +55,7 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 
 |Variable      |default     |Explanation|
 |--------------|------------|------------|
-|VAULT_IMAGE   |vault:latest|the vault image to use for the init container|
+|VAULT_IMAGE   |hashicorp/vault:latest|the vault image to use for the init container|
 |VAULT_ENV_IMAGE|banzaicloud/vault-env:latest| the vault-env image to use |
 |VAULT_CT_IMAGE|hashicorp/consul-template:latest| the consul template image to use|
 |VAULT_ADDR    |https://127.0.0.1:8200|Kubernetes service Vault endpoint URL|

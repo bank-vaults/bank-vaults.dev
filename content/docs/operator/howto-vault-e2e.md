@@ -89,7 +89,7 @@ metadata:
 spec:
   size: 2
   image: vault:1.1.2
-  bankVaultsImage: banzaicloud/bank-vaults:1.19.0
+  bankVaultsImage: ghcr.io/bank-vaults/bank-vaults:latest
 
   # A YAML representation of a final vault config file.
   # See https://www.vaultproject.io/docs/configuration/ for more information.

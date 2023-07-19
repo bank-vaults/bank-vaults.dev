@@ -25,11 +25,9 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
 
-    > Note: The following commands use a specific version of the CRs, because the current version is not yet working, as we are in the process of migrating the Bank-Vaults repositories.
-
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/v1.15.3/operator/deploy/rbac.yaml
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/v1.15.3/operator/deploy/cr.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
     ```
 
 1. Wait a few seconds, then check the operator and the vault pods:
@@ -106,6 +104,6 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/bank-vaults/bank-vaults/tree/master/operator/deploy) (we use these for testing). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
-kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/rbac.yaml
-kubectl delete -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr.yaml
+kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
+kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
 ```

@@ -85,7 +85,7 @@ exec "$@"
 ### Dockerfile
 
 ```Dockerfile
-FROM hashicorp/consul-template:0.19.6-dev-alpine
+FROM hashicorp/consul-template:0.32.0
 
 ADD build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 

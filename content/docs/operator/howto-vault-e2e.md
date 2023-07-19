@@ -88,7 +88,7 @@ metadata:
   namespace: secrets
 spec:
   size: 2
-  image: vault:1.1.2
+  image: hashicorp/vault:1.13.3
   bankVaultsImage: banzaicloud/bank-vaults:0.4.16
 
   # A YAML representation of a final vault config file.

@@ -32,5 +32,5 @@ To run the whole SoftHSM based example in Kubernetes, run the following commands
 ```bash
 kubectl create namespace vault-infra
 helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator --namespace vault-infra
-kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-hsm-softhsm.yaml
+kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-hsm-softhsm.yaml
 ```

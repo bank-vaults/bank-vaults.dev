@@ -177,7 +177,7 @@ Since the HSM is a hardware device connected to a physical node, Bank-Vaults has
     kubectl delete vault vault
     kubectl delete pvc vault-file-vault-0
     kubectl delete secret vault-unseal-keys
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-hsm-nitrokey.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-hsm-nitrokey.yaml
     ```
 
 1. Check the logs that unsealing uses the NitroKey HSM device. Run the following command:

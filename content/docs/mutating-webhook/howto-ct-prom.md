@@ -143,7 +143,7 @@ metadata:
   name: "vault"
 spec:
   size: 2
-  image: hashicorp/vault:1.13.3
+  image: hashicorp/vault:1.14.0
 ```
 
 Our Vault config for telemetry:

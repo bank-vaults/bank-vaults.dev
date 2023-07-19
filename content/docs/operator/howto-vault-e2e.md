@@ -88,7 +88,7 @@ metadata:
   namespace: secrets
 spec:
   size: 2
-  image: vault:1.1.2
+  image: hashicorp/vault:1.14.0
   bankVaultsImage: ghcr.io/bank-vaults/bank-vaults:latest
 
   # A YAML representation of a final vault config file.

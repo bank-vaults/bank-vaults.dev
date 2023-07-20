@@ -15,4 +15,5 @@ Bank-Vaults never ever deletes the Vault instance from the cluster. However, if 
 
 ## Set default for vault.security.banzaicloud.io/vault-addr
 
-You can set the default settings for `vault.security.banzaicloud.io/vault-addr` so you don't have to specify it in every PodSpec. Just set `VAULT_ADDR` in the [env section of your values.yaml file](https://github.com/bank-vaults/vault-secrets-webhook/blob/main/deploy/charts/vault-secrets-webhook/values.yaml#L54).
+You can set the default settings for `vault.security.banzaicloud.io/vault-addr` so you don't have to specify it in every PodSpec. Just set the [VAULT_ADDR in the env section](https://github.com/bank-vaults/vault-secrets-webhook/blob/main/deploy/charts/vault-secrets-webhook/values.yaml#L54).
+

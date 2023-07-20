@@ -23,7 +23,7 @@ metadata:
 
 These annotations are common to all Vault Created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Configurer Deployment
 - Vault Configurer Pod
@@ -31,7 +31,7 @@ These annotations are common to all Vault Created resources
 - Vault Configurer Service
 - Vault TLS Secret
 
-### Vault Statefulset Resources annotations
+### Vault StatefulSet Resources annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -43,9 +43,9 @@ metadata:
           example.com/vault: "true"
 ```
 
-These annotations are common to all Vault Statefulset Created resources
+These annotations are common to all Vault StatefulSet Created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Services
 - Vault TLS Secret
@@ -104,7 +104,7 @@ These annotations are set *only* on the etcd pods created by the etcd-operator
 
 The Vault Operator support labelling most of the resources it creates using a set of fields in the Vault Specs:
 
-### Vault Statefulset Resources labels
+### Vault StatefulSet Resources labels
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -116,9 +116,9 @@ metadata:
           example.com/log-format: "json"
 ```
 
-These Labels are common to all Vault Statefulset Created resources
+These Labels are common to all Vault StatefulSet Created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Services
 - Vault TLS Secret

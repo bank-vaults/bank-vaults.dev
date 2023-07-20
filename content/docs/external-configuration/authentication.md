@@ -3,7 +3,7 @@ title: Authentication
 weight: 300
 ---
 
-You can configure [Auth Methods in Vault](https://www.vaultproject.io/docs/auth/index.html).
+You can configure [Auth Methods in Vault](https://developer.hashicorp.com/vault/docs/auth).
 
 Currently the following auth methods are supported:
 
@@ -19,7 +19,7 @@ Currently the following auth methods are supported:
 ## AppRole auth method {#auth-approle}
 
 Allow machines/apps to authenticate with Vault-defined roles. For details,
-see the [official Vault documentation](https://www.vaultproject.io/docs/auth/approle.html).
+see the [official Vault documentation](https://developer.hashicorp.com/vault/docs/auth/approle).
 
 ```yaml
 auth:
@@ -37,13 +37,13 @@ auth:
 ## AWS auth method {#auth-aws}
 
 Creating roles in Vault which can be used for
-[AWS IAM based authentication](https://www.vaultproject.io/docs/auth/aws.html).
+[AWS IAM based authentication](https://developer.hashicorp.com/vault/docs/auth/aws).
 
 ```yaml
 auth:
   - type: aws
     # Make the auth provider visible in the web ui
-    # See https://www.vaultproject.io/api/system/auth.html#config for more
+    # See https://developer.hashicorp.com/vault/api-docs/system/auth#config for more
     # information.
     options:
       listing_visibility: "unauth"
@@ -53,12 +53,12 @@ auth:
       iam_server_id_header_value: vault-dev.example.com # consider setting this to the Vault server's DNS name
     crossaccountrole:
     # Add cross account number and role to assume in the cross account
-    # https://www.vaultproject.io/api/auth/aws/index.html#create-sts-role
+    # https://developer.hashicorp.com/vault/api-docs/auth/aws#create-sts-role
     - sts_account: 12345671234
       sts_role: arn:aws:iam::12345671234:role/crossaccountrole
     roles:
     # Add roles for AWS instances or principals
-    # See https://www.vaultproject.io/api/auth/aws/index.html#create-role
+    # See https://developer.hashicorp.com/vault/api-docs/auth/aws#create-role
     - name: dev-role-iam
       bound_iam_principal_arn: arn:aws:iam::123456789012:role/dev-vault
       policies: allow_secrets
@@ -72,7 +72,7 @@ auth:
 ## Azure auth method {#auth-azure}
 
 The Azure auth method allows authentication against Vault using
-[Azure Active Directory credentials](https://www.vaultproject.io/docs/auth/azure.html) for more information.
+[Azure Active Directory credentials](https://developer.hashicorp.com/vault/docs/auth/azure) for more information.
 
 ```yaml
 auth:
@@ -84,30 +84,30 @@ auth:
       client_secret: 00000000-0000-0000-0000-000000000000
     roles:
     # Add roles for azure identities
-    # See https://www.vaultproject.io/api/auth/azure/index.html#create-role
+    # See https://developer.hashicorp.com/vault/api-docs/auth/azure#create-role
       - name: dev-mi
         policies: allow_secrets
-        bound_subscription_ids: 
+        bound_subscription_ids:
           - "00000000-0000-0000-0000-000000000000"
-        bound_service_principal_ids: 
+        bound_service_principal_ids:
           - "00000000-0000-0000-0000-000000000000"
 ```
 
 ## GCP auth method {#auth-gcp}
 
 Create roles in Vault which can be used for
-[GCP IAM based authentication](https://www.vaultproject.io/docs/auth/gcp.html).
+[GCP IAM based authentication](https://developer.hashicorp.com/vault/docs/auth/gcp).
 
 ```yaml
 auth:
   - type: gcp
     # Make the auth provider visible in the web ui
-    # See https://www.vaultproject.io/api/system/auth.html#config for more
+    # See https://developer.hashicorp.com/vault/api-docs/system/auth#config for more
     # information.
     options:
       listing_visibility: "unauth"
     config:
-      # Credentials context is service account's key. Can download when you create a key for service account. 
+      # Credentials context is service account's key. Can download when you create a key for service account.
       # No need to manually create it. Just paste the json context as multiline yaml.
       credentials: -|
         {
@@ -124,7 +124,7 @@ auth:
         }
     roles:
     # Add roles for gcp service account
-    # See https://www.vaultproject.io/api/auth/gcp/index.html#create-role
+    # See https://developer.hashicorp.com/vault/api-docs/auth/gcp#create-role
     - name: user-role
       type: iam
       project_id: PROJECT_ID
@@ -139,14 +139,13 @@ auth:
 
 ## GitHub auth method {#auth-github}
 
-Create team mappings in Vault which can be used later on for the 
-[GitHub authentication](https://www.vaultproject.io/docs/auth/github.html#configuration).
+Create team mappings in Vault which can be used later on for the [GitHub authentication](https://developer.hashicorp.com/vault/docs/auth/github#configuration).
 
 ```yaml
 auth:
   - type: github
     # Make the auth provider visible in the web ui
-    # See https://www.vaultproject.io/api/system/auth.html#config for more
+    # See https://developer.hashicorp.com/vault/api-docs/system/auth#config for more
     # information.
     options:
       listing_visibility: "unauth"
@@ -163,7 +162,7 @@ auth:
 
 ## JWT auth method {#auth-jwt}
 
-Create roles in Vault which can be used for [JWT-based authentication](https://www.vaultproject.io/docs/auth/jwt.html).
+Create roles in Vault which can be used for [JWT-based authentication](https://developer.hashicorp.com/vault/docs/auth/jwt).
 
 ```yaml
 auth:
@@ -183,14 +182,14 @@ auth:
 
 ## Kubernetes auth method {#auth-kubernetes}
 
-Use the [Kubernetes auth method](https://www.vaultproject.io/docs/auth/kubernetes.html) to authenticate with Vault
+Use the [Kubernetes auth method](https://developer.hashicorp.com/vault/docs/auth/kubernetes) to authenticate with Vault
 using a Kubernetes Service Account Token.
 
 ```yaml
 auth:
   - type: kubernetes
     # If you want to configure with specific kubernetes service account instead of default service account
-    # https://www.vaultproject.io/docs/auth/kubernetes.html
+    # https://developer.hashicorp.com/vault/docs/auth/kubernetes
     # config:
     #   token_reviewer_jwt: eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9....
     #   kubernetes_ca_cert: |
@@ -200,7 +199,7 @@ auth:
     #   kubernetes_host: https://192.168.64.42:8443
     # Allows creating roles in Vault which can be used later on for the Kubernetes based
     # authentication.
-    #  See https://www.vaultproject.io/docs/auth/kubernetes.html#creating-a-role for
+    #  See https://developer.hashicorp.com/vault/docs/auth/kubernetes#creating-a-role for
     # more information.
     roles:
       # Allow every pod in the default namespace to use the secret kv store
@@ -214,7 +213,7 @@ auth:
 ## LDAP auth method {#auth-ldap}
 
 Create group mappings in Vault which can be used for
-[LDAP based authentication](https://www.vaultproject.io/docs/auth/ldap.html#configuration).
+[LDAP based authentication](https://developer.hashicorp.com/vault/docs/auth/ldap#configuration).
 
 - To start an LDAP test server, run: **docker run -it --rm -p 389:389 -e LDAP_TLS=false --name ldap osixia/openldap**
 - To start an LDAP admin server, run: **docker run -it --rm -p 6443:443 --link ldap:ldap -e PHPLDAPADMIN_LDAP_HOSTS=ldap -e PHPLDAPADMIN_LDAP_CLIENT_TLS=false osixia/phpldapadmin**
@@ -224,7 +223,7 @@ auth:
   - type: ldap
     description: LDAP directory auth.
     # add mount options
-    # See https://www.vaultproject.io/api/system/auth.html#config for more
+    # See https://developer.hashicorp.com/vault/api-docs/system/auth#config for more
     # information.
     options:
       listing_visibility: "unauth"

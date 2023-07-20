@@ -56,8 +56,8 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 |Variable      |default     |Explanation|
 |--------------|------------|------------|
 |VAULT_IMAGE   |hashicorp/vault:latest|the vault image to use for the init container|
-|VAULT_ENV_IMAGE|banzaicloud/vault-env:latest| the vault-env image to use |
-|VAULT_CT_IMAGE|hashicorp/consul-template:latest| the consul template image to use|
+|VAULT_ENV_IMAGE|ghcr.io/bank-vaults/vault-env:latest| the vault-env image to use |
+|VAULT_CT_IMAGE|hashicorp/consul-template:0.32.0| the consul template image to use|
 |VAULT_ADDR    |https://127.0.0.1:8200|Kubernetes service Vault endpoint URL|
 |VAULT_SKIP_VERIFY|"false"|should vault agent and consul template skip verifying TLS|
 |VAULT_TLS_SECRET|""|supply a secret with the vault TLS CA so TLS can be verified|

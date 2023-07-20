@@ -21,7 +21,7 @@ metadata:
           example.com/test: "something"
 ```
 
-These annotations are common to all Vault Created resources
+These annotations are common to all Vault created resources
 
 - Vault StatefulSet
 - Vault Pods
@@ -43,7 +43,7 @@ metadata:
           example.com/vault: "true"
 ```
 
-These annotations are common to all Vault StatefulSet Created resources
+These annotations are common to all Vault StatefulSet created resources
 
 - Vault StatefulSet
 - Vault Pods
@@ -64,7 +64,7 @@ metadata:
           example.com/vaultConfigurer: "true"
 ```
 
-These annotations are common to all Vault Configurer Deployment Created resources
+These annotations are common to all Vault Configurer Deployment created resources
 
 - Vault Configurer Deployment
 - Vault Configurer Pod
@@ -116,7 +116,7 @@ metadata:
           example.com/log-format: "json"
 ```
 
-These Labels are common to all Vault StatefulSet Created resources
+These labels are common to all Vault StatefulSet created resources
 
 - Vault StatefulSet
 - Vault Pods
@@ -135,7 +135,7 @@ metadata:
           example.com/log-format: "string"
 ```
 
-These labels are common to all Vault Configurer Deployment Created resources
+These labels are common to all Vault Configurer Deployment created resources
 
 - Vault Configurer Deployment
 - Vault Configurer Pod

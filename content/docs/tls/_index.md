@@ -8,7 +8,7 @@ Bank-Vaults tries to automate as much as possible for handling TLS certificates.
 - The `vault-operator` automates the creation and renewal of TLS certificates for Vault.
 - The `vault` Helm Chart automates only the creation of TLS certificates for Vault via [Sprig](https://masterminds.github.io/sprig/crypto.html).
 
-Both the operator and the chart generate a Kubernetes Secret holding the TLS certificates, this is named `${VAULT_CR_NAME}-tls`. For most examples in the [Bank-Vaults project repository](https://github.com/bank-vaults/bank-vaults/), the name of the secret is `vault-tls`.
+Both the operator and the chart generate a Kubernetes Secret holding the TLS certificates, this is named `${VAULT_CR_NAME}-tls`. For most examples in the [Bank-Vaults project](https://github.com/bank-vaults/), the name of the secret is `vault-tls`.
 
 The Secret data keys are:
 

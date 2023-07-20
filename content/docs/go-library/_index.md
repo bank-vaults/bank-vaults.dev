@@ -20,7 +20,7 @@ The [vault-sdk repository](https://github.com/bank-vaults/vault-sdk) contains se
 
     ![token](vault-mySQL.gif)
 
-- [tls](https://github.com/bank-vaults/vault-sdk/tree/main/tls): A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can't use Vault's [PKI secret engine](https://www.vaultproject.io/docs/secrets/pki/index.html).
+- [tls](https://github.com/bank-vaults/vault-sdk/tree/main/tls): A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can't use Vault's [PKI secret engine](https://developer.hashicorp.com/vault/docs/secrets/pki).
 
 ## Examples for using the library part
 

@@ -40,11 +40,13 @@ secrets:
     configuration:
       config:
         - name: "access"
-          address: "consul-ui:80"
+          address: "consul-server:8500"
           token: "${env `CONSUL_GLOBAL_MANAGEMENT_TOKEN`}" # Example how to read environment variables
       roles:
         - name: "<application_name>-read-only-role"
           consul_policies: "<application_name>-read-only-policy"
+        - name: "<application_name>-read-write-role"
+          consul_policies: "<application_name>-read-write-policy"
 ```
 
 ## Database {#database}

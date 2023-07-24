@@ -15,7 +15,7 @@ dynamically based on IAM policies.
 secrets:
   - type: aws
     path: aws
-    description: AWS Secret Backend
+    description: AWS Secrets Engine
     configuration:
         config:
           - name: root

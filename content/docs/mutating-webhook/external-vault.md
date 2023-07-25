@@ -112,7 +112,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 
 You can use a cloud identity to authenticate the mutating-webhook against the external vault.
 
-1. Add your cloud authentication method in your external vault, for example the [Azure Auth Method](https://www.vaultproject.io/docs/auth/azure)
+1. Add your cloud authentication method in your external vault, for example, the [Azure Auth Method](https://developer.hashicorp.com/vault/docs/auth/azure).
 1. Configure your `vault-secrets-webhook` to use the this method. For example:
 
     ```yaml

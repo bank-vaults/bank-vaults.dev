@@ -3,7 +3,7 @@ title: Audit devices
 weight: 200
 ---
 
-You can configure [Audit Devices in Vault](https://www.vaultproject.io/docs/audit/) (File, Syslog, Socket).
+You can configure [Audit Devices in Vault](https://developer.hashicorp.com/vault/docs/audit) (File, Syslog, Socket).
 
 ```yaml
 audit:

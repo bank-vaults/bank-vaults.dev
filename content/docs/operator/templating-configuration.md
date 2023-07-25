@@ -122,7 +122,7 @@ path      | String | Yes
 
 ### `accessor`
 
-Looks up the accessor id of the given auth path and returns it. This function is only useful in policies that use [templated policies](https://www.vaultproject.io/docs/concepts/policies#templated-policies), to generalize the `<mount accessor>` field.
+Looks up the accessor id of the given auth path and returns it. This function is only useful in policies that use [templated policies](https://developer.hashicorp.com/vault/docs/concepts/policies#templated-policies), to generalize the `<mount accessor>` field.
 
 Parameter | Type   | Required
 ----------|--------|---------

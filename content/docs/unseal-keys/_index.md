@@ -3,11 +3,11 @@ title: Unseal keys
 weight: 400
 ---
 
-> Unsealing is the process of constructing the master key necessary to read the decryption key to decrypt data, allowing access to Vault. ([From the official Vault documentation](https://www.vaultproject.io/docs/concepts/seal.html))
+> Unsealing is the process of constructing the master key necessary to read the decryption key to decrypt data, allowing access to Vault. ([From the official Vault documentation](https://developer.hashicorp.com/vault/docs/concepts/seal))
 
 Vault starts in an uninitialized state, which means it has to be initialized with an initial set of parameters. The response to the init request is the *root token* and *unseal keys*. After that, Vault becomes initialized, but remains in a *sealed state*. A sealed state is a state in which no secrets can reach or leave Vault until a person, possibly more people than one, unseals it with the required number of unseal keys.
 
-Vault data and the unseal keys live together: if you delete a Vault instance installed by the operator, or if you delete the Helm chart, all your data and the unseal keys to that initialized state should remain untouched. Read more about it in the [official documentation](https://www.vaultproject.io/docs/concepts/seal/).
+Vault data and the unseal keys live together: if you delete a Vault instance installed by the operator, or if you delete the Helm chart, all your data and the unseal keys to that initialized state should remain untouched. Read more about it in the [official documentation](https://developer.hashicorp.com/vault/docs/concepts/seal).
 
 ## The Bank-Vaults Init and Unseal process
 
@@ -40,7 +40,7 @@ Bank-Vaults stores the following keys:
 - `vault-root`, which is the Vault's root token
 - `vault-unseal-N`, where `N` is a number, starting at 0 up to the maximum defined minus 1, e.g. 5 unseal keys will be `vault-unseal-0` up to including `vault-unseal-4`
 
-HashiCorp [recommends to revoke root tokens](https://www.vaultproject.io/docs/concepts/tokens.html#root-tokens) after the initial set up of Vault has been completed.
+HashiCorp [recommends to revoke root tokens](https://developer.hashicorp.com/vault/docs/concepts/tokens#root-tokens) after the initial set up of Vault has been completed.
 To unseal Vault, the `vault-root` token is not needed and can be removed from the storage if it was put there via the `--init` call to `bank-vaults`.
 
 ## Decrypting root token
@@ -130,7 +130,7 @@ All examples assume that you have created files holding the root-token and the 5
 - vault-unseal-3.txt
 - vault-unseal-4.txt
 
-For migrating the Vault storage data you will have to use [official migration command](https://www.vaultproject.io/docs/commands/operator/migrate/) provided by Vault.
+For migrating the Vault storage data you will have to use [official migration command](https://developer.hashicorp.com/vault/docs/commands/operator/migrate) provided by Vault.
 
 ### AWS
 

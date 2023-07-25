@@ -26,13 +26,13 @@ kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheu
 helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-secrets-webhook \ --namespace vault-infra \ --set metrics.enabled=true \ --set metrics.serviceMonitor.enabled={} Create a Prometheus instance which monitors the components of Bank-Vaults:">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://bank-vaults.dev/docs/mutating-webhook/monitoring/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-07-14T17:03:06+02:00"><meta property="og:site_name" content="Bank-Vaults">
+<meta property="article:modified_time" content="2023-07-25T16:39:54+02:00"><meta property="og:site_name" content="Bank-Vaults">
 <meta itemprop="name" content="Monitoring the Webhook with Grafana and Prometheus">
 <meta itemprop="description" content="To monitor the webhook with Prometheus and Grafana, complete the following steps.
 Prerequisites An already deployed and configured mutating webhook. For details, see Mutating Webhook. Steps Install the Prometheus Operator Bundle:
 kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/master/bundle.yaml Install the webhook with monitoring and Prometheus Operator ServiceMonitor enabled:
 helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-secrets-webhook \ --namespace vault-infra \ --set metrics.enabled=true \ --set metrics.serviceMonitor.enabled={} Create a Prometheus instance which monitors the components of Bank-Vaults:">
-<meta itemprop="dateModified" content="2023-07-14T17:03:06+02:00">
+<meta itemprop="dateModified" content="2023-07-25T16:39:54+02:00">
 <meta itemprop="wordCount" content="154">
 <meta itemprop="keywords" content><meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Monitoring the Webhook with Grafana and Prometheus">
@@ -60,7 +60,7 @@ helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-s
 <a class="nav-link" href="/docs/"><span>Documentation</span></a>
 </li></ul></div><div class="navbar-nav d-none d-lg-block">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div></div></nav></header><div class="container-fluid td-outer">
 <div class="td-main">
 <div class="row flex-xl-nowrap">
@@ -68,7 +68,7 @@ helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-s
 <div id="td-sidebar-menu" class="td-sidebar__inner">
 <form class="td-sidebar__search d-flex align-items-center">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div><button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
 </button>
 </form><nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
@@ -259,7 +259,7 @@ helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-s
 </span></span></span><span style="display:flex"><span><span style="color:#4e9a06"></span>    --set metrics.enabled<span style="color:#ce5c00;font-weight:700">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
 </span></span></span><span style="display:flex"><span><span style="color:#4e9a06"></span>    --set metrics.serviceMonitor.enabled<span style="color:#ce5c00;font-weight:700">={}</span>
 </span></span></code></pre></div></li><li>
-<p>Create a Prometheus instance which monitors the components of Bank-Vaults:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/hack/prometheus.yaml
+<p>Create a Prometheus instance which monitors the components of Bank-Vaults:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/prometheus.yaml
 </span></span></code></pre></div></li><li>
 <p>Create a Grafana instance and expose it:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl create deployment grafana --image grafana/grafana
 </span></span><span style="display:flex"><span>kubectl expose deployment grafana --port <span style="color:#0000cf;font-weight:700">3000</span> --type LoadBalancer
@@ -269,7 +269,7 @@ helm upgrade --wait --install vault-secrets-webhook \ banzaicloud-stable/vault-s
 <p><a href="https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-data-source">Create a Prometheus Data Source</a> in this Grafana instance which grabs data from http://prometheus-operated:9090/.</p></li><li>
 <p><a href="https://prometheus.io/docs/visualization/grafana/#importing-pre-built-dashboards-from-grafana-com">Import</a> the <a href="https://grafana.com/grafana/dashboards/7088">Kubewebhook admission webhook dashboard</a> to Grafana (created by Xabier Larrakoetxea).</p></li><li>
 <p>Select the previously created Data Source to feed this dashboard.</p></li></ol><div class="text-muted mt-5 pt-3 border-top">
-Last modified July 14, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/22e3a9e1784816eae57e012a3b8ad40a14473d60">Merge ae5d61382b4031f3aad564d5a4c262c87d6bcc43 into 7a7bc2ad3efefbea0850588f1874b2fcc569355c (22e3a9e)</a>
+Last modified July 25, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/1021aa4fefa0160382fc3ca12d6e6b686cfe77ff">Merge 9a3982484d044b0d3de8f8eb531008482fea164a into 54c25690a306e341082608f7e7196546cc89a06e (1021aa4)</a>
 </div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
 <div class="container-fluid mx-sm-5">
 <div class="row">

@@ -22,11 +22,11 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 Workflow The webhook injects vault-agent as an init container, based on the Kubernetes Auth role configuration prometheus-operator-prometheus. The vault-agent grabs a token with the policy of prometheus-operator-prometheus. consul-template runs as a sidecar, and uses the token from the previous step to retrieve a new token using the Token Auth role prometheus-metrics which has the policy prometheus-metrics applied to it.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://bank-vaults.dev/docs/mutating-webhook/howto-ct-prom/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-07-14T17:03:06+02:00"><meta property="og:site_name" content="Bank-Vaults">
+<meta property="article:modified_time" content="2023-07-25T16:39:54+02:00"><meta property="og:site_name" content="Bank-Vaults">
 <meta itemprop="name" content="Injecting consul-template into the Prometheus operator for Vault metrics">
 <meta itemprop="description" content="To get vault metrics into Prometheus you need to log in to Vault to get access to a native Vault endpoint that provides the metrics.
 Workflow The webhook injects vault-agent as an init container, based on the Kubernetes Auth role configuration prometheus-operator-prometheus. The vault-agent grabs a token with the policy of prometheus-operator-prometheus. consul-template runs as a sidecar, and uses the token from the previous step to retrieve a new token using the Token Auth role prometheus-metrics which has the policy prometheus-metrics applied to it.">
-<meta itemprop="dateModified" content="2023-07-14T17:03:06+02:00">
+<meta itemprop="dateModified" content="2023-07-25T16:39:54+02:00">
 <meta itemprop="wordCount" content="760">
 <meta itemprop="keywords" content><meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Injecting consul-template into the Prometheus operator for Vault metrics">
@@ -52,7 +52,7 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 <a class="nav-link" href="/docs/"><span>Documentation</span></a>
 </li></ul></div><div class="navbar-nav d-none d-lg-block">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div></div></nav></header><div class="container-fluid td-outer">
 <div class="td-main">
 <div class="row flex-xl-nowrap">
@@ -60,7 +60,7 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 <div id="td-sidebar-menu" class="td-sidebar__inner">
 <form class="td-sidebar__search d-flex align-items-center">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div><button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
 </button>
 </form><nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
@@ -296,7 +296,7 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 </span></span><span style="display:flex"><span><span style="color:#204a87;font-weight:700">fi</span>
 </span></span><span style="display:flex"><span>
 </span></span><span style="display:flex"><span><span style="color:#204a87">exec</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$@</span><span style="color:#4e9a06">&#34;</span>
-</span></span></code></pre></div><h3 id="dockerfile">Dockerfile</h3><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex"><span><span style="color:#204a87;font-weight:700">FROM</span><span style="color:#4e9a06"> hashicorp/consul-template:0.19.6-dev-alpine</span><span style="color:#a40000">
+</span></span></code></pre></div><h3 id="dockerfile">Dockerfile</h3><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex"><span><span style="color:#204a87;font-weight:700">FROM</span><span style="color:#4e9a06"> hashicorp/consul-template:0.32.0</span><span style="color:#a40000">
 </span></span></span><span style="display:flex"><span><span style="color:#a40000">
 </span></span></span><span style="display:flex"><span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:700">ADD</span> build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh<span style="color:#a40000">
 </span></span></span><span style="display:flex"><span><span style="color:#a40000">
@@ -342,7 +342,7 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:700">name</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;vault&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:700">spec</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:700">size</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:700">2</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:700">image</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">vault:1.1.2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:700">image</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">hashicorp/vault:1.14.0</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span></code></pre></div><p>Our Vault config for telemetry:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># A YAML representation of a final vault config file.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># See https://www.vaultproject.io/docs/configuration/ for more information.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:700">config</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -414,7 +414,7 @@ Workflow The webhook injects vault-agent as an init container, based on the Kube
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:700">app.kubernetes.io/name</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">vault</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:700">vault_cr</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">vault</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span></code></pre></div><div class="text-muted mt-5 pt-3 border-top">
-Last modified July 14, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/22e3a9e1784816eae57e012a3b8ad40a14473d60">Merge ae5d61382b4031f3aad564d5a4c262c87d6bcc43 into 7a7bc2ad3efefbea0850588f1874b2fcc569355c (22e3a9e)</a>
+Last modified July 25, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/1021aa4fefa0160382fc3ca12d6e6b686cfe77ff">Merge 9a3982484d044b0d3de8f8eb531008482fea164a into 54c25690a306e341082608f7e7196546cc89a06e (1021aa4)</a>
 </div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
 <div class="container-fluid mx-sm-5">
 <div class="row">

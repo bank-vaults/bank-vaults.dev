@@ -45,7 +45,7 @@
 <a class="nav-link" href="/docs/"><span>Documentation</span></a>
 </li></ul></div><div class="navbar-nav d-none d-lg-block">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div></div></nav></header><div class="container-fluid td-outer">
 <div class="td-main">
 <div class="row flex-xl-nowrap">
@@ -59,13 +59,14 @@ This is the multi-page printable view of this section.
 <a href="/docs/go-library/">Return to the regular view of this page</a>.
 </p></div><h1 class="title">The Go library</h1><ul>
 </ul><div class="content">
-<p>The <a href="https://github.com/bank-vaults/bank-vaults/">Bank-Vaults repository</a> contains several Go packages for interacting with Vault, these packages are organized into the <code>sdk</code> Go module, which can be pulled in with <code>go get github.com/bank-vaults/bank-vaults/pkg/sdk</code> and is versioned by the <code>pkg/sdk/vX.Y.Z</code> Git tags:</p><ul>
+<p>The <a href="https://github.com/bank-vaults/vault-sdk">vault-sdk repository</a> contains several Go packages for interacting with Vault, these packages are organized into the <code>sdk</code> Go module, which can be pulled in with <code>go get github.com/bank-vaults/vault-sdk/</code> and is versioned by the <code>vX.Y.Z</code> Git tags:</p><ul>
 <li>
-<p><a href="https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/auth">pkg/sdk/auth</a></p><p>Stores JWT bearer tokens in Vault.</p><p>(<em>NOTE: The Gin handler has been moved out to <a href="https://github.com/banzaicloud/gin-utilz/tree/master/auth">gin-utilz</a></em> )</p><p><img src="authn-vault-flow.png" alt="authn"></p></li><li>
-<p><a href="https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/vault">pkg/sdk/vault</a></p><p>A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.</p><p><img src="token-request-vault-flow.png" alt="token"></p></li><li>
-<p><a href="https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/db">pkg/sdk/db</a></p><p>A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of <code>username:password</code>).</p><p><img src="vault-mySQL.gif" alt="token"></p></li><li>
-<p><a href="https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/tls">pkg/sdk/tls</a></p><p>A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can&rsquo;t use Vault&rsquo;s <a href="https://www.vaultproject.io/docs/secrets/pki/index.html">PKI secret engine</a>.</p></li></ul><h2 id="examples-for-using-the-library-part">Examples for using the library part</h2><p>Some examples are in <code>cmd/examples/main.go</code></p><ul>
-<li><a href="https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L17">Vault client example</a></li><li><a href="https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L45">Dynamic secrets for MySQL example with Gorm</a></li><li><a href="https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L53">JWTAuth tokens example with a Gin middleware</a></li></ul></div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
+<p><a href="https://github.com/bank-vaults/vault-sdk/tree/main/auth">auth</a>: Stores JWT bearer tokens in Vault.</p><blockquote>
+<p>Note: The Gin handler is available at <a href="https://github.com/banzaicloud/gin-utilz/tree/master/auth">gin-utilz</a></p></blockquote><p><img src="authn-vault-flow.png" alt="authn"></p></li><li>
+<p><a href="https://github.com/bank-vaults/vault-sdk/tree/main/vault">vault</a>: A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.</p><p><img src="token-request-vault-flow.png" alt="token"></p></li><li>
+<p><a href="https://github.com/bank-vaults/vault-sdk/tree/main/db">db</a>: A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of <code>username:password</code>).</p><p><img src="vault-mySQL.gif" alt="token"></p></li><li>
+<p><a href="https://github.com/bank-vaults/vault-sdk/tree/main/tls">tls</a>: A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can&rsquo;t use Vault&rsquo;s <a href="https://developer.hashicorp.com/vault/docs/secrets/pki">PKI secret engine</a>.</p></li></ul><h2 id="examples-for-using-the-library-part">Examples for using the library part</h2><p>Some examples are in <code>cmd/examples/main.go</code> of the <a href="https://github.com/bank-vaults/vault-operator/">vault-operator</a> repository.</p><ul>
+<li><a href="https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go#L28">Vault client example</a></li><li><a href="https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go#L69">Dynamic secrets for MySQL example with Gorm</a></li><li><a href="https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go">JWTAuth tokens example with a Gin middleware</a></li></ul></div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
 <div class="container-fluid mx-sm-5">
 <div class="row">
 <div class="col-6 col-sm-4 text-xs-center order-sm-2">

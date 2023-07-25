@@ -45,7 +45,7 @@
 <a class="nav-link" href="/docs/"><span>Documentation</span></a>
 </li></ul></div><div class="navbar-nav d-none d-lg-block">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div></div></nav></header><div class="container-fluid td-outer">
 <div class="td-main">
 <div class="row flex-xl-nowrap">
@@ -158,7 +158,7 @@ Because of the integer constraint and because all Bank-Vaults related Pods has t
 <p>Apply the modified setup from scratch:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl delete vault vault
 </span></span><span style="display:flex"><span>kubectl delete pvc vault-file-vault-0
 </span></span><span style="display:flex"><span>kubectl delete secret vault-unseal-keys
-</span></span><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-hsm-nitrokey.yaml
+</span></span><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-hsm-nitrokey.yaml
 </span></span></code></pre></div></li><li>
 <p>Check the logs that unsealing uses the NitroKey HSM device. Run the following command:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl logs -f vault-0 bank-vaults
 </span></span></code></pre></div><p>The output should be something like:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:700">=</span><span style="color:#4e9a06">&#34;2020-03-04T13:32:29Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:700">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:700">=</span><span style="color:#4e9a06">&#34;HSM Information {CryptokiVersion:{Major:2 Minor:20} ManufacturerID:OpenSC Project Flags:0 LibraryDescription:OpenSC smartcard framework LibraryVersion:{Major:0 Minor:20}}&#34;</span>
@@ -257,7 +257,7 @@ Because of the integer constraint and because all Bank-Vaults related Pods has t
 </span></span></span><span style="display:flex"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:700">keyLabel</span><span style="color:#000;font-weight:700">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bank-vaults</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span></code></pre></div><p>To run the whole SoftHSM based example in Kubernetes, run the following commands:</p><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:flex"><span>kubectl create namespace vault-infra
 </span></span><span style="display:flex"><span>helm upgrade --install vault-operator banzaicloud-stable/vault-operator --namespace vault-infra
-</span></span><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/operator/deploy/cr-hsm-softhsm.yaml
+</span></span><span style="display:flex"><span>kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-hsm-softhsm.yaml
 </span></span></code></pre></div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
 <div class="container-fluid mx-sm-5">
 <div class="row">

@@ -22,11 +22,11 @@ When to use consul-template You have an application or tool that must read its c
 When to use consul-template You have an application or tool that must read its configuration from a file. You wish to have secrets that have a TTL and expire. You do not wish to be limited on which vault secrets backend you use.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://bank-vaults.dev/docs/mutating-webhook/consul-template/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-07-14T17:03:06+02:00"><meta property="og:site_name" content="Bank-Vaults">
+<meta property="article:modified_time" content="2023-07-25T16:39:54+02:00"><meta property="og:site_name" content="Bank-Vaults">
 <meta itemprop="name" content="Using consul-template in the mutating webhook">
 <meta itemprop="description" content="With Bank-Vaults you can use Consul Template as an addition to vault-env to handle secrets that expire, and supply them to applications that read their configurations from a file.
 When to use consul-template You have an application or tool that must read its configuration from a file. You wish to have secrets that have a TTL and expire. You do not wish to be limited on which vault secrets backend you use.">
-<meta itemprop="dateModified" content="2023-07-14T17:03:06+02:00">
+<meta itemprop="dateModified" content="2023-07-25T16:39:54+02:00">
 <meta itemprop="wordCount" content="604">
 <meta itemprop="keywords" content><meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using consul-template in the mutating webhook">
@@ -52,7 +52,7 @@ When to use consul-template You have an application or tool that must read its c
 <a class="nav-link" href="/docs/"><span>Documentation</span></a>
 </li></ul></div><div class="navbar-nav d-none d-lg-block">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div></div></nav></header><div class="container-fluid td-outer">
 <div class="td-main">
 <div class="row flex-xl-nowrap">
@@ -60,7 +60,7 @@ When to use consul-template You have an application or tool that must read its c
 <div id="td-sidebar-menu" class="td-sidebar__inner">
 <form class="td-sidebar__search d-flex align-items-center">
 <div class="td-search td-search--offline">
-<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.afb65e5cd5dda894dfde686c0a3300e8.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+<div class="td-search__icon"></div><input type="search" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.38c7a8b02048636206bb76469273850a.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
 </div><button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
 </button>
 </form><nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
@@ -257,9 +257,9 @@ When to use consul-template You have an application or tool that must read its c
 <tr>
 <th>Variable</th><th>default</th><th>Explanation</th></tr></thead><tbody>
 <tr>
-<td>VAULT_IMAGE</td><td>vault:latest</td><td>the vault image to use for the init container</td></tr><tr>
-<td>VAULT_ENV_IMAGE</td><td>banzaicloud/vault-env:latest</td><td>the vault-env image to use</td></tr><tr>
-<td>VAULT_CT_IMAGE</td><td>hashicorp/consul-template:latest</td><td>the consul template image to use</td></tr><tr>
+<td>VAULT_IMAGE</td><td>hashicorp/vault:latest</td><td>the vault image to use for the init container</td></tr><tr>
+<td>VAULT_ENV_IMAGE</td><td>ghcr.io/bank-vaults/vault-env:latest</td><td>the vault-env image to use</td></tr><tr>
+<td>VAULT_CT_IMAGE</td><td>hashicorp/consul-template:0.32.0</td><td>the consul template image to use</td></tr><tr>
 <td>VAULT_ADDR</td><td>https://127.0.0.1:8200</td><td>Kubernetes service Vault endpoint URL</td></tr><tr>
 <td>VAULT_SKIP_VERIFY</td><td>&ldquo;false&rdquo;</td><td>should vault agent and consul template skip verifying TLS</td></tr><tr>
 <td>VAULT_TLS_SECRET</td><td>""</td><td>supply a secret with the vault TLS CA so TLS can be verified</td></tr><tr>
@@ -285,7 +285,7 @@ When to use consul-template You have an application or tool that must read its c
 <td>vault.security.banzaicloud.io/vault-ignore-missing-secrets</td><td>&ldquo;false&rdquo;</td><td>When enabled will only log warnings when Vault secrets are missing</td></tr><tr>
 <td>vault.security.banzaicloud.io/vault-env-passthrough</td><td>""</td><td>Comma seprated list of <code>VAULT_*</code> related environment variables to pass through to main process. E.g.<code>VAULT_ADDR,VAULT_ROLE</code>.</td></tr><tr>
 <td>vault.security.banzaicloud.io/vault-ct-secrets-mount-path</td><td>&ldquo;/vault/secret&rdquo;</td><td>Mount path of Consul template rendered files</td></tr></tbody></table><div class="text-muted mt-5 pt-3 border-top">
-Last modified July 14, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/22e3a9e1784816eae57e012a3b8ad40a14473d60">Merge ae5d61382b4031f3aad564d5a4c262c87d6bcc43 into 7a7bc2ad3efefbea0850588f1874b2fcc569355c (22e3a9e)</a>
+Last modified July 25, 2023: <a href="https://github.com/bank-vaults/bank-vaults.dev/commit/1021aa4fefa0160382fc3ca12d6e6b686cfe77ff">Merge 9a3982484d044b0d3de8f8eb531008482fea164a into 54c25690a306e341082608f7e7196546cc89a06e (1021aa4)</a>
 </div></div></main></div></div><footer class="bg-dark py-5 row d-print-none">
 <div class="container-fluid mx-sm-5">
 <div class="row">

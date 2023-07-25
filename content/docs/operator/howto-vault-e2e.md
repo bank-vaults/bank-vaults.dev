@@ -92,7 +92,7 @@ spec:
   bankVaultsImage: ghcr.io/bank-vaults/bank-vaults:latest
 
   # A YAML representation of a final vault config file.
-  # See https://www.vaultproject.io/docs/configuration/ for more information.
+  # See https://developer.hashicorp.com/vault/docs/configuration for more information.
   config:
     listener:
       - tcp:

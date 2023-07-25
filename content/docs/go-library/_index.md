@@ -26,6 +26,6 @@ The [vault-sdk repository](https://github.com/bank-vaults/vault-sdk) contains se
 
 Some examples are in `cmd/examples/main.go` of the [vault-operator](https://github.com/bank-vaults/vault-operator/) repository.
 
-- [Vault client example](https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go#L28)
-- [Dynamic secrets for MySQL example with Gorm](https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go#L69)
-- [JWTAuth tokens example with a Gin middleware](https://github.com/bank-vaults/vault-operator/tree/main/cmd/examples/main.go)
+- [Vault client example](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go#L28)
+- [Dynamic secrets for MySQL example with Gorm](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go#L69)
+- [JWTAuth tokens example with a Gin middleware](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go)

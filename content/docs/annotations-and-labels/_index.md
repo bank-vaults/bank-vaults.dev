@@ -21,9 +21,9 @@ metadata:
           example.com/test: "something"
 ```
 
-These annotations are common to all Vault Created resources
+These annotations are common to all Vault created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Configurer Deployment
 - Vault Configurer Pod
@@ -31,7 +31,7 @@ These annotations are common to all Vault Created resources
 - Vault Configurer Service
 - Vault TLS Secret
 
-### Vault Statefulset Resources annotations
+### Vault StatefulSet Resources annotations
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -43,9 +43,9 @@ metadata:
           example.com/vault: "true"
 ```
 
-These annotations are common to all Vault Statefulset Created resources
+These annotations are common to all Vault StatefulSet created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Services
 - Vault TLS Secret
@@ -64,7 +64,7 @@ metadata:
           example.com/vaultConfigurer: "true"
 ```
 
-These annotations are common to all Vault Configurer Deployment Created resources
+These annotations are common to all Vault Configurer Deployment created resources
 
 - Vault Configurer Deployment
 - Vault Configurer Pod
@@ -104,7 +104,7 @@ These annotations are set *only* on the etcd pods created by the etcd-operator
 
 The Vault Operator support labelling most of the resources it creates using a set of fields in the Vault Specs:
 
-### Vault Statefulset Resources labels
+### Vault StatefulSet Resources labels
 
 ```yaml
 apiVersion: "vault.banzaicloud.com/v1alpha1"
@@ -116,9 +116,9 @@ metadata:
           example.com/log-format: "json"
 ```
 
-These Labels are common to all Vault Statefulset Created resources
+These labels are common to all Vault StatefulSet created resources
 
-- Vault Statefulset
+- Vault StatefulSet
 - Vault Pods
 - Vault Services
 - Vault TLS Secret
@@ -135,7 +135,7 @@ metadata:
           example.com/log-format: "string"
 ```
 
-These labels are common to all Vault Configurer Deployment Created resources
+These labels are common to all Vault Configurer Deployment created resources
 
 - Vault Configurer Deployment
 - Vault Configurer Pod

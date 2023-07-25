@@ -18,7 +18,7 @@ With Bank-Vaults you can use [Consul Template](https://github.com/hashicorp/cons
 The following shows the general workflow for using Consul Template:
 
 1. Your pod starts up. The webhook injects an init container (running vault agent) and a sidecar container (running consul-template) into the pods lifecycle.
-1. The [vault agent](https://www.vaultproject.io/docs/agent/) in the init container logs in to Vault and retrieves a Vault token based on the configured VAULT_ROLE and Kubernetes Service Account.
+1. The [vault agent](https://developer.hashicorp.com/vault/docs/agent-and-proxy/agent) in the init container logs in to Vault and retrieves a Vault token based on the configured VAULT_ROLE and Kubernetes Service Account.
 1. The consul-template running in the sidecar container logs in to Vault using the Vault token and writes a configuration file based on a pre-configured template in a configmap onto a temporary file system which your application can use.
 
 ## Prerequisites

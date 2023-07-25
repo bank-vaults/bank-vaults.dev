@@ -99,7 +99,7 @@ spec:
       secretNamespace: vault
 
   # A YAML representation of a final vault config file.
-  # See https://www.vaultproject.io/docs/configuration/ for more information.
+  # See https://developer.hashicorp.com/vault/docs/configuration for more information.
   config:
     storage:
       file:
@@ -164,7 +164,7 @@ spec:
             ttl: 1m
 
     # Allows writing some secrets to Vault (useful for development purposes).
-    # See https://www.vaultproject.io/docs/secrets/kv/index.html for more information.
+    # See https://developer.hashicorp.com/vault/docs/secrets/kv for more information.
     startupSecrets:
       - type: kv
         path: secret/data/accounts/aws

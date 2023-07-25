@@ -4,7 +4,7 @@ weight: 700
 ---
 
 Allows writing some secrets to Vault (useful for development purposes). For details,
-see the [Key-Value secrets engine](https://www.vaultproject.io/docs/secrets/kv/index.html).
+see the [Key-Value secrets engine](https://developer.hashicorp.com/vault/docs/secrets/kv).
 
 ```yaml
 startupSecrets:

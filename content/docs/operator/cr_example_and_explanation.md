@@ -136,10 +136,10 @@ configurer uses to configure your running Vault:
 ### externalConfig
 
 The `externalConfig` portion of **this CR example** correlates to [Kubernetes
-configuration](https://www.vaultproject.io/api/auth/kubernetes#configure-method) as specified by `.auth[].type`.
+configuration](https://developer.hashicorp.com/vault/api-docs/auth/kubernetes#configure-method) as specified by `.auth[].type`.
 
 This YAML representation of configuration is flexible enough to work with any
-auth methods available to Vault as documented [in the Vault documentation](https://www.vaultproject.io/api/auth/kubernetes#configure-method).
+auth methods available to Vault as documented [in the Vault documentation](https://developer.hashicorp.com/vault/api-docs/auth/kubernetes#configure-method).
 For now, we'll stick with this kubernetes configuration.
 
 ### externalConfig.purgeUnmanagedConfig
@@ -150,19 +150,19 @@ Delete any configuration that in Vault but not in `externalConfig`. For more det
 ### externalConfig.policies
 
 Correlates 1:1 to the creation of the specified policy in conjunction with [Vault
-policies](https://www.vaultproject.io/api-docs/system/policy).
+policies](https://developer.hashicorp.com/vault/api-docs/system/policy).
 
 ### externalConfig.auth[].type
 
 `- type: kubernetes` - specifies to configure Vault to use [Kubernetes
-authentication](https://www.vaultproject.io/api/auth/kubernetes#configure-method)
+authentication](https://developer.hashicorp.com/vault/api-docs/auth/kubernetes#configure-method)
 
-[Other types](https://www.vaultproject.io/api/auth) are yet to be documented with respect to the operator
+[Other types](https://developer.hashicorp.com/vault/api-docs/auth) are yet to be documented with respect to the operator
 configuration.
 
 ### externalConfig.auth[].roles[]
 
-Correlates to [Creating Kubernetes roles](https://www.vaultproject.io/api/auth/kubernetes#create-role). Some important nuances here are:
+Correlates to [Creating Kubernetes roles](https://developer.hashicorp.com/vault/api-docs/auth/kubernetes#create-role). Some important nuances here are:
 
   * Vault does not respect inline secrets serviceaccount annotations, so the
     namespace of any serviceaccount annotations for secrets are irrelevant to

@@ -16,7 +16,7 @@ Features:
   - Dev Mode (useful for `vault server -dev` dev mode Vault servers)
   - Files (backed by files, should be used only for development purposes)
 - Automatically unseals Vault with these keys
-- In addition to the [standard Vault configuration](https://www.vaultproject.io/docs/configuration/index.html), the operator and CLI can continuously configure Vault using an [external YAML/JSON configuration]({{< relref "/docs/external-configuration/_index.md" >}})
+- In addition to the [standard Vault configuration](https://developer.hashicorp.com/vault/docs/configuration), the operator and CLI can continuously configure Vault using an [external YAML/JSON configuration]({{< relref "/docs/external-configuration/_index.md" >}})
   - If the configuration is updated Vault will be reconfigured
   - It supports configuring Vault secret engines, plugins, auth methods, and policies
 

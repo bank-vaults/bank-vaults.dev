@@ -85,7 +85,7 @@ exec "$@"
 ### Dockerfile
 
 ```Dockerfile
-FROM hashicorp/consul-template:0.19.6-dev-alpine
+FROM hashicorp/consul-template:0.32.0
 
 ADD build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
@@ -143,7 +143,7 @@ metadata:
   name: "vault"
 spec:
   size: 2
-  image: vault:1.1.2
+  image: hashicorp/vault:1.14.0
 ```
 
 Our Vault config for telemetry:

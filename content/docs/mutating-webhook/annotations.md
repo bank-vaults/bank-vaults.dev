@@ -8,7 +8,7 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 |Annotation    |default     |Explanation |
 |--------------|------------|------------|
 `vault.security.banzaicloud.io/vault-addr`|`"https://vault:8200"`|Same as VAULT_ADDR|
-`vault.security.banzaicloud.io/vault-image`|`"vault:latest"`|Vault agent image|
+`vault.security.banzaicloud.io/vault-image`|`"hashicorp/vault:latest"`|Vault agent image|
 `vault.security.banzaicloud.io/vault-image-pull-policy`|`IfNotPresent`|the Pull policy for the vault agent container|
 `vault.security.banzaicloud.io/vault-role`|`""`|The Vault role for Vault agent to use, for Pods it is the name of the ServiceAccount if not specified|
 `vault.security.banzaicloud.io/vault-path`|`"kubernetes"`|The mount path of the auth method|

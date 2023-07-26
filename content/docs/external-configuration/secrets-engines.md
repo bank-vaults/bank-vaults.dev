@@ -15,9 +15,9 @@ dynamically based on IAM policies.
 secrets:
   - type: aws
     path: aws
-    description: AWS Secret Backend
+    description: AWS Secrets Engine
     configuration:
-        config: 
+        config:
           - name: root
             access_key: "${env `AWS_ACCESS_KEY_ID`}"
             secret_key: "${env `AWS_SECRET_ACCESS_KEY`}"
@@ -26,6 +26,27 @@ secrets:
           - credential_type: iam_user
             policy_arns: arn-of-policy
             name: my-aws-role
+```
+
+## Consul
+
+The [Consul secrets engine](https://developer.hashicorp.com/vault/docs/secrets/consul) generates Consul ACL tokens dynamically based on policies created in Consul.
+
+```yaml
+secrets:
+  - path: consul
+    type: consul
+    description: Consul secrets
+    configuration:
+      config:
+        - name: "access"
+          address: "consul-server:8500"
+          token: "${env `CONSUL_GLOBAL_MANAGEMENT_TOKEN`}" # Example how to read environment variables
+      roles:
+        - name: "<application_name>-read-only-role"
+          consul_policies: "<application_name>-read-only-policy"
+        - name: "<application_name>-read-write-role"
+          consul_policies: "<application_name>-read-write-policy"
 ```
 
 ## Database {#database}

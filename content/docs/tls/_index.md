@@ -51,7 +51,7 @@ Default value: *168h*
 
 ## Helm chart custom TLS settings
 
-The following attributes influence the TLS settings of the Helm chart. The `ca.crt` key is mandatory in [secretName](#secretname), otherwise the Bank-Vaults components can't verify the Vault server certificate.
+Starting with version 1.20, the Vault Helm chart allows you to set custom TLS settings. The following attributes influence the TLS settings of the Helm chart. The `ca.crt` key is mandatory in [secretName](#secretname), otherwise the Bank-Vaults components can't verify the Vault server certificate.
 
 ### SecretName
 

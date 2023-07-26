@@ -16,7 +16,7 @@ If you are getting the **x509: certificate signed by unknown authority app=vault
 
 `vault-env` by default replaces itself with the original process of the Pod after reading the secrets from Vault, but with the `vault.security.banzaicloud.io/vault-env-daemon: "true"` annotation this behavior can be changed. So `vault-env` can change to `daemon mode`, so `vault-env` starts the original process as a child process and remains in memory, and renews the lease of the requested Vault token and of the dynamic secrets (if requested any) until their final expiration time.
 
-You can find a full example using MySQL dynamic secrets in the [Bank-Vaults project repository](https://github.com/bank-vaults/vault-operator/blob/main/test/deploy/test-dynamic-env-vars.yaml):
+You can find a full example using MySQL dynamic secrets in the [Bank-Vaults project's Vault Operator repository](https://github.com/bank-vaults/vault-operator/blob/main/test/deploy/test-dynamic-env-vars.yaml):
 
 ```bash
 # Deploy MySQL first as the Vault storage backend and our application will request dynamic secrets for this database as well:

@@ -28,7 +28,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 1. On `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
 
     ```bash
-    kubectl apply -f https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
     ```
 
     You can use the `vault` ServiceAccount token as a `token_reviewer_jwt` in the auth configuration. To retrieve the token, run the following command:
@@ -37,7 +37,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
     kubectl get secret $(kubectl get sa vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode
     ```
 
-1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/cr.yaml](https://github.com/bank-vaults/bank-vaults/raw/main/operator/deploy/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
+1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml](https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
 
     ```yaml
       externalConfig:
@@ -112,7 +112,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 
 Also you can use directly cloud identity to auth the mutating-webhook against the external vault.
 
-1. Add your cloud auth method in your external vault [https://www.vaultproject.io/docs/auth/azure](https://www.vaultproject.io/docs/auth/azure)
+1. Add your cloud auth method in your external vault [https://developer.hashicorp.com/vault/docs/auth/azure](https://developer.hashicorp.com/vault/docs/auth/azure)
 
 2. Configure your `vault-secrets-webhook` to use the good method. For example:
 ```yaml

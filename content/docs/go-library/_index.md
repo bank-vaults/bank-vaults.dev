@@ -4,36 +4,28 @@ linktitle: Go library
 weight: 800
 ---
 
-The [Bank-Vaults repository](https://github.com/bank-vaults/bank-vaults/) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/bank-vaults/bank-vaults/pkg/sdk` and is versioned by the `pkg/sdk/vX.Y.Z` Git tags:
+The [vault-sdk repository](https://github.com/bank-vaults/vault-sdk) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/bank-vaults/vault-sdk/` and is versioned by the `vX.Y.Z` Git tags:
 
-- [pkg/sdk/auth](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/auth)
+- [auth](https://github.com/bank-vaults/vault-sdk/tree/main/auth): Stores JWT bearer tokens in Vault.
 
-    Stores JWT bearer tokens in Vault.
-
-    (*NOTE: The Gin handler has been moved out to [gin-utilz](https://github.com/banzaicloud/gin-utilz/tree/master/auth)* )
+    > Note: The Gin handler is available at [gin-utilz](https://github.com/banzaicloud/gin-utilz/tree/master/auth)
 
     ![authn](authn-vault-flow.png)
 
-- [pkg/sdk/vault](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/vault)
-
-    A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.
+- [vault](https://github.com/bank-vaults/vault-sdk/tree/main/vault): A wrapper for the official Vault client with automatic token renewal, and Kubernetes support.
 
     ![token](token-request-vault-flow.png)
 
-- [pkg/sdk/db](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/db)
-
-    A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of `username:password`).
+- [db](https://github.com/bank-vaults/vault-sdk/tree/main/db): A helper for creating database source strings (MySQL/PostgreSQL) with database credentials dynamically based on configured Vault roles (instead of `username:password`).
 
     ![token](vault-mySQL.gif)
 
-- [pkg/sdk/tls](https://github.com/bank-vaults/bank-vaults/tree/master/pkg/sdk/tls)
-
-    A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can't use Vault's [PKI secret engine](https://www.vaultproject.io/docs/secrets/pki/index.html).
+- [tls](https://github.com/bank-vaults/vault-sdk/tree/main/tls): A simple package to generate self-signed TLS certificates. Useful for bootstrapping situations, when you can't use Vault's [PKI secret engine](https://developer.hashicorp.com/vault/docs/secrets/pki).
 
 ## Examples for using the library part
 
-Some examples are in `cmd/examples/main.go`
+Some examples are in `cmd/examples/main.go` of the [vault-operator](https://github.com/bank-vaults/vault-operator/) repository.
 
-- [Vault client example](https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L17)
-- [Dynamic secrets for MySQL example with Gorm](https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L45)
-- [JWTAuth tokens example with a Gin middleware](https://github.com/bank-vaults/bank-vaults/blob/master/cmd/examples/main.go#L53)
+- [Vault client example](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go#L28)
+- [Dynamic secrets for MySQL example with Gorm](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go#L69)
+- [JWTAuth tokens example with a Gin middleware](https://github.com/bank-vaults/vault-operator/blob/main/cmd/examples/main.go)

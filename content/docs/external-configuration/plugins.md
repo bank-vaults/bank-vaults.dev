@@ -3,11 +3,11 @@ title: Plugins
 weight: 400
 ---
 
-To register a new plugin in [Vault's plugin catalog](https://www.vaultproject.io/api/system/plugins-catalog.html),
+To register a new plugin in [Vault's plugin catalog](https://developer.hashicorp.com/vault/api-docs/system/plugins-catalog),
 set the **plugin_directory** option in the Vault server configuration to the directory where the plugin binary
 is located. Also, for some plugins readOnlyRootFilesystem Pod Security Policy should be disabled to allow RPC
 communication between plugin and Vault server via Unix socket. For details,
-see the [Hashicorp Go plugin documentation](https://github.com/hashicorp/go-plugin/blob/master/docs/internals.md).
+see the [Hashicorp Go plugin documentation](https://github.com/hashicorp/go-plugin/blob/main/docs/internals.md).
 
 ```yaml
 plugins:

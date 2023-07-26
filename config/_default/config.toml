@@ -75,9 +75,9 @@ twitter = "calisti12"
   url_latest_version = "/"
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-  github_repo = "https://github.com/bank-vaults/vault-operator"
+  github_repo = "https://github.com/bank-vaults/bank-vaults.dev"
   # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-  github_project_repo = "https://github.com/banzaicloud/bank-vaults"
+  github_project_repo = "https://github.com/bank-vaults/vault-operator"
 
   # Specify a value here if your content directory is not in your repo's root directory
   # github_subdir = ""

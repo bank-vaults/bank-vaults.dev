@@ -37,17 +37,16 @@ To configure the vault-operator to create backups of the Vault cluster, complete
         SECRET_FILE=~/.aws/credentials
 
         helm upgrade --install velero --namespace velero \
-                  --set configuration.provider=aws \
-                  --set-file credentials.secretContents.cloud=${SECRET_FILE} \
-                  --set deployRestic=true \
-                  --set configuration.backupStorageLocation.name=aws \
-                  --set configuration.backupStorageLocation.bucket=${BUCKET} \
-                  --set configuration.backupStorageLocation.config.region=${REGION} \
-                  --set configuration.backupStorageLocation.config.kmsKeyId=${KMS_KEY_ID} \
-                  --set configuration.volumeSnapshotLocation.name=aws \
-                  --set configuration.volumeSnapshotLocation.config.region=${REGION} \
+                  --set "configuration.backupStorageLocation[0].name"=aws \
+                  --set "configuration.backupStorageLocation[0].provider"=aws \
+                  --set "configuration.backupStorageLocation[0].bucket"=YOUR_BUCKET_NAME \
+                  --set "configuration.backupStorageLocation[0].config.region"=${REGION} \
+                  --set "configuration.backupStorageLocation[0].config.kmsKeyId"=${KMS_KEY_ID} \
+                  --set "configuration.volumeSnapshotLocation[0].name"=aws \
+                  --set "configuration.volumeSnapshotLocation[0].provider"=aws \
+                  --set "configuration.volumeSnapshotLocation[0].config.region"=${REGION} \
                   --set "initContainers[0].name"=velero-plugin-for-aws \
-                  --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.2.1 \
+                  --set "initContainers[0].image"=velero/velero-plugin-for-aws:v1.7.0 \
                   --set "initContainers[0].volumeMounts[0].mountPath"=/target \
                   --set "initContainers[0].volumeMounts[0].name"=plugins \
                   vmware-tanzu/velero
@@ -77,10 +76,10 @@ To configure the vault-operator to create backups of the Vault cluster, complete
 
     # OR
 
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/backup.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/backup/backup.yaml
     ```
 
-    > Note: For a daily scheduled backup, see [schedule.yaml](https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/examples/backup/schedule.yaml).
+    > Note: For a daily scheduled backup, see [schedule.yaml](https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/backup/schedule.yaml).
 
 1. Check that the Velero backup got created successfully:
 

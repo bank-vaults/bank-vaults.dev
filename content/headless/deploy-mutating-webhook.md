@@ -11,7 +11,7 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 
 - The user you use for deploying the chart to the Kubernetes cluster must have cluster-admin privileges.
 - The chart requires Helm 3.
-- To interact with Vault (for example, for testing), the *vault* command line client must be installed on your computer.
+- To interact with Vault (for example, for testing), the [Vault command line client](https://developer.hashicorp.com/vault/downloads) must be installed on your computer.
 - You have deployed Vault with the operator and configured your Vault client to access it, as described in [Deploy a local Vault operator]({{< relref "/docs/installing/_index.md#deploy-operator" >}}).
 
 ### Deploy the webhook

@@ -15,8 +15,10 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     ```bash
     Release "vault-operator" does not exist. Installing it now.
+    Pulled: ghcr.io/bank-vaults/helm-charts/vault-operator:1.20.0
+    Digest: sha256:46045be1c3b215f0c734908bb1d4022dc91eae48d2285382bb71d63f72c737d1
     NAME: vault-operator
-    LAST DEPLOYED: Fri Jul 14 14:41:18 2023
+    LAST DEPLOYED: Thu Jul 27 11:22:55 2023
     NAMESPACE: default
     STATUS: deployed
     REVISION: 1
@@ -27,6 +29,17 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     ```bash
     kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
+    ```
+
+    Expected output:
+
+    ```bash
+    serviceaccount/vault created
+    role.rbac.authorization.k8s.io/vault created
+    rolebinding.rbac.authorization.k8s.io/vault created
+    ```
+
+    ```bash
     kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
     ```
 

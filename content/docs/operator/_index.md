@@ -1,6 +1,9 @@
 ---
 title: Operator
 weight: 200
+github_project_repo: "https://github.com/bank-vaults/vault-operator"
+cascade:
+    github_project_repo: "https://github.com/bank-vaults/vault-operator"
 ---
 
 The Vault operator builds on Bank-Vaults features such as:

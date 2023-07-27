@@ -1,6 +1,9 @@
 ---
 title: The CLI tool
 weight: 700
+github_project_repo: "https://github.com/bank-vaults/bank-vaults"
+cascade:
+    github_project_repo: "https://github.com/bank-vaults/bank-vaults"
 ---
 
 The `bank-vaults` CLI tool is to help automate the setup and management of HashiCorp Vault.

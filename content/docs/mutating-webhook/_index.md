@@ -1,6 +1,9 @@
 ---
 title: Mutating Webhook
 weight: 300
+github_project_repo: "https://github.com/bank-vaults/vault-secrets-webhook"
+cascade:
+    github_project_repo: "https://github.com/bank-vaults/vault-secrets-webhook"
 ---
 
 ## How the webhook works - overview

@@ -2,6 +2,9 @@
 title: The Go library
 linktitle: Go library
 weight: 800
+github_project_repo: "https://github.com/bank-vaults/vault-sdk"
+cascade:
+    github_project_repo: "https://github.com/bank-vaults/vault-sdk"
 ---
 
 The [vault-sdk repository](https://github.com/bank-vaults/vault-sdk) contains several Go packages for interacting with Vault, these packages are organized into the `sdk` Go module, which can be pulled in with `go get github.com/bank-vaults/vault-sdk/` and is versioned by the `vX.Y.Z` Git tags:

@@ -29,15 +29,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
     {{< include-headless "install-operator-rbac.md" >}}
 
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
-    ```
-
-    Expected output:
-
-    ```bash
-
-    ```
+    {{< include-headless "install-operator-cr.md" >}}
 
 1. Wait a few seconds, then check the operator and the vault pods:
 

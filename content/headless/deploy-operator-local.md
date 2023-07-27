@@ -105,6 +105,6 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 For other configuration examples of the Vault CustomResource, see the YAML files in the [deploy/examples](https://github.com/bank-vaults/vault-operator/tree/main/deploy/examples) and [test/deploy](https://github.com/bank-vaults/vault-operator/tree/main/test/deploy) directories of the vault-operator repository. After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
-kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
+kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl delete -f -
 kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
 ```

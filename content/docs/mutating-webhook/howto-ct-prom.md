@@ -85,7 +85,7 @@ exec "$@"
 ### Dockerfile
 
 ```Dockerfile
-FROM hashicorp/consul-template:0.19.6-dev-alpine
+FROM hashicorp/consul-template:0.32.0
 
 ADD build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
@@ -143,14 +143,14 @@ metadata:
   name: "vault"
 spec:
   size: 2
-  image: vault:1.1.2
+  image: hashicorp/vault:1.14.1
 ```
 
 Our Vault config for telemetry:
 
 ```yaml
   # A YAML representation of a final vault config file.
-  # See https://www.vaultproject.io/docs/configuration/ for more information.
+  # See https://developer.hashicorp.com/vault/docs/configuration for more information.
   config:
     telemetry:
       prometheus_retention_time: 30s

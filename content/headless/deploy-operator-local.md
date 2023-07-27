@@ -11,6 +11,18 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     helm upgrade --install vault-operator banzaicloud-stable/vault-operator
     ```
 
+    Expected output:
+
+    ```bash
+    Release "vault-operator" does not exist. Installing it now.
+    NAME: vault-operator
+    LAST DEPLOYED: Fri Jul 14 14:41:18 2023
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    ```
+
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
 
     ```bash
@@ -75,7 +87,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
         Alternatively, you can instruct the Vault client to skip verifying the certificate of Vault by running: `export VAULT_SKIP_VERIFY=true`
 
-    1. Check that you can access the vault:
+    1. If you already have the [Vault CLI installed](https://developer.hashicorp.com/vault/downloads), check that you can access the Vault:
 
         ```bash
         vault status
@@ -108,7 +120,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
     1. Now you can interact with Vault. For example, add a secret by running `vault kv put secret/demosecret/aws AWS_SECRET_ACCESS_KEY=s3cr3t`
         If you want to access the Vault web interface, open *https://127.0.0.1:8200* in your browser using the root token (to reveal the token, run `echo $VAULT_TOKEN`).
 
-For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the project](https://github.com/bank-vaults/bank-vaults/tree/master/operator/deploy) (we use these for testing). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
+For other configuration examples of the Vault CustomResource, see the YAML files in the [operator/deploy directory of the vault-operator repository](https://github.com/bank-vaults/vault-operator/tree/main/deploy/) (we use these for testing). After you are done experimenting with Bank-Vaults and you want to delete the operator, you can delete the related CRs:
 
 ```bash
 kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl delete -f -

@@ -3,21 +3,21 @@ title: Secrets engines
 weight: 600
 ---
 
-You can configure [Secrets Engines in Vault](https://www.vaultproject.io/docs/secrets/index.html).
+You can configure [Secrets Engines in Vault](https://developer.hashicorp.com/vault/docs/secrets).
 The Key-Value, Database, and SSH values are tested, but the configuration is free form, so probably others work as well.
 
 ## AWS
 
-The [AWS secrets engine](https://www.vaultproject.io/docs/secrets/aws/index.html) generates AWS access credentials
+The [AWS secrets engine](https://developer.hashicorp.com/vault/docs/secrets/aws) generates AWS access credentials
 dynamically based on IAM policies.
 
 ```yaml
 secrets:
   - type: aws
     path: aws
-    description: AWS Secret Backend
+    description: AWS Secrets Engine
     configuration:
-        config: 
+        config:
           - name: root
             access_key: "${env `AWS_ACCESS_KEY_ID`}"
             secret_key: "${env `AWS_SECRET_ACCESS_KEY`}"
@@ -28,10 +28,31 @@ secrets:
             name: my-aws-role
 ```
 
+## Consul
+
+The [Consul secrets engine](https://developer.hashicorp.com/vault/docs/secrets/consul) generates Consul ACL tokens dynamically based on policies created in Consul.
+
+```yaml
+secrets:
+  - path: consul
+    type: consul
+    description: Consul secrets
+    configuration:
+      config:
+        - name: "access"
+          address: "consul-server:8500"
+          token: "${env `CONSUL_GLOBAL_MANAGEMENT_TOKEN`}" # Example how to read environment variables
+      roles:
+        - name: "<application_name>-read-only-role"
+          consul_policies: "<application_name>-read-only-policy"
+        - name: "<application_name>-read-write-role"
+          consul_policies: "<application_name>-read-write-policy"
+```
+
 ## Database {#database}
 
 This plugin stores database credentials dynamically based on configured roles for the
-[MySQL/MariaDB database](https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html).
+[MySQL/MariaDB database](https://developer.hashicorp.com/vault/docs/secrets/databases/mysql-maria).
 
 ```yaml
 secrets:
@@ -84,7 +105,7 @@ group-aliases:
 ## Key-Values
 
 This plugin stores arbitrary secrets within the configured
-[physical storage for Vault](https://www.vaultproject.io/docs/secrets/kv/index.html).
+[physical storage for Vault](https://developer.hashicorp.com/vault/docs/secrets/kv).
 
 ```yaml
 secrets:
@@ -111,7 +132,7 @@ Mounts a non-default plugin's path.
 
 ## PKI
 
-The [PKI secrets engine](https://www.vaultproject.io/docs/secrets/pki/index.html) generates X.509 certificates.
+The [PKI secrets engine](https://developer.hashicorp.com/vault/docs/secrets/pki) generates X.509 certificates.
 
 ```yaml
 secrets:
@@ -138,7 +159,7 @@ secrets:
 
 ## RabbitMQ
 
-The [RabbitMQ secrets engine](https://www.vaultproject.io/docs/secrets/rabbitmq/index.html)
+The [RabbitMQ secrets engine](https://developer.hashicorp.com/vault/docs/secrets/rabbitmq)
 generates user credentials dynamically based on configured permissions and virtual hosts.
 
 To start a RabbitMQ test server, run: **docker run -it --rm -p 15672:15672 rabbitmq:3.7-management-alpine**
@@ -161,7 +182,7 @@ secrets:
 ## SSH
 
 Create a named Vault role for
-[signing SSH client keys](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html#client-key-signing).
+[signing SSH client keys](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates#client-key-signing).
 
 ```yaml
 secrets:

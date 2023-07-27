@@ -31,7 +31,7 @@ To monitor the webhook with Prometheus and Grafana, complete the following steps
 1. Create a Prometheus instance which monitors the components of Bank-Vaults:
 
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/banzaicloud/bank-vaults/master/hack/prometheus.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/prometheus.yaml
     ```
 
 1. Create a Grafana instance and expose it:

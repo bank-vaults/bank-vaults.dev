@@ -18,7 +18,7 @@ With Bank-Vaults you can use [Consul Template](https://github.com/hashicorp/cons
 The following shows the general workflow for using Consul Template:
 
 1. Your pod starts up. The webhook injects an init container (running vault agent) and a sidecar container (running consul-template) into the pods lifecycle.
-1. The [vault agent](https://www.vaultproject.io/docs/agent/) in the init container logs in to Vault and retrieves a Vault token based on the configured VAULT_ROLE and Kubernetes Service Account.
+1. The [vault agent](https://developer.hashicorp.com/vault/docs/agent-and-proxy/agent) in the init container logs in to Vault and retrieves a Vault token based on the configured VAULT_ROLE and Kubernetes Service Account.
 1. The consul-template running in the sidecar container logs in to Vault using the Vault token and writes a configuration file based on a pre-configured template in a configmap onto a temporary file system which your application can use.
 
 ## Prerequisites
@@ -55,9 +55,9 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 
 |Variable      |default     |Explanation|
 |--------------|------------|------------|
-|VAULT_IMAGE   |vault:latest|the vault image to use for the init container|
-|VAULT_ENV_IMAGE|banzaicloud/vault-env:latest| the vault-env image to use |
-|VAULT_CT_IMAGE|hashicorp/consul-template:latest| the consul template image to use|
+|VAULT_IMAGE   |hashicorp/vault:latest|the vault image to use for the init container|
+|VAULT_ENV_IMAGE|ghcr.io/bank-vaults/vault-env:latest| the vault-env image to use |
+|VAULT_CT_IMAGE|hashicorp/consul-template:0.32.0| the consul template image to use|
 |VAULT_ADDR    |https://127.0.0.1:8200|Kubernetes service Vault endpoint URL|
 |VAULT_SKIP_VERIFY|"false"|should vault agent and consul template skip verifying TLS|
 |VAULT_TLS_SECRET|""|supply a secret with the vault TLS CA so TLS can be verified|

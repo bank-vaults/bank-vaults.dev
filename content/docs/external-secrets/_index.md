@@ -4,12 +4,12 @@ linktitle: External Secrets
 weight: 1100
 ---
 
-In some cases, you might have to restart the Vault Statefulset when secrets that are not managed by the operator control are changed. For example:
+In some cases, you might have to restart the Vault StatefulSet when secrets that are not managed by the operator control are changed. For example:
 
 - Cert-Manager managing a public Certificate for vault using Let's Encrypt.
 - Cloud IAM Credentials created with an external tool (like terraform) to allow vault to interact with the cloud services.
 
-The operator can watch a set of secrets in the namespace of the Vault resource using either a list of label selectors or an annotations selector. When the content of any of those secrets changes, the operator updates the statefulset and triggers a rolling restart.
+The operator can watch a set of secrets in the namespace of the Vault resource using either a list of label selectors or an annotations selector. When the content of any of those secrets changes, the operator updates the StatefulSet and triggers a rolling restart.
 
 ## Configure label selectors
 
@@ -33,7 +33,7 @@ watchedSecretsAnnotations:
   - cert-manager.io/certificate-name: vault-letsencrypt-cert
 ```
 
-The operator controls the restart of the statefulset by adding an _annotation_ to the _spec.template_ of the vault resource
+The operator controls the restart of the StatefulSet by adding an _annotation_ to the _spec.template_ of the vault resource
 
 ```bash
 kubectl get -n vault statefulset vault -o json | jq .spec.template.metadata.annotations

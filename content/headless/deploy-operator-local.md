@@ -27,20 +27,16 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 
 1. Create a Vault instance using the Vault custom resources. This will create a Kubernetes `CustomResource` called `vault` and a PersistentVolumeClaim for it:
 
+    {{< include-headless "install-operator-rbac.md" >}}
+
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
     ```
 
     Expected output:
 
     ```bash
-    serviceaccount/vault created
-    role.rbac.authorization.k8s.io/vault created
-    rolebinding.rbac.authorization.k8s.io/vault created
-    ```
 
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
     ```
 
 1. Wait a few seconds, then check the operator and the vault pods:

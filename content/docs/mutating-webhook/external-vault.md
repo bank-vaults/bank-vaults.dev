@@ -27,9 +27,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 
 1. On `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
 
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
-    ```
+    {{< include-headless "install-operator-rbac.md" >}}
 
     You can use the `vault` ServiceAccount token as a `token_reviewer_jwt` in the auth configuration. To retrieve the token, run the following command:
 

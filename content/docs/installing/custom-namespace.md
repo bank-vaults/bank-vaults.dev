@@ -25,12 +25,6 @@ To deploy Vault into a custom namespace (not into `default`), you have to:
     EOF
     ```
 
-1. Deploy the Vault CustomResource to the custom namespace. For example:
-
-    ```bash
-    kubectl apply --namespace <your-custom-namespace> -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
-    ```
-
 1. Use the custom namespace in the following fields in the Vault CR:
 
     - [unsealConfig.kubernetes.secretNamespace](https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml#L116)
@@ -43,3 +37,9 @@ To deploy Vault into a custom namespace (not into `default`), you have to:
 
     - [vault.externalConfig.auth.roles.bound_service_account_namespaces](https://github.com/bank-vaults/vault-helm-chart/blob/main/vault/values.yaml#L184)
     - [unsealer.args](https://github.com/bank-vaults/vault-helm-chart/blob/main/vault/values.yaml#L260)
+
+1. Deploy the Vault CustomResource to the custom namespace. For example:
+
+    ```bash
+    kubectl apply --namespace <your-custom-namespace> -f <your-customized-vault-cr>
+    ```

@@ -6,6 +6,7 @@ assets/scss/_styles_project.scss
 
 */
 @import "tocbot";
+@import "crd";
 
 .warning-block {
     border-left: 6px solid red;
@@ -32,15 +33,15 @@ h3[class*="type-"]::before {
   padding: 3px 6px;
   text-transform: uppercase;
 }
-.property-required::after {
-  content: "required";
-  background-color: $primary;
-  color: white;
-  font-size: 14px;
-  line-height: 22px;
-  padding: 3px 6px;
-  text-transform: uppercase;
-}
+// .property-required::after {
+//   content: "required";
+//   background-color: $primary;
+//   color: white;
+//   font-size: 14px;
+//   line-height: 22px;
+//   padding: 3px 6px;
+//   text-transform: uppercase;
+// }
 
 .main-lead {
   line-height: 1.5;

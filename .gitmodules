@@ -1,3 +1,6 @@
 [submodule "themes/docsy"]
 	path = themes/docsy
 	url = https://github.com/google/docsy.git
+[submodule "scripts/crd-docs-generator"]
+	path = scripts/crd-docs-generator
+	url = https://github.com/giantswarm/crd-docs-generator.git

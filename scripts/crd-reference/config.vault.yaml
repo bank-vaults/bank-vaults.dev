@@ -1,0 +1,26 @@
+# This is an example configuration file
+# used for development and testing purposes.
+#
+# For the effective config used in production for
+# docs.giantswarm.io, see
+# https://github.com/giantswarm/docs/blob/main/scripts/update-crd-reference/config.yaml
+
+template_path: ./custom-crd.template
+
+output_path: ../../content/docs/operator/reference/
+
+# List of repositories containing CRDs.
+# Sequence is important here if several repos provide the same CRD (based on the full name).
+# In this case, the first repo "wins". Subsequent repos adding the same CRD will result in a
+# warning.
+source_repositories:
+  - url: https://github.com/
+    organization: bank-vaults
+    short_name: vault-operator
+    commit_reference: main
+    crd_paths:
+      - deploy/crd/bases/
+    metadata:
+      vaults.vault.banzaicloud.com:
+        owner:
+          - https://github.com/bank-vaults/

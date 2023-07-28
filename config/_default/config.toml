@@ -55,6 +55,8 @@ twitter = "calisti12"
   project_name = "Bank-Vaults"
   product_name = "Bank-Vaults"
 
+  latest_version = "1.20.0" # Used in some installation commands
+
   ###############################################################################
   # Docsy-theme specific config customizations
   ###############################################################################

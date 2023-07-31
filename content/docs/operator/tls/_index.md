@@ -1,6 +1,8 @@
 ---
 title: TLS
 weight: 500
+aliases:
+- /docs/tls/
 ---
 
 Bank-Vaults tries to automate as much as possible for handling TLS certificates.

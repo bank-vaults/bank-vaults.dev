@@ -1,6 +1,8 @@
 ---
 title: Backing up Vault
 weight: 650
+aliases:
+- /docs/backup/
 ---
 
 You can configure the vault-operator to create backups of the Vault cluster with [Velero](https://velero.io/).
@@ -76,10 +78,10 @@ To configure the vault-operator to create backups of the Vault cluster, complete
 
     # OR
 
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/backup/backup.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/operator/backup/backup.yaml
     ```
 
-    > Note: For a daily scheduled backup, see [schedule.yaml](https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/backup/schedule.yaml).
+    > Note: For a daily scheduled backup, see [schedule.yaml](https://raw.githubusercontent.com/bank-vaults/bank-vaults.dev/main/content/docs/operator/backup/schedule.yaml).
 
 1. Check that the Velero backup got created successfully:
 

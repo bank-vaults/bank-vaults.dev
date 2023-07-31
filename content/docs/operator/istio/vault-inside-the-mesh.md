@@ -2,13 +2,15 @@
 title: Scenario 2 - Running Vault inside the mesh
 linktitle: Vault inside the mesh
 weight: 200
+aliases:
+- /docs/operator/istio/vault-inside-the-mesh/
 ---
 
 To run Vault inside the mesh, complete the following steps.
 
 ![Running Vault inside the Istio mesh](/img/istio_vault2.png)
 
-> Note: These instructions assume that you have [Scenario 1]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}) up and running, and modifying it to run Vault inside the mesh.
+> Note: These instructions assume that you have [Scenario 1]({{< relref "/docs/operator/istio/vault-outside-the-mesh.md" >}}) up and running, and modifying it to run Vault inside the mesh.
 
 1. Turn off Istio in the `app` namespace by removing the `istio-injection` label:
 

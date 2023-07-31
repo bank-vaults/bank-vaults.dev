@@ -2,13 +2,15 @@
 title: Scenario 1 - Vault runs outside, the application inside the mesh
 linktitle: Vault outside the mesh
 weight: 100
+aliases:
+- /docs/operator/istio/vault-outside-the-mesh/
 ---
 
 In this scenario, Vault runs outside an Istio mesh, whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled.
 
 ![Running Vault outside the Istio mesh](/img/istio_vault1.png)
 
-First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [install Vault outside the mesh](#install-vault-outside-mesh), and finally [install an application within the mesh](#install-application-inside-mesh).
+First, complete the {{% xref "/docs/operator/istio/_index.md#prerequisites" %}}, then [install Vault outside the mesh](#install-vault-outside-mesh), and finally [install an application within the mesh](#install-application-inside-mesh).
 
 ## Install Vault outside the mesh {#install-vault-outside-mesh}
 
@@ -18,7 +20,7 @@ First, complete the {{% xref "/docs/istio/_index.md#prerequisites" %}}, then [in
     kubectl create namespace vault
     ```
 
-1. Apply the [RBAC](/docs/istio/rbac.yaml) and [CR](/docs/istio/cr-istio.yaml) files to the cluster to create a Vault instance in the `vault` namespace with the operator:
+1. Apply the [RBAC](/docs/operator/istio/rbac.yaml) and [CR](/docs/operator/istio/cr-istio.yaml) files to the cluster to create a Vault instance in the `vault` namespace with the operator:
 
     ```bash
     kubectl apply -f rbac.yaml -f cr-istio.yaml
@@ -68,7 +70,7 @@ In this scenario Vault is running outside the Istio mesh (as we have installed i
     kubectl label namespace app istio-injection=enabled
     ```
 
-1. Install the application [manifest](/docs/istio/app.yaml) to the cluster:
+1. Install the application [manifest](/docs/operator/istio/app.yaml) to the cluster:
 
     ```bash
     kubectl apply -f app.yaml

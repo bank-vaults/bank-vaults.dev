@@ -55,6 +55,8 @@ twitter = "calisti12"
   project_name = "Bank-Vaults"
   product_name = "Bank-Vaults"
 
+  latest_version = "1.20.0" # Used in some installation commands
+
   ###############################################################################
   # Docsy-theme specific config customizations
   ###############################################################################
@@ -77,7 +79,7 @@ twitter = "calisti12"
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo = "https://github.com/bank-vaults/bank-vaults.dev"
   # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-  github_project_repo = "https://github.com/banzaicloud/bank-vaults"
+  github_project_repo = "https://github.com/bank-vaults/vault-operator"
 
   # Specify a value here if your content directory is not in your repo's root directory
   # github_subdir = ""
@@ -89,6 +91,9 @@ twitter = "calisti12"
 
   # Enable Lunr.js offline search
   offlineSearch = true
+
+  # Add CTA partial to navbar
+  navbar_cta = true
 
   #####
   # Code highlighting
@@ -149,7 +154,7 @@ twitter = "calisti12"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]
     name = "Slack"
-    url = "https://eti.cisco.com/slack"
+    url = "https://outshift.slack.com"
     icon = "fab fa-slack"
     desc = "Chat with the project developers"
   #[[params.links.developer]]
@@ -165,18 +170,23 @@ twitter = "calisti12"
   [[menu.main]]
     name = "Project page"
     weight = -110
-    #pre = "<i class='fas fa-rss pr-2'></i>"
-    url = "https://github.com/banzaicloud/bank-vaults"
+    pre = "<i class='fab fa-github pr-2'></i>"
+    url = "https://github.com/bank-vaults"
 #  [[menu.main]]
 #    name = "Blog"
 #    weight = -120
 #    pre = "<i class='fas fa-blog pr-2'></i>"
-#    url = "https://github.com/bank-vaults/bank-vaults"
+#    url = "https://github.com/bank-vaults/"
   [[menu.main]]
     name = "Documentation"
     weight = -100
-    #pre = "<i class='fas fa-book pr-2'></i>"
+    pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
+  [[menu.main]]
+    name = "Community"
+    url = "https://outshift.slack.com"
+    pre = "<i class='fab fa-slack pr-2'></i>"
+    weight = 150
 
 ###############################################################################
 # Misc customizations

@@ -27,9 +27,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
 
 1. On `cluster2`, create a `vault` ServiceAccount and the `vault-auth-delegator` ClusterRoleBinding:
 
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/test/rbac.yaml
-    ```
+    {{< include-headless "install-operator-rbac.md" >}}
 
     You can use the `vault` ServiceAccount token as a `token_reviewer_jwt` in the auth configuration. To retrieve the token, run the following command:
 
@@ -37,7 +35,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
     kubectl get secret $(kubectl get sa vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode
     ```
 
-1. In the `vault.banzaicloud.com` custom resource (for example, [https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml](https://github.com/bank-vaults/vault-operator/blob/main/deploy/examples/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
+1. In the `vault.banzaicloud.com` custom resource (for example, in this [sample CR](https://github.com/bank-vaults/vault-operator/blob/v{{< param "latest_version" >}}/deploy/examples/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
 
     ```yaml
       externalConfig:
@@ -108,18 +106,19 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
             vault.security.banzaicloud.io/vault-path: "kubernetes"
     ```
 
---- 
+## Authenticate the mutating-webhook with a cloud identity
 
-Also you can use directly cloud identity to auth the mutating-webhook against the external vault.
+You can use a cloud identity to authenticate the mutating-webhook against the external vault.
 
-1. Add your cloud auth method in your external vault [https://developer.hashicorp.com/vault/docs/auth/azure](https://developer.hashicorp.com/vault/docs/auth/azure)
+1. Add your cloud authentication method in your external vault, for example, the [Azure Auth Method](https://developer.hashicorp.com/vault/docs/auth/azure).
+1. Configure your `vault-secrets-webhook` to use the this method. For example:
 
-2. Configure your `vault-secrets-webhook` to use the good method. For example:
-```yaml
-env:
-  VAULT_ADDR: https://external-vault.example.com
-  VAULT_AUTH_METHOD: azure
-  VAULT_PATH: azure
-  VAULT_ROLE: default
-```
-For `VAULT_AUTH_METHOD` env var, these types: **"kubernetes", "aws-ec2", "gcp-gce", "gcp-iam", "jwt", "azure"** are supported.
+    ```yaml
+    env:
+      VAULT_ADDR: https://external-vault.example.com
+      VAULT_AUTH_METHOD: azure
+      VAULT_PATH: azure
+      VAULT_ROLE: default
+    ```
+
+For the `VAULT_AUTH_METHOD` env var, the following types are supported: **"kubernetes", "aws-ec2", "gcp-gce", "gcp-iam", "jwt", "azure"**

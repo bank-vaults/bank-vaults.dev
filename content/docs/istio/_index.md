@@ -47,7 +47,7 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
 
 ## Install the Bank-Vaults components
 
-1. You are recommended to create a separate namespace for [Bank-Vaults](https://banzaicloud.com/docs/overview/) called `vault-system`. You can enable Istio sidecar injection here as well, but Kubernetes won't be able to call back the webhook properly since mTLS is enabled (and Kubernetes is outside of the Istio mesh). To overcome this, apply a `PERMISSIVE` Istio authentication policy to the `vault-secrets-webhook` Service itself, so Kubernetes can call it back without Istio mutual TLS authentication.
+1. You are recommended to create a separate namespace for Bank-Vaults called `vault-system`. You can enable Istio sidecar injection here as well, but Kubernetes won't be able to call back the webhook properly since mTLS is enabled (and Kubernetes is outside of the Istio mesh). To overcome this, apply a `PERMISSIVE` Istio authentication policy to the `vault-secrets-webhook` Service itself, so Kubernetes can call it back without Istio mutual TLS authentication.
 
     ```bash
     kubectl create namespace vault-system
@@ -77,7 +77,7 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
     ```bash
     helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
     helm upgrade --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook --namespace vault-system
-    helm upgrade --install vault-operator banzaicloud-stable/vault-operator --namespace vault-system
+    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator --namespace vault-system
     ```
 
 Soon the webhook and the operator become up and running. Check that the `istio-proxy` got injected into all Pods in `vault-system`.

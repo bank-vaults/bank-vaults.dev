@@ -9,7 +9,6 @@ Check one of the following guides to get an overview:
 - [Dynamic credentials with Vault using Kubernetes Service Accounts](https://techblog.cisco.com/vault-dynamic-secrets/)
 - [Vault Operator](https://techblog.cisco.com/vault-operator/)
 - [Vault unseal flow with KMS](https://techblog.cisco.com/vault-unsealing/)
-- [Monitoring Vault on Kubernetes using Cloud Native technologies](https://techblog.cisco.com/monitoring-vault-grafana/)
 - [Inject secrets directly into pods from Vault](https://techblog.cisco.com/inject-secrets-into-pods-vault-revisited/)
 
 ## Deploy with Helm
@@ -22,7 +21,7 @@ We have some fully fledged, production-ready Helm charts for deploying:
 
 With the help of these charts you can run a HA Vault instance with automatic initialization, unsealing, and external configuration which would otherwise be a tedious manual operation. Also secrets from Vault can be injected into your Pods directly as environment variables (without using Kubernetes Secrets). These charts can be used easily for development purposes as well.
 
-> Note: Starting with Bank-Vaults version 1.6.0, only Helm 3 is supported. If you have installed the chart with Helm 2 and now you are trying to upgrade with Helm3, see the [Bank-Vaults 1.6.0 release notes](https://github.com/bank-vaults/bank-vaults/releases/tag/1.6.0) for detailed instructions.
+> Note: Starting with Bank-Vaults version 1.6.0, only Helm 3 is supported.
 
 {{< include-headless "deploy-operator-local.md" >}}
 
@@ -30,11 +29,13 @@ With the help of these charts you can run a HA Vault instance with automatic ini
 
 ## Install the CLI tool
 
-On macOs, you can directly install the CLI from Homebrew:
+You can download the `bank-vaults` CLI from the [Bank-Vaults releases page](https://github.com/bank-vaults/bank-vaults/releases). Select the binary for your platform from the **Assets** section for the version you want to use.
+
+<!-- On macOs, you can directly install the CLI from Homebrew:
 
 ```bash
 brew install banzaicloud/tap/bank-vaults
-```
+``` -->
 
 Alternatively, fetch the source code and compile it using go get:
 
@@ -48,7 +49,6 @@ go get github.com/bank-vaults/bank-vaults/cmd/vault-env
 If you want to build upon our Docker images, you can find them on Docker Hub:
 
 ```bash
-docker pull banzaicloud/bank-vaults
-docker pull banzaicloud/vault-operator
-docker pull banzaicloud/vault-env
+docker pull ghcr.io/bank-vaults/vault-operator:latest
+docker pull ghcr.io/bank-vaults/vault-env:latest
 ```

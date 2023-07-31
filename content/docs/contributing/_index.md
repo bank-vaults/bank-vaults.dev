@@ -6,8 +6,8 @@ weight: 1200
 If you find this project useful here's how you can help:
 
 - If you use Bank-Vaults in a production environment, add yourself to the [list of production adopters](https://github.com/bank-vaults/bank-vaults/blob/master/ADOPTERS.md).
-- Help new users with issues they may encounter on our [GitHub issues page](https://github.com/bank-vaults/bank-vaults/issues) or in the [#bank-vaults community Slack channel](https://pages.banzaicloud.com/invite-slack)
-- Support the development of this project and [star our GitHub repo](https://github.com/bank-vaults/bank-vaults/stargazers)!
+- Help new users with issues they may encounter on the GitHub issues pages of our repositories or in the [#bank-vaults community Slack channel](https://join.slack.com/t/emergingtechcommunity/shared_invite/zt-1rw2jl0ht-yNdyFgBFlc%7Eyzo9AnE4FbA)
+- Support the development of this project and [star our GitHub repos](https://github.com/bank-vaults/)!
 - Send a pull request with your new features and bug fixes.
 
 ## Development environment

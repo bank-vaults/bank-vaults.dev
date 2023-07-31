@@ -3,7 +3,7 @@ title: Monitoring
 weight: 900
 ---
 
-At Banzai Cloud we prefer Prometheus for monitoring and use it also for Vault. If you configure, Vault can expose metrics through [statsd](https://developer.hashicorp.com/vault/docs/configuration/telemetry#statsd). Both the [Vault Helm chart](https://github.com/bank-vaults/vault-helm-chart/tree/main/vault) and the Vault Operator installs the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter) and annotates the pods correctly with Prometheus annotations so Prometheus can discover and scrape them. All you have to do is to put the telemetry stanza into your Vault configuration:
+You can use Prometheus to monitor Vault. You can configure Vault to expose metrics through [statsd](https://developer.hashicorp.com/vault/docs/configuration/telemetry#statsd). Both the [Helm chart](https://github.com/bank-vaults/vault-helm-chart/tree/main/vault) and the [Vault Operator]({{< relref "/docs/installing/_index.md#deploy-operator" >}}) installs the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter) and annotates the pods correctly with Prometheus annotations so Prometheus can discover and scrape them. All you have to do is to put the telemetry stanza into your Vault configuration:
 
 ```yaml
     telemetry:

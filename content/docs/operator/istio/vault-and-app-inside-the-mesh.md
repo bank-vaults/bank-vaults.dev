@@ -2,13 +2,15 @@
 title: Scenario 3 - Both Vault and the app are running inside the mesh
 linktitle: Vault and app inside the mesh
 weight: 300
+aliases:
+- /docs/operator/istio/vault-and-app-inside-the-mesh/
 ---
 
 In this scenario, both Vault and the app are running inside the mesh.
 
 ![Both Vault and the app are running inside the mesh](/img/istio_vault3.png)
 
-1. Complete the [Prerequisites]({{< relref "/docs/istio/_index.md#prerequisites" >}}).
+1. Complete the [Prerequisites]({{< relref "/docs/operator/istio/_index.md#prerequisites" >}}).
 1. Enable sidecar auto-injection for both namespaces:
 
     ```bash

@@ -1,16 +1,18 @@
 ---
 title: Running the Bank-Vaults secret webhook alongside Istio
-linktitle: Istio and Bank-Vaults
+linktitle: Istio and vault-operator
 weight: 680
+aliases:
+- /docs/operator/istio/
 ---
 
-Both the `vault-operator` and the `vault-secrets-webhook` can work on Istio enabled clusters quite well.
+Both the `vault-operator` and the `vault-secrets-webhook` can work on Istio-enabled clusters.
 
 We support the following three scenarios:
 
-- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
-- [Scenario 2]({{< relref "/docs/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
-- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/istio/vault-and-app-inside-the-mesh.md" >}})
+- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/operator/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
+- [Scenario 2]({{< relref "/docs/operator/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
+- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/operator/istio/vault-and-app-inside-the-mesh.md" >}})
 
 ## Prerequisites
 
@@ -84,6 +86,6 @@ Soon the webhook and the operator become up and running. Check that the `istio-p
 
 Proceed to the description of your scenario:
 
-- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
-- [Scenario 2]({{< relref "/docs/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
-- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/istio/vault-and-app-inside-the-mesh.md" >}})
+- [Scenario 1: Vault runs outside an Istio mesh]({{< relref "/docs/operator/istio/vault-outside-the-mesh.md" >}}), whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled
+- [Scenario 2]({{< relref "/docs/operator/istio/vault-inside-the-mesh.md" >}}): The namespace where Vault is running has Istio sidecar injection enabled
+- [Scenario 3: Both namespaces have Istio sidecar injection enabled]({{< relref "/docs/operator/istio/vault-and-app-inside-the-mesh.md" >}})

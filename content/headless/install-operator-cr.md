@@ -1,7 +1,7 @@
 ---
 ---
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_version" >}}/deploy/cr-raft.yaml
+kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_operator_version" >}}/deploy/cr-raft.yaml
 ```
 
 Expected output:

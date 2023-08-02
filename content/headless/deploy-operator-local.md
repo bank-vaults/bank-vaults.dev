@@ -106,5 +106,5 @@ For other configuration examples of the Vault CustomResource, see the YAML files
 
 ```bash
 kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl delete -f -
-kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_version" >}}/deploy/examples/cr-raft.yaml
+kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_operator_version" >}}/deploy/examples/cr-raft.yaml
 ```

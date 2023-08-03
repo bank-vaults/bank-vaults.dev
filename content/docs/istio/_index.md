@@ -75,9 +75,8 @@ Now your cluster is properly running on Istio with mTLS enabled globally.
 1. Now you can install the operator and the webhook to the prepared namespace:
 
     ```bash
-    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook --namespace vault-system
-    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator --namespace vault-system
+    helm upgrade --install --wait vault-secrets-webhook oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook --namespace vault-system --create-namespace
+    helm upgrade --install --wait vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator --namespace vault-system
     ```
 
 Soon the webhook and the operator become up and running. Check that the `istio-proxy` got injected into all Pods in `vault-system`.

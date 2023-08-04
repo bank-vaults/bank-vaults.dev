@@ -1,5 +1,5 @@
 ---
-title: Security policies and procedures
+title: Security procedures
 weight: 1400
 ---
 

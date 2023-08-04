@@ -1,6 +1,6 @@
 ---
 title: Maintainer guide
-weight: 1300
+weight: 1600
 ---
 
 This guide explains the tasks and responsibilities of maintainers.

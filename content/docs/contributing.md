@@ -1,5 +1,5 @@
 ---
-title: Contributing
+title: Contributing guide
 weight: 1200
 ---
 

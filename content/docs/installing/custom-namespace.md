@@ -35,8 +35,8 @@ To deploy Vault into a custom namespace (not into `default`), you have to:
 
     If not using CRDs, you have to use the custom namespace in the following fields of the Vault Helm chart:
 
-    - [vault.externalConfig.auth.roles.bound_service_account_namespaces](https://github.com/bank-vaults/vault-helm-chart/blob/v{{< param "latest_version" >}}/vault/values.yaml#L184)
-    - [unsealer.args](https://github.com/bank-vaults/vault-helm-chart/blob/v{{< param "latest_version" >}}/vault/values.yaml#L250)
+    - [vault.externalConfig.auth.roles.bound_service_account_namespaces](https://github.com/bank-vaults/vault-helm-chart/blob/v{{< param "latest_version" >}}/vault/values.yaml#L179)
+    - [unsealer.args](https://github.com/bank-vaults/vault-helm-chart/blob/v{{< param "latest_version" >}}/vault/values.yaml#L255)
 
 1. Deploy the Vault CustomResource to the custom namespace. For example:
 

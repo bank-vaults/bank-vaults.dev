@@ -31,7 +31,7 @@ We do a Pull Request contributions workflow on **GitHub**. New users and develop
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa-brands fa-slack" title="Come chat with us!" url="https://join.slack.com/t/emergingtechcommunity/shared_invite/zt-1rw2jl0ht-yNdyFgBFlc%7Eyzo9AnE4FbA" url_text="Join Slack" %}}
+{{% blocks/feature icon="fa-brands fa-slack" title="Come chat with us!" url="https://outshift.slack.com/messages/bank-vaults" url_text="Join Slack" %}}
 In case you need help, you can find us in our Slack channel.
 {{% /blocks/feature %}}
 

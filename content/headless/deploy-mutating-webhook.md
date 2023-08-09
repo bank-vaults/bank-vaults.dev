@@ -26,8 +26,8 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 1. Deploy the vault-secrets-webhook chart:
 
     ```bash
-    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
+    helm upgrade --install --wait vault-secrets-webhook oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook --namespace vault-infra
+
     ```
 
     Expected output:

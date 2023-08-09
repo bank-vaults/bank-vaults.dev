@@ -7,8 +7,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 1. Install the Bank-Vaults operator:
 
     ```bash
-    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
+    helm upgrade --install --wait vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
     ```
 
     Expected output:

@@ -34,6 +34,8 @@ possible, and, if possible, a test case.
 Before sending a new pull request, take a look at existing pull requests and issues to see if the proposed change or fix
 has been discussed in the past, or if the change was already implemented but not yet released.
 
+Make sure to [sign-off your commits](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---signoff): `Signed-off-by: your name <youremail@address.com>`
+
 We expect new pull requests to include tests for any affected behavior, and, as we follow semantic versioning, we may
 reserve breaking changes until the next major version release.
 

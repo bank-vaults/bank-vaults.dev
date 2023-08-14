@@ -7,7 +7,7 @@ Thanks for your interest in contributing to Bank-Vaults!
 
 Here are a few general guidelines on contributing and reporting bugs that we ask you to review and follow.
 
-Please note that all of your interactions in the project are subject to our [Code of Conduct](code-of-conduct.md). This
+Please note that all of your interactions in the project are subject to our [Code of Conduct]({{< relref "/docs/code-of-conduct.md" >}}). This
 includes creation of issues or pull requests, commenting on issues or pull requests, and extends to all interactions in
 any real-time space e.g., Slack, Discord, etc.
 
@@ -27,7 +27,7 @@ Before reporting a new issue, please ensure that the issue was not already repor
 When creating a new issue, please be sure to include a **title and clear description**, as much relevant information as
 possible, and, if possible, a test case.
 
-**If you discover a security bug, please do not report it through GitHub issues. Instead, please follow the steps in [Security procedures](security.md).**
+**If you discover a security bug, please do not report it through GitHub issues. Instead, please follow the steps in [Security procedures]({{< relref "/docs/security.md" >}}).**
 
 ## Sending pull requests
 
@@ -108,7 +108,7 @@ There are at least four ways to distribute this image in your Kubernetes cluster
 - If you are using Docker for Mac, you don't have to anything, the Kubernetes cluster and your host shares the same Docker daemon.
 - If you are using Minikube with `--vm-driver=none` (you are probably using Linux) the same applies as for Docker for Mac
 - If you are using Minikube with some real `vm-driver` you have to run `eval $(minikube docker-env)` before building the Docker image with the `make` command so you build it with the minikube Docker daemon and the image will be stored there
-- Build and re-tag the image and push it to the Docker registry of your choice, dont forget to change the `bankVaultsImage` attribute in the the Vault Custom Resource YAML file (`cr.yaml` in this case).
+- Build and re-tag the image and push it to the Docker registry of your choice, don't forget to change the `bankVaultsImage` attribute in the the Vault Custom Resource YAML file (`cr.yaml` in this case).
 
 Restart the containers using the `bank-vaults` image: Vault instances and the configurer.
 

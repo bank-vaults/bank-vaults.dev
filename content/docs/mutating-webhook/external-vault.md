@@ -35,7 +35,7 @@ Basically, you have to grant `cluster2` access to the Vault running on `cluster1
     kubectl get secret $(kubectl get sa vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode
     ```
 
-1. In the `vault.banzaicloud.com` custom resource (for example, in this [sample CR](https://github.com/bank-vaults/vault-operator/blob/v{{< param "latest_version" >}}/deploy/examples/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
+1. In the `vault.banzaicloud.com` custom resource (for example, in this [sample CR](https://github.com/bank-vaults/vault-operator/blob/v{{< param "latest_operator_version" >}}/deploy/examples/cr.yaml)) of `cluster1`, define an `externalConfig` section. Fill the values of the `kubernetes_ca_cert`, `kubernetes_host`, and `token_reviewer_jwt` using the data collected in the previous steps.
 
     ```yaml
       externalConfig:

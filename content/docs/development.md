@@ -1,11 +1,11 @@
 ---
 title: Development
-weight: 1180
+weight: 1300
 ---
 
 This guide explains the steps and requirements for developing Bank-Vaults projects.
 
-## Quickstart
+## Quick start
 
 Install [Nix](https://nixos.org/download.html):
 

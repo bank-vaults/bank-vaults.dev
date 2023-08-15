@@ -7,8 +7,7 @@ This is the simplest scenario: you install the Vault operator on a simple cluste
 1. Install the Bank-Vaults operator:
 
     ```bash
-    helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
-    helm upgrade --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
+    helm upgrade --install --wait vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
     ```
 
     Expected output:
@@ -106,5 +105,5 @@ For other configuration examples of the Vault CustomResource, see the YAML files
 
 ```bash
 kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/rbac | kubectl delete -f -
-kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_version" >}}/deploy/examples/cr-raft.yaml
+kubectl delete -f https://raw.githubusercontent.com/bank-vaults/vault-operator/v{{< param "latest_operator_version" >}}/deploy/examples/cr-raft.yaml
 ```

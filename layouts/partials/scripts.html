@@ -118,4 +118,14 @@ window.markmap = {
 </script>
 {{ end }}
 
+<!-- Scroll left-side toc to current entry, from https://github.com/google/docsy/issues/348 -->
+<script>
+  (function() {
+    var a = document.querySelector("#td-section-nav");
+    addEventListener("beforeunload", function(b) {
+        localStorage.setItem("menu.scrollTop", a.scrollTop)
+    }), a.scrollTop = localStorage.getItem("menu.scrollTop")
+  })()
+</script>
+
 {{ partial "hooks/body-end.html" . -}}

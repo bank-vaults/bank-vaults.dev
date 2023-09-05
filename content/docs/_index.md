@@ -21,3 +21,4 @@ The package also includes Helm charts for installing the various components, and
 ## First step
 
 - If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}).
+- If you need help using Bank-Vaults, see the [Support page]({{< relref "/docs/support.md" >}}) for ways to contact us.

@@ -18,6 +18,8 @@ Bank-Vaults provides the following tools for Hashicorp Vault to make its use eas
 
 The package also includes Helm charts for installing the various components, and a collection of scripts to support advanced features (for example, dynamic SSH).
 
+{{% include-remote-mdsnippet "https://github.com/bank-vaults/vault-operator/raw/main/VERSIONS.md" %}}
+
 ## First step
 
 - If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}).

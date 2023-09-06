@@ -1,5 +1,5 @@
 ---
-title: Operator
+title: Vault operator
 weight: 200
 github_project_repo: "https://github.com/bank-vaults/vault-operator"
 cascade:

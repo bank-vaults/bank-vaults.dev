@@ -3,7 +3,7 @@ title: Scenario 1 - Vault runs outside, the application inside the mesh
 linktitle: Vault outside the mesh
 weight: 100
 aliases:
-- /docs/operator/istio/vault-outside-the-mesh/
+- /docs/istio/vault-outside-the-mesh/
 ---
 
 In this scenario, Vault runs outside an Istio mesh, whereas the namespace where the application runs and the webhook injects secrets has Istio sidecar injection enabled.

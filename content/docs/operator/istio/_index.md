@@ -3,7 +3,7 @@ title: Running the Bank-Vaults secret webhook alongside Istio
 linktitle: Istio and vault-operator
 weight: 680
 aliases:
-- /docs/operator/istio/
+- /docs/istio/
 ---
 
 Both the `vault-operator` and the `vault-secrets-webhook` can work on Istio-enabled clusters.

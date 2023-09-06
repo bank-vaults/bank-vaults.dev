@@ -3,7 +3,7 @@ title: Scenario 3 - Both Vault and the app are running inside the mesh
 linktitle: Vault and app inside the mesh
 weight: 300
 aliases:
-- /docs/operator/istio/vault-and-app-inside-the-mesh/
+- /docs/istio/vault-and-app-inside-the-mesh/
 ---
 
 In this scenario, both Vault and the app are running inside the mesh.

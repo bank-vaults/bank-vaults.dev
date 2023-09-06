@@ -1,6 +1,8 @@
 ---
 title: Annotations and labels
 weight: 1000
+aliases:
+- /docs/annotations-and-labels/
 ---
 
 

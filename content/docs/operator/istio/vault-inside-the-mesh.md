@@ -3,7 +3,7 @@ title: Scenario 2 - Running Vault inside the mesh
 linktitle: Vault inside the mesh
 weight: 200
 aliases:
-- /docs/operator/istio/vault-inside-the-mesh/
+- /docs/istio/vault-inside-the-mesh/
 ---
 
 To run Vault inside the mesh, complete the following steps.

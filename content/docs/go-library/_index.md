@@ -1,6 +1,6 @@
 ---
 title: The Go library
-linktitle: Go library
+linktitle: Vault SDK
 weight: 800
 github_project_repo: "https://github.com/bank-vaults/vault-sdk"
 cascade:

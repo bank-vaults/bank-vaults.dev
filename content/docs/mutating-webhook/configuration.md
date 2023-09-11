@@ -232,7 +232,7 @@ kubectl create secret docker-registry ecr \
  helm upgrade --install mysql stable/mysql --set mysqlRootPassword=vault:secret/data/mysql#MYSQL_ROOT_PASSWORD --set "imagePullSecrets[0].name=ecr" --set-string "podAnnotations.vault\.security\.banzaicloud\.io/vault-skip-verify=true" --set image="171832738826.dkr.ecr.eu-west-1.amazonaws.com/mysql" --set-string imageTag=5.7
 ```
 
-## Mount all keys from Vault secret to env
+## Mount all keys from Vault secret to env {#mount-all-keys}
 
 This feature is very similar to Kubernetes' standard `envFrom:` [construct](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-as-container-environment-variables), but instead of a Kubernetes Secret/ConfigMap, all its keys are mounted from a Vault secret using the webhook and vault-env.
 
@@ -266,6 +266,16 @@ spec:
       - name: alpine
         image: alpine
         command: ["sh", "-c", "echo AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY && echo going to sleep... && sleep 10000"]
+```
+
+Since `vault-env` v1.21.1 (which is the default since `vault-secrets-webhook` v1.21.0) you can specify the version of
+the injected Vault secret as well, the format is: `PATH#VERSION`
+
+Example:
+
+```yaml
+      annotations:
+        vault.security.banzaicloud.io/vault-env-from-path: "secret/data/accounts/aws#1"
 ```
 
 ## Authenticate the webhook to Vault {#webhook-auth}

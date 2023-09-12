@@ -1,6 +1,8 @@
 ---
 title: Startup secrets
 weight: 700
+aliases:
+- /docs/external-configuration/startup-secrets/
 ---
 
 Allows writing some secrets to Vault (useful for development purposes). For details,

@@ -2,6 +2,8 @@
 title: Fully or partially purging unmanaged configuration in Vault
 linktitle: Purge unmanaged configuration 
 weight: 100
+aliases:
+- /docs/external-configuration/purge-unmanaged-configuration/
 ---
 
 Bank-Vaults gives you a full control over Vault in a declarative style by removing any unmanaged configuration.

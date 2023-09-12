@@ -11,10 +11,10 @@ So if you added a policy using Bank-Vaults then removed it from the configuratio
 Bank-Vaults will remove it from Vault too. In other words, if you enabled `purgeUnmanagedConfig`
 then any changes not in Bank-Vaults configuration will be removed (including manual changes).
 
-> Note:
+> WARNING:
 > 
-> This feature is `destructive`, so be carful when you enable it especially for the first time
-> **because it could delete all data in your Vault.** We recommend you to test it a non-production environment first.
+> This feature is `destructive`, so be careful when you enable it especially for the first time
+> **because it can delete all data in your Vault**. Always test it a non-production environment first.
 
 This feature is disabled by default and it needs to be enabled explicitly in your configuration.
 

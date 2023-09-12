@@ -27,4 +27,4 @@ Features:
 
     For details, see {{% xref "/docs/concepts/external-configuration/_index.md" %}}.
 
-The `bank-vaults` CLI command needs certain [cloud permissions]({{< relref "/docs/cloud-permissions/_index.md" >}}) to function properly (init, unseal, configuration).
+The `bank-vaults` CLI command needs certain [cloud permissions]({{< relref "/docs/concepts/cloud-permissions/_index.md" >}}) to function properly (init, unseal, configuration).

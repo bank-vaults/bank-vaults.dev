@@ -1,6 +1,8 @@
 ---
 title: Cloud permissions
-weight: 600
+weight: 300
+aliases:
+- /docs/cloud-permissions/
 ---
 
 The operator and the `bank-vaults` CLI command needs certain cloud permissions to function properly (init, unseal, configuration).

@@ -2,6 +2,8 @@
 title: Watching External Secrets
 linktitle: External Secrets
 weight: 1100
+aliases:
+- /docs/external-secrets/
 ---
 
 In some cases, you might have to restart the Vault StatefulSet when secrets that are not managed by the operator control are changed. For example:

@@ -1,6 +1,8 @@
 ---
 title: Plugins
 weight: 400
+aliases:
+- /docs/external-configuration/plugins/
 ---
 
 To register a new plugin in [Vault's plugin catalog](https://developer.hashicorp.com/vault/api-docs/system/plugins-catalog),

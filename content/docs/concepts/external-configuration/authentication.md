@@ -1,6 +1,8 @@
 ---
 title: Authentication
 weight: 300
+aliases:
+- /docs/external-configuration/authentication/
 ---
 
 You can configure [Auth Methods in Vault](https://developer.hashicorp.com/vault/docs/auth).

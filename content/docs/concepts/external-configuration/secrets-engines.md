@@ -1,6 +1,8 @@
 ---
 title: Secrets engines
 weight: 600
+aliases:
+- /docs/external-configuration/secrets-engines/
 ---
 
 You can configure [Secrets Engines in Vault](https://developer.hashicorp.com/vault/docs/secrets).

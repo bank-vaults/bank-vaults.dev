@@ -1,6 +1,8 @@
 ---
 title: Audit devices
 weight: 200
+aliases:
+- /docs/external-configuration/audit-devices/
 ---
 
 You can configure [Audit Devices in Vault](https://developer.hashicorp.com/vault/docs/audit) (File, Syslog, Socket).

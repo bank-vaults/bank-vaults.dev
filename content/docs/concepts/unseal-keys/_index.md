@@ -58,7 +58,7 @@ Bank-Vaults runs in an endless loop and does the following:
     1. Decrypts the unseal keys with the configured KMS key.
     1. Unseals Vault with the decrypted unseal keys.
     1. Flushes the keys from its memory with explicit garbage control as soon as possible.
-1. If the [external configuration file]({{< relref "/docs/external-configuration/_index.md" >}}) was changed and an OS signal is received, then Bank-Vaults:
+1. If the [external configuration file]({{< relref "/docs/concepts/external-configuration/_index.md" >}}) was changed and an OS signal is received, then Bank-Vaults:
     1. Parses the configuration file.
     1. Reads the encrypted root token from the cloud provider's object storage.
     1. Decrypts the root token with the configured KMS key.

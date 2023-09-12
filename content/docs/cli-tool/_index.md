@@ -20,6 +20,8 @@ Features:
   - Files (backed by files, should be used only for development purposes)
 - Automatically unseals Vault with these keys
 - {{< include-headless "external-config-intro.md" >}}
+    <a name="example-external-vault-configuration" class="htmlanchor"></a>
+
     - If the configuration is updated, Vault will be reconfigured.
     - The external configuration supports configuring Vault secret engines, plugins, auth methods, policies, and more.
 

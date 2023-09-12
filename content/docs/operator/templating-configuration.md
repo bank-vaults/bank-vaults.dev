@@ -50,7 +50,7 @@ To provide functionality that's more Kubernetes-friendly and cloud-native, bank-
 
 Takes a base64-encoded, KMS-encrypted string and returns the decrypted string. Additionally, the function takes an optional second parameter for any encryption context that might be required for decrypting. If any encryption context is required, the function will take any number of additional parameters, each of which should be a key-value pair (separated by a `=` character), corresponding to the full context.
 
-> Note: This function assumes that the `vault-configurer` pod has the appropriate AWS IAM credentials and permissions to decrypt the given string. You can inject the AWS IAM credentials by using Kubernetes secrets as environment variables, an EC2 instance role, [kube2iam](https://github.com/jtblin/kube2iam), or [EKS IAM roles]({{< relref "/docs/cloud-permissions/_index.md#aws" >}}), and so on.
+> Note: This function assumes that the `vault-configurer` pod has the appropriate AWS IAM credentials and permissions to decrypt the given string. You can inject the AWS IAM credentials by using Kubernetes secrets as environment variables, an EC2 instance role, [kube2iam](https://github.com/jtblin/kube2iam), or [EKS IAM roles]({{< relref "/docs/concepts/cloud-permissions/_index.md#aws" >}}), and so on.
 
 Parameter         | Type                           | Required
 ------------------|--------------------------------|---------

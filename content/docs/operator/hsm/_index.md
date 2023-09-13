@@ -1,6 +1,8 @@
 ---
 title: HSM Support
 weight: 690
+aliases:
+- /docs/hsm/
 ---
 
 Bank-Vaults offers a lot of alternatives for encrypting and storing the `unseal-keys` and the `root-token` for Vault. One of the encryption technics is the HSM - Hardware Security Module. HSM offers an industry-standard way to encrypt your data in on-premise environments.
@@ -30,6 +32,6 @@ Since Bank-Vaults is written in Go, it uses the [github.com/miekg/pkcs11](https:
 
 Bank-Vaults currently supports the following HSM solutions:
 
-- [SoftHSM]({{< relref "/docs/hsm/softhsm.md" >}}), recommended for testing
-- [NitroKey HSM]({{< relref "/docs/hsm/nitrokey-opensc.md" >}}).
+- [SoftHSM]({{< relref "/docs/operator/hsm/softhsm.md" >}}), recommended for testing
+- [NitroKey HSM]({{< relref "/docs/operator/hsm/nitrokey-opensc.md" >}}).
 - AWS CloudHSM supports the PKCS11 API as well, so it probably works, though it needs a custom Docker image.

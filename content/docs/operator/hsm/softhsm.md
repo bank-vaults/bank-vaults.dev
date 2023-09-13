@@ -2,6 +2,8 @@
 title: SoftHSM support for testing
 linktitle: SoftHSM
 weight: 200
+aliases:
+- /docs/hsm/softhsm/
 ---
 
 You can use [SoftHSMv2](https://github.com/opendnssec/SoftHSMv2) to implement and test software interacting with PKCS11 implementations. You can install it on macOS by running the following commands:

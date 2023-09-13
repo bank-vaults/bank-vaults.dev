@@ -2,6 +2,8 @@
 title: NitroKey HSM support (OpenSC)
 linktitle: Nitrokey
 weight: 100
+aliases:
+- /docs/hsm/nitrokey-opensc/
 ---
 
 [Nitrokey HSM](https://www.nitrokey.com/) is a USB HSM device based on the [OpenSC project](https://github.com/OpenSC/OpenSC). We are using NitroKey to develop real hardware-based HSM support for Bank-Vaults. This device is not a cryptographic accelerator, only key generation and the private key operations (sign and decrypt) are supported. Public key operations should be done by extracting the public key and working on the computer, and this is how it is implemented in Bank-Vaults. It is not possible to extract private keys from NitroKey HSM, the device is tamper-resistant.

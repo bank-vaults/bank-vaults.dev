@@ -45,3 +45,8 @@ h3[class*="type-"]::before {
 .main-lead {
   line-height: 1.5;
 }
+
+// Match fontsize of sections with code in their titles for CRD reference pages
+.td-content > h4 > em {
+	font-size: 87.5%;
+  }

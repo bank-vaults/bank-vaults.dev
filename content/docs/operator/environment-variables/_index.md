@@ -1,6 +1,8 @@
 ---
 title: Environment variables
 weight: 40
+aliases:
+- /docs/environment-variables/
 ---
 
 Add environment variables. See the [database secret engine]({{< relref "/docs/concepts/external-configuration/secrets-engines.md" >}}) section for usage. Further information:

@@ -1,0 +1,1 @@
+> Note: If you change the unseal configuration after initializing Vault, you may have to [move the unseal keys]({{< relref "/docs/concepts/unseal-keys/migrate-unseal-keys.md" >}}) from the old location to the new one, or reinitialize vault.

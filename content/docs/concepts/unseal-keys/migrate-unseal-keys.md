@@ -3,6 +3,8 @@ title: Migrate unseal keys between cloud providers
 weight: 5100
 ---
 
+{{< include-headless "note-unseal-config-change.md" >}}
+
 If you need to move your Vault instance from one provider or an external managed Vault, you have to:
 
 1. Retrieve and decrypt the unseal keys (and optionally the root token) in the Bank-Vaults format. For details, see {{% xref "/docs/concepts/unseal-keys/decrypt-root-token.md" %}}.

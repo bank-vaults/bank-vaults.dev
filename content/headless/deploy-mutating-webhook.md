@@ -23,7 +23,7 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
     kubectl label namespace vault-infra name=vault-infra
     ```
 
-1. Deploy the vault-secrets-webhook chart:
+1. Deploy the vault-secrets-webhook chart. If you want to customize the Helm chart, see the [list of `vault-secrets-webhook` Helm chart values](https://github.com/bank-vaults/vault-secrets-webhook/tree/main/deploy/charts/vault-secrets-webhook#configuration).
 
     ```bash
     helm upgrade --install --wait vault-secrets-webhook oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook --namespace vault-infra

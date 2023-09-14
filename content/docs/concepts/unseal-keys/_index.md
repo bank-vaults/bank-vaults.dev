@@ -42,6 +42,8 @@ After initialization, Vault remains in a *sealed state*. In sealed state no secr
 
 Vault data and the unseal keys live together: if you delete a Vault instance installed by the operator, or if you delete the Helm chart, all your data and the unseal keys to that initialized state should remain untouched. For details, see the [official documentation](https://developer.hashicorp.com/vault/docs/concepts/seal).
 
+{{< include-headless "note-unseal-config-change.md" >}}
+
 ## The Bank-Vaults Init and Unseal process
 
 Bank-Vaults runs in an endless loop and does the following:

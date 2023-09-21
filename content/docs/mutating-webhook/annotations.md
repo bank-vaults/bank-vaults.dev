@@ -16,7 +16,7 @@ The mutating webhook adds the following PodSpec, Secret, ConfigMap, and CRD anno
 `vault.security.banzaicloud.io/vault-tls-secret`|`""`|Name of the Kubernetes Secret holding the CA certificate for Vault|
 `vault.security.banzaicloud.io/vault-ignore-missing-secrets`|`"false"`|When enabled will only log warnings when Vault secrets are missing|
 `vault.security.banzaicloud.io/vault-env-passthrough`|`""`|Comma separated list of `VAULT_*` related environment variables to pass through to `vault-env` to the main process. E.g. `VAULT_ADDR,VAULT_ROLE`.|
-`vault.security.banzaicloud.io/vault-env-daemon`|`"false"`|Run `vault-env` as a daemon instead of replacing itself with the main process. For details, see {{< relref "/docs/mutating-webhook/deploy.md#daemon-mode" >}}.|
+`vault.security.banzaicloud.io/vault-env-daemon`|`"false"`|Run `vault-env` as a daemon instead of replacing itself with the main process. For details, see {{% xref "/docs/mutating-webhook/deploy.md#daemon-mode" %}}.|
 `vault.security.banzaicloud.io/vault-env-image`|`"banzaicloud/vault-env:latest"`|vault-env image|
 `vault.security.banzaicloud.io/vault-env-image-pull-policy`|`IfNotPresent`|the Pull policy for the vault-env container|
 `vault.security.banzaicloud.io/enable-json-log`|`"false"`|Log in JSON format in `vault-env`|

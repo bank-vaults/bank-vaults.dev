@@ -39,14 +39,3 @@ jobs:
 
       - name: Build
         run: hugo
-
-  verify:
-    name: Verify
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Block Merge Commits
-        uses: Morishiri/block-merge-commits-action@v1.0.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}

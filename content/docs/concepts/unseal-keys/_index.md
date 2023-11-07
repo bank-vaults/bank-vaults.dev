@@ -1,6 +1,6 @@
 ---
 title: Initialize Vault and store the root token and unseal keys
-linktitle: Initialization and unsealing
+linktitle: Init and unseal Vault
 weight: 100
 aliases:
 - /docs/unseal-keys/

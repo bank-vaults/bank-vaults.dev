@@ -16,7 +16,7 @@ Bank-Vaults provides the following tools for Hashicorp Vault to make its use eas
 
 ![Bank-Vaults overview](/docs/images/bank-vault-overview.png)
 
-Bank-Vaults also provides Helm charts for installing the various components, and a collection of scripts to support advanced features (for example, dynamic SSH).
+In addition, we also provide Helm charts for installing various components, as well as a collection of scripts to support advanced features (for example, dynamic SSH).
 
 {{% include-remote-mdsnippet "https://github.com/bank-vaults/vault-operator/raw/main/VERSIONS.md" %}}
 

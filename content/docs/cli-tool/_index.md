@@ -1,5 +1,5 @@
 ---
-title: bank-vaults CLI tool
+title: bank-vaults CLI
 weight: 700
 github_project_repo: "https://github.com/bank-vaults/bank-vaults"
 cascade:

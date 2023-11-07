@@ -1,5 +1,5 @@
 ---
-title: Concepts of Bank-Vaults
+title: Concepts
 weight: 15
 ---
 

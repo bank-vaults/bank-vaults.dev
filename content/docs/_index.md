@@ -7,7 +7,7 @@ aliases:
 
 {{% include-headless "bank-vaults-intro.md" %}}
 
-Bank-Vaults provides the following tools for Hashicorp Vault to make its use easier and more automated:
+We provide the following tools for Hashicorp Vault to make its usage easier and more automated:
 
 - [bank-vaults CLI]({{< relref "/docs/cli-tool/_index.md" >}}) makes working with Hashicorp Vault easier. For example, it can automatically initialize, unseal, and configure Vault.
 - [Vault operator]({{< relref "/docs/operator/_index.md" >}}) is a Kubernetes operator that helps you operate Hashicorp Vault in a Kubernetes environment.

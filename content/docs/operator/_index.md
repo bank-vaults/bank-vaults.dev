@@ -6,7 +6,7 @@ cascade:
     github_project_repo: "https://github.com/bank-vaults/vault-operator"
 ---
 
-The Vault operator builds on Bank-Vaults features such as:
+The [Vault operator](https://github.com/bank-vaults/vault-operator/) builds on Bank-Vaults features such as:
 
 - external, API based configuration (secret engines, auth methods, policies) to automatically re/configure a Vault cluster
 - automatic unsealing (AWS, GCE, Azure, Alibaba, Kubernetes Secrets (for dev purposes), Oracle)

@@ -11,7 +11,7 @@ Bank-Vaults provides the following tools for Hashicorp Vault to make its use eas
 
 - [bank-vaults CLI]({{< relref "/docs/cli-tool/_index.md" >}}) makes working with Hashicorp Vault easier. For example, it can automatically initialize, unseal, and configure Vault.
 - [Vault operator]({{< relref "/docs/operator/_index.md" >}}) is a Kubernetes operator that helps you operate Hashicorp Vault in a Kubernetes environment.
-- [Vault secrets webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}) is a mutating webhook for injecting secret directly into Kubernetes pods.
+- [Vault secrets webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}) is a mutating webhook for injecting secrets directly into Kubernetes pods, config maps and custom resources.
 - [Vault SDK]({{< relref "/docs/go-library/_index.md" >}}) is a Go client wrapper for the official Vault client with automatic token renewal, built-in Kubernetes support, and a dynamic database credential provider. It makes it easier to work with Vault when developing your own Go applications.
 
 ![Bank-Vaults overview](/docs/images/bank-vault-overview.png)

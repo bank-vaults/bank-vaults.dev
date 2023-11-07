@@ -6,7 +6,7 @@ cascade:
     github_project_repo: "https://github.com/bank-vaults/bank-vaults"
 ---
 
-The `bank-vaults` CLI tool is to help automate the setup and management of HashiCorp Vault.
+The [`bank-vaults` CLI](https://github.com/bank-vaults/bank-vaults/) tool is to help automate the setup and management of HashiCorp Vault.
 
 Features:
 

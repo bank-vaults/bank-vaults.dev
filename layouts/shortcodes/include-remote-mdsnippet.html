@@ -1,0 +1,13 @@
+{{/* Fetch a remote markdown file (that doesn't include frontmatter) and include it in the page. */}}
+{{ $url := .Get 0 }}
+
+{{/* Do not change the indentation of the following block */}}
+{{ with resources.GetRemote $url }}
+{{ with .Err }}
+    {{ errorf "%s" . }}
+{{ else }}
+{{- .Content | safeHTML -}}
+{{ end }}
+{{ else }}
+    {{ errorf "Unable to get remote resource %q" $url }}
+{{ end }}

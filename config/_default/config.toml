@@ -150,7 +150,7 @@ twitter = "calisti12"
   # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
   [[params.links.developer]]
     name = "GitHub"
-    url = "https://github.com/banzaicloud/bank-vaults"
+    url = "https://github.com/bank-vaults/bank-vaults"
     icon = "fab fa-github"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]

@@ -1,5 +1,5 @@
 ---
-title: Mutating Webhook
+title: Secret injection webhook
 weight: 300
 github_project_repo: "https://github.com/bank-vaults/vault-secrets-webhook"
 cascade:
@@ -8,9 +8,9 @@ cascade:
 
 ## How the webhook works - overview
 
-Kubernetes secrets are the standard way in which applications consume secrets and credentials on Kubernetes. Any secret that is securely stored in Vault and then unsealed for consumption eventually ends up as a Kubernetes secret. However, despite their name, Kubernetes secrets are not exactly secure, since they are only base64 encoded.
+Kubernetes secrets are the standard way in which applications consume secrets and credentials on Kubernetes. Any secret that is securely stored in Vault and then unsealed for consumption eventually ends up as a Kubernetes secret. However, despite their name, Kubernetes secrets are not secure, since they are only base64 encoded.
 
-The mutating webhook of Bank-Vaults is a solution that bypasses the Kubernetes secrets mechanism and injects the secrets retrieved from Vault directly into the Pods. Specifically, the mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions.
+The [secret injection webhook of Bank-Vaults](https://github.com/bank-vaults/vault-secrets-webhook/) is a mutating webhook that bypasses the Kubernetes secrets mechanism and injects the secrets retrieved from Vault directly into the Pods. Specifically, the mutating admission webhook injects (in a very non-intrusive way) an executable into containers of Deployments and StatefulSets. This executable can request secrets from Vault through special environment variable definitions.
 
 ![Kubernetes API requests](/img/vault-mutating-webhook-revisited.gif)
 

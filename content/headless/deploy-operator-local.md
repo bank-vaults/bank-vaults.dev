@@ -2,7 +2,7 @@
 ---
 ## Deploy a local Vault operator {#deploy-operator}
 
-This is the simplest scenario: you install the Vault operator on a simple cluster. The following commands install a single-node Vault instance that stores unseal and root tokens in Kubernetes secrets.
+This is the simplest scenario: you install the Vault operator on a simple cluster. The following commands install a single-node Vault instance that stores unseal and root tokens in Kubernetes secrets. If you want to customize the Helm chart, see the [list of `vault-operator` Helm chart values](https://github.com/bank-vaults/vault-operator/tree/main/deploy/charts/vault-operator#values).
 
 1. Install the Bank-Vaults operator:
 

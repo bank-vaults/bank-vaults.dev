@@ -1,12 +1,12 @@
 ---
-title: The CLI tool
+title: bank-vaults CLI
 weight: 700
 github_project_repo: "https://github.com/bank-vaults/bank-vaults"
 cascade:
     github_project_repo: "https://github.com/bank-vaults/bank-vaults"
 ---
 
-The `bank-vaults` CLI tool is to help automate the setup and management of HashiCorp Vault.
+The [`bank-vaults` CLI](https://github.com/bank-vaults/bank-vaults/) tool is to help automate the setup and management of HashiCorp Vault.
 
 Features:
 
@@ -19,8 +19,12 @@ Features:
   - Dev Mode (useful for `vault server -dev` dev mode Vault servers)
   - Files (backed by files, should be used only for development purposes)
 - Automatically unseals Vault with these keys
-- In addition to the [standard Vault configuration](https://developer.hashicorp.com/vault/docs/configuration), the operator and CLI can continuously configure Vault using an [external YAML/JSON configuration]({{< relref "/docs/external-configuration/_index.md" >}})
-  - If the configuration is updated Vault will be reconfigured
-  - It supports configuring Vault secret engines, plugins, auth methods, and policies
+- {{< include-headless "external-config-intro.md" >}}
+    <a name="example-external-vault-configuration" class="htmlanchor"></a>
 
-The `bank-vaults` CLI command needs certain [cloud permissions]({{< relref "/docs/cloud-permissions/_index.md" >}}) to function properly (init, unseal, configuration).
+    - If the configuration is updated, Vault will be reconfigured.
+    - The external configuration supports configuring Vault secret engines, plugins, auth methods, policies, and more.
+
+    For details, see {{% xref "/docs/concepts/external-configuration/_index.md" %}}.
+
+The `bank-vaults` CLI command needs certain [cloud permissions]({{< relref "/docs/concepts/cloud-permissions/_index.md" >}}) to function properly (init, unseal, configuration).

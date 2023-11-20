@@ -47,6 +47,7 @@
   <a href="{{ $issuesURL }}" class="td-page-meta--issue" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> {{ T "post_create_issue" }}</a>
   {{ with $gh_project_repo -}}
     {{ $project_issueURL := printf "%s/issues/new" . -}}
+    <a href="{{ $gh_project_repo }}" class="td-page-meta--project-link" target="_blank" rel="noopener"><i class="fab fa-github fa-fw"></i> Visit project repository</a>
     <a href="{{ $project_issueURL }}" class="td-page-meta--project-issue" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> {{ T "post_create_project_issue" }}</a>
   {{ end -}}
 

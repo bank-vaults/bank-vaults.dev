@@ -1,12 +1,12 @@
 ---
-title: Operator
+title: Vault operator
 weight: 200
 github_project_repo: "https://github.com/bank-vaults/vault-operator"
 cascade:
     github_project_repo: "https://github.com/bank-vaults/vault-operator"
 ---
 
-The Vault operator builds on Bank-Vaults features such as:
+The [Vault operator](https://github.com/bank-vaults/vault-operator/) builds on Bank-Vaults features such as:
 
 - external, API based configuration (secret engines, auth methods, policies) to automatically re/configure a Vault cluster
 - automatic unsealing (AWS, GCE, Azure, Alibaba, Kubernetes Secrets (for dev purposes), Oracle)
@@ -18,7 +18,7 @@ The operator flow is the following:
 
 The source code can be found in the [vault-operator](https://github.com/bank-vaults/vault-operator/tree/main/deploy/charts/vault-operator) repository.
 
-The operator requires the following [cloud permissions]({{< relref "/docs/cloud-permissions/_index.md" >}}).
+The operator requires the following [cloud permissions]({{< relref "/docs/concepts/cloud-permissions/_index.md" >}}).
 
 {{< include-headless "deploy-operator-local.md"  >}}
 
@@ -39,7 +39,7 @@ In a production environment you want to run Vault as a cluster. The following CR
     {{< include-headless "install-operator-cr.md" >}}
 
 {{< warning >}}
-Make sure to set up a solution for backing up the storage backend to prevent data loss. Bank-Vaults doesn't do this automatically. We recommend using [Velero]({{< relref "/docs/backup/_index.md" >}}) for backups.
+Make sure to set up a solution for backing up the storage backend to prevent data loss. Bank-Vaults doesn't do this automatically. We recommend using [Velero]({{< relref "/docs/operator/backup/_index.md" >}}) for backups.
 {{< /warning >}}
 
 ## Pod anti-affinity

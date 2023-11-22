@@ -22,7 +22,7 @@ To monitor the webhook with Prometheus and Grafana, complete the following steps
 
     ```bash
     helm upgrade --wait --install vault-secrets-webhook \
-        banzaicloud-stable/vault-secrets-webhook \
+        oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook \
         --namespace vault-infra \
         --set metrics.enabled=true \
         --set metrics.serviceMonitor.enabled={}

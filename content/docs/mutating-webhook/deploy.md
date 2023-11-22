@@ -25,8 +25,8 @@ helm upgrade --install mysql stable/mysql --set mysqlRootPassword=your-root-pass
 # Deploy the vault-operator and the vault-secrets-webhook
 kubectl create namespace vault-infra
 kubectl label namespace vault-infra name=vault-infra
-helm upgrade --namespace vault-infra --install vault-operator banzaicloud-stable/vault-operator
-helm upgrade --namespace vault-infra --install vault-secrets-webhook banzaicloud-stable/vault-secrets-webhook
+helm upgrade --namespace vault-infra --install vault-operator oci://ghcr.io/bank-vaults/helm-charts/vault-operator
+helm upgrade --namespace vault-infra --install vault-secrets-webhook oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook
 
 # Create a Vault instance with MySQL storage and a configured dynamic database secrets backend
 kubectl apply -f operator/deploy/rbac.yaml

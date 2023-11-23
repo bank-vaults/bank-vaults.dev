@@ -1,0 +1,37 @@
+name: 🐛 Bug report
+description: Report a bug to help us improve the Bank-Vaults Documentation
+labels: [kind/bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting a bug report!
+
+        Please fill out the template below to make it easier to debug your problem.
+
+        If you are not sure if it is a bug or not, you can contact us via the available [support channels](https://bank-vaults.dev/docs/support/).
+  - type: checkboxes
+    attributes:
+      label: Preflight Checklist
+      description: Please ensure you've completed all of the following.
+      options:
+        - label: I have searched the [issue tracker](https://www.github.com/bank-vaults/bank-vaults.dev/issues) for an issue that matches the one I want to file, without success.
+          required: true
+        - label: I am not looking for support or already pursued the available [support channels](https://github.com/bank-vaults/bank-vaults.dev/issues/new/choose) without success.
+          required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: A clear description of what actually happens.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional Information
+      description: Links? References? Anything that will give us more context about the issue that you are encountering!

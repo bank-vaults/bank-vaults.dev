@@ -1,6 +1,6 @@
 name: 🐛 Bug report
 description: Report a bug to help us improve the Bank-Vaults Documentation
-labels: [bug]
+labels: [kind/bug]
 body:
   - type: markdown
     attributes:
@@ -9,7 +9,7 @@ body:
 
         Please fill out the template below to make it easier to debug your problem.
 
-        If you are not sure if it is a bug or not, you can contact us via the available [support channels](https://github.com/bank-vaults/bank-vaults.dev/issues/new/choose).
+        If you are not sure if it is a bug or not, you can contact us via the available [support channels](https://bank-vaults.dev/docs/support/).
   - type: checkboxes
     attributes:
       label: Preflight Checklist

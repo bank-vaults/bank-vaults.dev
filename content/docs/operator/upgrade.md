@@ -1,5 +1,5 @@
 ---
-title: Upgrade Vault operator
+title: Upgrade strategies
 weight: 50
 aliases:
 - /docs/operator/upgrade-vault/

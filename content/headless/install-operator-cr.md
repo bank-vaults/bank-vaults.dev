@@ -13,5 +13,5 @@ vault.vault.banzaicloud.com/vault created
 > Note: If needed, you can install the latest CustomResource from the main branch, but that's usually under development and might not be stable.
 >
 > ```bash
-> kubectl apply -f https://raw.githubusercontent.com/bank-vaults/vault-operator/main/deploy/examples/cr-raft.yaml
+> kubectl kustomize https://github.com/bank-vaults/vault-operator/deploy/crd | kubectl apply -f -
 > ```

@@ -15,7 +15,7 @@ Submitting pull requests and code changes is not the only way to contribute:
 
 - If you use Bank-Vaults in a production environment, add yourself to the [adopters list](https://github.com/bank-vaults/bank-vaults/blob/master/ADOPTERS.md).
 - Help new users with issues they may encounter on the GitHub Issues pages of our repositories
-- Participate in discussions in the [#bank-vaults community Slack channel](https://eti.cisco.com/slack) or in [GitHub Discussions](https://github.com/orgs/bank-vaults/discussions)
+- Participate in discussions in the [#bank-vaults community Slack channel](https://outshift.com/slack) or in [GitHub Discussions](https://github.com/orgs/bank-vaults/discussions)
 - Support the development of this project and [star our GitHub repos](https://github.com/bank-vaults)!
 - Report bugs or request features in [GitHub repos](https://github.com/bank-vaults)
 - Review and update the existing content of our [documentation](https://bank-vaults.dev) with up-to-date instructions and code samples

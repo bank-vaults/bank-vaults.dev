@@ -155,7 +155,7 @@ twitter = "calisti12"
     desc = "Get involved with Bank-Vaults development"
   [[params.links.developer]]
     name = "Slack"
-    url = "https://outshift.slack.com"
+    url = "/docs/community/"
     icon = "fab fa-slack"
     desc = "Chat with the project developers"
   #[[params.links.developer]]
@@ -185,7 +185,7 @@ twitter = "calisti12"
     url = "/docs/"
   [[menu.main]]
     name = "Community"
-    url = "https://outshift.slack.com"
+    url = "/docs/community/"
     pre = "<i class='fab fa-slack pr-2'></i>"
     weight = 150
 

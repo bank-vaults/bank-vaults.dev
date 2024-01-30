@@ -173,11 +173,11 @@ twitter = "calisti12"
     weight = -110
     pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/bank-vaults"
-#  [[menu.main]]
-#    name = "Blog"
-#    weight = -120
-#    pre = "<i class='fas fa-blog pr-2'></i>"
-#    url = "https://github.com/bank-vaults/"
+  [[menu.main]]
+    name = "Blog"
+    weight = 200
+    pre = "<i class='fas fa-blog pr-2'></i>"
+    url = "/docs/blog/"
   [[menu.main]]
     name = "Documentation"
     weight = -100

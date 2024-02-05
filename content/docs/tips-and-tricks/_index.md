@@ -3,7 +3,7 @@ title: Tips and tricks
 weight: 1150
 ---
 
-The following section lists some questions, problems, and tips that came up on the [Bank-Vaults Slack channel](https://join.slack.com/t/emergingtechcommunity/shared_invite/zt-1rw2jl0ht-yNdyFgBFlc%7Eyzo9AnE4FbA).
+The following section lists some questions, problems, and tips.
 
 ## Login to the Vault web UI
 

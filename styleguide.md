@@ -186,3 +186,9 @@ This project has the following main customizations:
 - Some custom shortcodes in `layouts/shortcodes/`
 - Custom css classes and variables are in `assets/scss/_styles_project.scss` and `assets/scss/_variables_project.scss`
 - Customized package for the prism.js code highlighter package to include download button for code snippet files included with the `include-code` shortcode.
+
+## Getting help
+
+With questions about styling, theme customizations, and the Docsy theme in general, [open a discussion on the Docsy GitHub](https://github.com/google/docsy/discussions/).
+
+With Hugo-specific questions, use the [Hugo forum](https://discourse.gohugo.io/).

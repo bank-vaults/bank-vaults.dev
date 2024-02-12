@@ -565,10 +565,10 @@ VaultConfigurerLabels define a set of Kubernetes labels that will be added to al
 #### `vaultConfigurerPodSpec` (_[EmbeddedPodSpec](#embeddedpodspec)_)
 
 VaultConfigurerPodSpec is a Kubernetes Pod specification snippet (`spec:` block) that will be merged into the operator generated Vault Configurer Pod specification. default:
-#### `config` (_[JSON](#json)_)
+#### `config` (_JSON_)
 
 Config is the Vault Server configuration. See https://www.vaultproject.io/docs/configuration/ for more details. default:
-#### `externalConfig` (_[JSON](#json)_)
+#### `externalConfig` (_JSON_)
 
 ExternalConfig is higher level configuration block which instructs the Bank Vaults Configurer to configure Vault through its API, thus allows setting up: - Secret Engines - Auth Methods - Audit Devices - Plugin Backends - Policies - Startup Secrets (Bank Vaults feature)
 

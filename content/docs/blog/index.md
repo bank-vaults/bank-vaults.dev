@@ -8,7 +8,7 @@ Currently we don't publish blog posts on this site, just provide links to Bank-V
 ## Inject secrets into your pods in a continuous way
 ### By Andras Jaky
 
-Vault Secrets Reloader provides an easily configurable Kubernetes Controller that can trigger a new rollout for watched workloads if a secret they use has an updated version in Vault, leaving the rest of the work to the Webhook. [Read more](https://techblog.cisco.com/blog/inject-secrets-into-your-pods-in-a-continuous-way)
+Vault Secrets Reloader provides an easily configurable Kubernetes Controller that can trigger a new rollout for watched workloads if a secret they use has an updated version in Vault, leaving the rest of the work to the Webhook. <!-- [Read more](https://techblog.cisco.com/blog/inject-secrets-into-your-pods-in-a-continuous-way)-->[Read more](https://github.com/bank-vaults/vault-secrets-reloader/)
 
 ## Better secret management with Bank-Vaults Secret Sync
 ### By Ramiz Polic
@@ -17,4 +17,4 @@ This post shows you how to use different secret service providers using the new 
 
 ## Banzai Cloud blog posts
 
-The developers of Banzai Cloud wrote a lot about Bank-Vaults. Their posts are now available on the [Cisco Tech Blog](https://techblog.cisco.com/tags/bank-vaults).
+The developers of Banzai Cloud wrote a lot about Bank-Vaults. Their posts are now available on the [Outshift by Cisco Blog](https://outshift.cisco.com/blog/topic/bank-vaults-).

@@ -61,13 +61,17 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 
 ### PodSpec annotations {#podspec}
 
-|Annotation    |default     |Explanation|
-|--------------|------------|------------|
-vault.security.banzaicloud.io/vault-addr|Same as VAULT_ADDR above||
-vault.security.banzaicloud.io/vault-tls-secret|Same as VAULT_TLS_SECRET above||
-vault.security.banzaicloud.io/vault-agent-configmap|""|A configmap name which holds the vault agent configuration|
-vault.security.banzaicloud.io/vault-agent-once|false|do not run vault-agent in daemon mode, useful for kubernetes jobs|
-vault.security.banzaicloud.io/vault-agent-share-process-namespace|Same as VAULT_AGENT_SHARE_PROCESS_NAMESPACE above|
-vault.security.banzaicloud.io/vault-agent-cpu|"100m"|Specify the vault-agent container CPU resource limit|
-vault.security.banzaicloud.io/vault-agent-memory|"128Mi"|Specify the vault-agent container memory resource limit|
-vault.security.banzaicloud.io/vault-configfile-path|"/vault/secrets"|Mount path of Vault Agent rendered files|
+| Annotation                                                        | default                                           | Explanation                                                                             |
+|-------------------------------------------------------------------|---------------------------------------------------|-----------------------------------------------------------------------------------------|
+| vault.security.banzaicloud.io/vault-addr                          | Same as VAULT_ADDR above                          |                                                                                         |
+| vault.security.banzaicloud.io/vault-tls-secret                    | Same as VAULT_TLS_SECRET above                    |                                                                                         |
+| vault.security.banzaicloud.io/vault-agent-configmap               | ""                                                | A configmap name which holds the vault agent configuration                              |
+| vault.security.banzaicloud.io/vault-agent-once                    | false                                             | do not run vault-agent in daemon mode, useful for kubernetes jobs                       |
+| vault.security.banzaicloud.io/vault-agent-share-process-namespace | Same as VAULT_AGENT_SHARE_PROCESS_NAMESPACE above |                                                                                         |
+| vault.security.banzaicloud.io/vault-agent-cpu                     | "100m"                                            | Specify the vault-agent container CPU resource limit                                    |
+| vault.security.banzaicloud.io/vault-agent-memory                  | "128Mi"                                           | Specify the vault-agent container memory resource limit                                 |
+| vault.security.banzaicloud.io/vault-agent-cpu-request             | "100m"                                            | Specify the vault-agent container CPU resource request                                  |
+| vault.security.banzaicloud.io/vault-agent-cpu-limit               | "100m"                                            | Specify the vault-agent container CPU resource limit (Overridden by vault-agent-cpu)    |
+| vault.security.banzaicloud.io/vault-agent-memory-request          | "128Mi"                                           | Specify the vault-agent container memory resource request                               |
+| vault.security.banzaicloud.io/vault-agent-memory-limit            | "128Mi"                                           | Specify the vault-agent container memory resource limit (Overridden by vault-agent-cpu) |
+| vault.security.banzaicloud.io/vault-configfile-path               | "/vault/secrets"                                  | Mount path of Vault Agent rendered files                                                |

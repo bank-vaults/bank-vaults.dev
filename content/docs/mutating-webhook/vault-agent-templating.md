@@ -25,8 +25,8 @@ This document assumes the following.
 
 - You have a working Kubernetes cluster which has:
 
-    - a working Vault installation
-    - a working installation of the [mutating webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}).
+  - a working Vault installation
+  - a working installation of the [mutating webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}).
 
 - You have a working knowledge of Kubernetes.
 - You can apply Deployments or PodSpec's to the cluster.
@@ -51,23 +51,27 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 
 ### Defaults via environment variables {#defaults}
 
-|Variable      |default     |Explanation|
-|--------------|------------|------------|
-|VAULT_IMAGE|hashicorp/vault:latest| the vault image to use for the sidecar container|
-|VAULT_IMAGE_PULL_POLICY|IfNotPresent| The pull policy for the vault agent container|
-|VAULT_ADDR    |https://127.0.0.1:8200|Kubernetes service Vault endpoint URL|
-|VAULT_TLS_SECRET|""|supply a secret with the vault TLS CA so TLS can be verified|
-|VAULT_AGENT_SHARE_PROCESS_NAMESPACE|Kubernetes version <1.12 default off, 1.12 or higher default on|ShareProcessNamespace override|as above|
+| Variable                            | Default                                                         | Explanation                                                  |
+|-------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------|
+| VAULT_IMAGE                         | hashicorp/vault:latest                                          | The vault image to use for the sidecar container             |
+| VAULT_IMAGE_PULL_POLICY             | IfNotPresent                                                    | The pull policy for the vault agent container                |
+| VAULT_ADDR                          | <https://127.0.0.1:8200>                                        | Kubernetes service Vault endpoint URL                        |
+| VAULT_TLS_SECRET                    | ""                                                              | Supply a secret with the vault TLS CA so TLS can be verified |
+| VAULT_AGENT_SHARE_PROCESS_NAMESPACE | Kubernetes version <1.12 default off, 1.12 or higher default on | ShareProcessNamespace override                               |
 
 ### PodSpec annotations {#podspec}
 
-|Annotation    |default     |Explanation|
-|--------------|------------|------------|
-vault.security.banzaicloud.io/vault-addr|Same as VAULT_ADDR above||
-vault.security.banzaicloud.io/vault-tls-secret|Same as VAULT_TLS_SECRET above||
-vault.security.banzaicloud.io/vault-agent-configmap|""|A configmap name which holds the vault agent configuration|
-vault.security.banzaicloud.io/vault-agent-once|false|do not run vault-agent in daemon mode, useful for kubernetes jobs|
-vault.security.banzaicloud.io/vault-agent-share-process-namespace|Same as VAULT_AGENT_SHARE_PROCESS_NAMESPACE above|
-vault.security.banzaicloud.io/vault-agent-cpu|"100m"|Specify the vault-agent container CPU resource limit|
-vault.security.banzaicloud.io/vault-agent-memory|"128Mi"|Specify the vault-agent container memory resource limit|
-vault.security.banzaicloud.io/vault-configfile-path|"/vault/secrets"|Mount path of Vault Agent rendered files|
+| Annotation                                                        | Default                                           | Explanation                                                                             |
+|-------------------------------------------------------------------|---------------------------------------------------|-----------------------------------------------------------------------------------------|
+| vault.security.banzaicloud.io/vault-addr                          | Same as VAULT_ADDR above                          | ""                                                                                      |
+| vault.security.banzaicloud.io/vault-tls-secret                    | Same as VAULT_TLS_SECRET above                    | ""                                                                                      |
+| vault.security.banzaicloud.io/vault-agent-configmap               | ""                                                | A configmap name which holds the vault agent configuration                              |
+| vault.security.banzaicloud.io/vault-agent-once                    | False                                             | Do not run vault-agent in daemon mode, useful for kubernetes jobs                       |
+| vault.security.banzaicloud.io/vault-agent-share-process-namespace | Same as VAULT_AGENT_SHARE_PROCESS_NAMESPACE above | ""                                                                                      |
+| vault.security.banzaicloud.io/vault-agent-cpu                     | 100m                                              | Specify the vault-agent container CPU resource limit                                    |
+| vault.security.banzaicloud.io/vault-agent-memory                  | 128Mi                                             | Specify the vault-agent container memory resource limit                                 |
+| vault.security.banzaicloud.io/vault-agent-cpu-request             | 100m                                              | Specify the vault-agent container CPU resource request                                  |
+| vault.security.banzaicloud.io/vault-agent-cpu-limit               | 100m                                              | Specify the vault-agent container CPU resource limit (Overridden by vault-agent-cpu)    |
+| vault.security.banzaicloud.io/vault-agent-memory-request          | 128Mi                                             | Specify the vault-agent container memory resource request                               |
+| vault.security.banzaicloud.io/vault-agent-memory-limit            | 128Mi                                             | Specify the vault-agent container memory resource limit (Overridden by vault-agent-cpu) |
+| vault.security.banzaicloud.io/vault-configfile-path               | /vault/secrets                                    | Mount path of Vault Agent rendered files                                                |

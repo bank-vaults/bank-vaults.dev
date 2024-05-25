@@ -9,4 +9,5 @@ IgnoreURLs:
 - ^https?://localhost\b
 - ^https://github\.com/bank-vaults/bank-vaults\.dev/commit/
 - ^https://github\.com/orgs/bank-vaults/projects/
+- ^https://www.nitrokey.com/
 TestFilesConcurrently: false

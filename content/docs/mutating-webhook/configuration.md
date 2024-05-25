@@ -144,7 +144,7 @@ In this case, an init-container will be injected into the given Pod. This contai
 
 Currently, the Kubernetes Service Account-based Vault authentication mechanism is used by `vault-env`, so it requests a Vault token based on the Service Account of the container it is injected into.
 
-- [GCP](https://developer.hashicorp.com/vault/docs/auth/gcp) and general [OIDC/JWT](https://developer.hashicorp.com/vault/docs/auth/jwt) authentication methods are supported as well, see the [example manifest](https://github.com/bank-vaults/vault-operator/blob/main/test/deploy/test-deployment-gcp.yaml).
+- [GCP](https://developer.hashicorp.com/vault/docs/auth/gcp) and general [OIDC/JWT](https://developer.hashicorp.com/vault/docs/auth/jwt) authentication methods are supported as well, see the [example manifest](https://github.com/bank-vaults/secrets-webhook/blob/main/examples/test-deployment-gcp.yaml).
 - Kubernetes [Projected Service Account Tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection) work too, as shown in [this example](https://github.com/bank-vaults/vault-operator/blob/main/test/oidc-pod.yaml).
 
 Kubernetes 1.12 introduced a feature called [APIServer dry-run](https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/) which became beta as of 1.13. This feature requires some changes in webhooks with side effects. Vault mutating admission webhook is `dry-run aware`.

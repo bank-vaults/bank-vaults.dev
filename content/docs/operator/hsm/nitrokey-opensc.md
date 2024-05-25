@@ -202,8 +202,8 @@ Since the HSM is a hardware device connected to a physical node, Bank-Vaults has
     time="2020-03-04T13:32:29Z" level=info msg="joining leader vault..."
     time="2020-03-04T13:32:29Z" level=info msg="vault metrics exporter enabled: :9091/metrics"
     [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
-    - using env:	export GIN_MODE=release
-    - using code:	gin.SetMode(gin.ReleaseMode)
+    - using env:  export GIN_MODE=release
+    - using code: gin.SetMode(gin.ReleaseMode)
 
     [GIN-debug] GET    /metrics                  --> github.com/gin-gonic/gin.WrapH.func1 (3 handlers)
     [GIN-debug] Listening and serving HTTP on :9091

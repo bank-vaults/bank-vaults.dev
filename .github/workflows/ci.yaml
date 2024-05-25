@@ -77,6 +77,7 @@ jobs:
         run: hugo
 
       - name: Test HTML
+        # https://github.com/wjdp/htmltest-action/
         continue-on-error: false # <- Set to true if run shouldn't fail with broken links
         uses: wjdp/htmltest-action@master
         with:

@@ -55,7 +55,7 @@ For the webhook to detect that it will need to mutate or change a PodSpec, add t
 |-------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------|
 | VAULT_IMAGE                         | hashicorp/vault:latest                                          | The vault image to use for the sidecar container             |
 | VAULT_IMAGE_PULL_POLICY             | IfNotPresent                                                    | The pull policy for the vault agent container                |
-| VAULT_ADDR                          | <https://127.0.0.1:8200>                                        | Kubernetes service Vault endpoint URL                        |
+| VAULT_ADDR                          | https://127.0.0.1:8200                                          | Kubernetes service Vault endpoint URL                        |
 | VAULT_TLS_SECRET                    | ""                                                              | Supply a secret with the vault TLS CA so TLS can be verified |
 | VAULT_AGENT_SHARE_PROCESS_NAMESPACE | Kubernetes version <1.12 default off, 1.12 or higher default on | ShareProcessNamespace override                               |
 

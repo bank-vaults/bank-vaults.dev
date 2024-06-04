@@ -119,13 +119,13 @@ _Appears in:_
 
 #### `name` (_string_)
 
-Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
+Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 #### `labels` (_object (keys:string, values:string)_)
 
-Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 #### `annotations` (_object (keys:string, values:string)_)
 
-Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 
 
 ### EmbeddedPersistentVolumeClaim
@@ -565,12 +565,13 @@ VaultConfigurerLabels define a set of Kubernetes labels that will be added to al
 #### `vaultConfigurerPodSpec` (_[EmbeddedPodSpec](#embeddedpodspec)_)
 
 VaultConfigurerPodSpec is a Kubernetes Pod specification snippet (`spec:` block) that will be merged into the operator generated Vault Configurer Pod specification. default:
-#### `config` (_[JSON](#json)_)
+#### `config` (_JSON_)
 
 Config is the Vault Server configuration. See https://www.vaultproject.io/docs/configuration/ for more details. default:
-#### `externalConfig` (_[JSON](#json)_)
+#### `externalConfig` (_JSON_)
 
-ExternalConfig is higher level configuration block which instructs the Bank Vaults Configurer to configure Vault through its API, thus allows setting up: - Secret Engines - Auth Methods - Audit Devices - Plugin Backends - Policies - Startup Secrets (Bank Vaults feature) A documented example: https://github.com/bank-vaults/vault-operator/blob/main/vault-config.yml default:
+ExternalConfig is higher level configuration block which instructs the Bank Vaults Configurer to configure Vault through its API, thus allows setting up: - Secret Engines - Auth Methods - Audit Devices - Plugin Backends - Policies - Startup Secrets (Bank Vaults feature)
+
 #### `unsealConfig` (_[UnsealConfig](#unsealconfig)_)
 
 UnsealConfig defines where the Vault cluster's unseal keys and root token should be stored after initialization. See the type's documentation for more details. Only one method may be specified. default: Kubernetes Secret based unsealing

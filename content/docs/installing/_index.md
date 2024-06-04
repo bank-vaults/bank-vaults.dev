@@ -4,12 +4,12 @@ weight: 10
 ---
 
 Bank-Vaults is a swiss-army knife with multiple manifestations, so the first steps depend on what you want to achieve.
-Check one of the following guides to get an overview:
+<!-- Check one of the following guides to get an overview:
 
 - [Dynamic credentials with Vault using Kubernetes Service Accounts](https://techblog.cisco.com/vault-dynamic-secrets/)
 - [Vault Operator](https://techblog.cisco.com/vault-operator/)
 - [Vault unseal flow with KMS](https://techblog.cisco.com/vault-unsealing/)
-- [Inject secrets directly into pods from Vault](https://techblog.cisco.com/inject-secrets-into-pods-vault-revisited/)
+- [Inject secrets directly into pods from Vault](https://techblog.cisco.com/inject-secrets-into-pods-vault-revisited/) -->
 
 ## Deploy with Helm
 

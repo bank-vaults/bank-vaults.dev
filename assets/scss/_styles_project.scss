@@ -42,8 +42,32 @@ h3[class*="type-"]::before {
   text-transform: uppercase;
 }
 
+// Main-page specific customizations
 .main-lead {
   line-height: 1.5;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between rows */
+  padding: 20px; /* Optional padding for container */
+}
+.trustedby-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between columns */
+}
+.trustedby-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trustedby-img {
+  max-width: 80%;
+  height: auto;
+  object-fit: contain; /* Ensure images maintain aspect ratio */
 }
 
 // Match fontsize of sections with code in their titles for CRD reference pages

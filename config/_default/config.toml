@@ -19,10 +19,11 @@ enableGitInfo = true
 [languages]
 [languages.en]
 title = "Bank-Vaults"
-description = "Documentation for the Bank-Vaults"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
+  [language.en.params]
+    description = "Documentation for the Bank-Vaults"
 
 [outputs]
     home = ["HTML", "print"]
@@ -47,7 +48,7 @@ twitter = "calisti12"
 
   email = "mailto:team@bank-vaults.dev"
 
-  copyright = "Bank-Vaults maintainers"
+  copyright = "Bank-Vaults maintainers | "
 
   relativeURLs = true
 
@@ -70,6 +71,7 @@ twitter = "calisti12"
   # The version number for the version of the docs represented in this doc set.
   # Used in the "version-banner" partial to display a version number for the
   # current doc set.
+
   version = "4.0.0"
   version_menu_canonicallinks = true
 

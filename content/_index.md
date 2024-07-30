@@ -36,3 +36,54 @@ In case you need help, you can find us in our Slack channel.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
+
+{{% blocks/lead color="blue" %}}
+<div class="mb-4 h2">
+  Trusted and supported by
+</div>
+<div class="container">
+    <div class="trustedby-row">
+      <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/wildlifestudios-logo.webp" alt="Wildlife Studios logo" class="trustedby-img" />
+        </a>
+      </div>
+      <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/cisco-logo.webp" alt="Cisco logo" class="trustedby-img" />
+        </a>
+      </div>
+	  <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/vonage-logo.webp" alt="Vonage logo" class="trustedby-img" />
+        </a>
+      </div>
+    </div>
+    <div class="trustedby-row">
+      <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/triplelift-logo.webp" alt="TripleLift logo" class="trustedby-img" />
+        </a>
+      </div>
+      <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/postman-logo.webp" alt="Postman logo" class="trustedby-img" />
+        </a>
+      </div>
+      <div class="trustedby-col">
+        <a href="https://github.com/bank-vaults/bank-vaults/blob/main/ADOPTERS.md">
+          <img src="/adopters/alvaria-logo.webp" alt="Alvaria logo" class="trustedby-img" />
+        </a>
+      </div>
+    </div>
+</div>
+
+{{% /blocks/lead %}}
+
+{{% blocks/lead color="dark" %}}
+<div class="lead-text">
+<p>We are a <a href="https://www.cncf.io/projects/">Cloud Native Computing Foundation sandbox project.</a></p>
+
+<a href="https://www.cncf.io/" target="_blank"><img src="https://raw.githubusercontent.com/cncf/artwork/master/other/cncf/horizontal/white/cncf-white.svg" alt="CNCF banner" width="33%"></img></a>
+</div>
+{{% /blocks/lead %}}

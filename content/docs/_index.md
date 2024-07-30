@@ -24,3 +24,7 @@ In addition, we also provide Helm charts for installing various components, as w
 
 - If you are new to **Bank-Vaults**, begin with the [getting started guide]({{<relref "installing">}}).
 - If you need help using Bank-Vaults, see the [Support page]({{< relref "/docs/support.md" >}}) for ways to contact us.
+
+## Support
+
+If you encounter problems while using Bank-Vaults that the documentation does not address, you can [open an issue](https://github.com/bank-vaults/bank-vaults/issues) or write to us on [Slack]({{< relref "/docs/support.md" >}}).

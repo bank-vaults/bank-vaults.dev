@@ -48,7 +48,7 @@
 
 <!-- Add prefix/suffix to $text if $opts begins with "eof" -->
 {{ if in $opts "eof" }}
-  {{- $text = ( print "kubectl create -f - <<EOF\n" $text "\nEOF") -}}
+  {{- $text = ( print "kubectl create -f - <<\"EOF\"\n" $text "\nEOF") -}}
   {{ $opts = replace $opts "eof" "" }}
   {{ $is_eof = true }}
 {{ end }}

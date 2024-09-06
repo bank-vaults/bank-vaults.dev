@@ -77,7 +77,39 @@ You can deploy the Vault Secrets Webhook using Helm. Note that:
 
 1. Apply the following deployment to your cluster. The webhook will mutate this deployment because it has an environment variable having a value which is a reference to a path in Vault:
 
-    {{< include-code "webhook-demo-deployment.yaml" "yaml" "eof" >}}
+    ```yaml
+    kubectl apply -f - <<"EOF"
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: vault-test
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/name: vault
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: vault
+          annotations:
+            vault.security.banzaicloud.io/vault-addr: "https://vault:8200" # optional, the address of the Vault service, default values is https://vault:8200
+            vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
+            vault.security.banzaicloud.io/vault-skip-verify: "false" # optional, skip TLS verification of the Vault server certificate
+            vault.security.banzaicloud.io/vault-tls-secret: "vault-tls" # optional, the name of the Secret where the Vault CA cert is, if not defined it is not mounted
+            vault.security.banzaicloud.io/vault-agent: "false" # optional, if true, a Vault Agent will be started to do Vault authentication, by default not needed and vault-env will do Kubernetes Service Account based Vault authentication
+            vault.security.banzaicloud.io/vault-path: "kubernetes" # optional, the Kubernetes Auth mount path in Vault the default value is "kubernetes"
+        spec:
+          serviceAccountName: default
+          containers:
+          - name: alpine
+            image: alpine
+            command: ["sh", "-c", "echo $AWS_SECRET_ACCESS_KEY && echo going to sleep... && sleep 10000"]
+            env:
+            - name: AWS_SECRET_ACCESS_KEY
+              value: vault:secret/data/demosecret/aws#AWS_SECRET_ACCESS_KEY
+    EOF
+    ```
 
     Expected output:
 

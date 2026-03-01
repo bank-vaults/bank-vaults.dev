@@ -85,7 +85,7 @@ jobs:
           path: public
 
       - name: Archive htmltest results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: htmltest-report
           path: tmp/.htmltest/htmltest.log

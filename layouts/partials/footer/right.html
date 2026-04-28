@@ -1,7 +1,6 @@
 <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-    <small class="text-white"><a class="text-white" href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage</a> | </small>
-    {{ with .Site.Params.copyright }}<small class="text-white">&copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>{{ end }}
-    {{ with .Site.Params.privacy_policy }}<small class="ml-1"><a href="{{ . }}" target="_blank" rel="noopener">{{ T "footer_privacy_policy" }}</a></small>{{ end }}
+        {{ with .Site.Params.copyright }}<small class="text-white">Copyright {{ .}} a Series of LF Projects, LLC</small>{{ end }}
+        <small class="text-white"><br/>For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" class="text-white" target="_blank" rel="noopener">lfprojects.org/policies/</a>.</small>
     {{ if not .Site.Params.ui.footer_about_disable }}
       {{ with .Site.GetPage "about" }}<p class="mt-2"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}
     {{ end }}

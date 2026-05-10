@@ -23,7 +23,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Set up Hugo
-        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+        uses: peaceiris/actions-hugo@cf03c8dbc2af2ee77af72f7b8c9f61b797dc7d38 # v3.2.0
         with:
           hugo-version: '0.110.0'
           extended: true
@@ -55,7 +55,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Set up Hugo
-        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+        uses: peaceiris/actions-hugo@cf03c8dbc2af2ee77af72f7b8c9f61b797dc7d38 # v3.2.0
         with:
           hugo-version: '0.110.0'
           extended: true

@@ -37,13 +37,15 @@ The webhook also supports inline mutation when your secret needs to be replaced 
 ```yaml
 apiVersion: v1
 kind: Secret
+type: Opaque
 metadata:
   name: aws-key-secret
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "https://vault.default:8200"
 data:
   config.yaml: >
-foo: bar
-secret: ${vault:secret/data/mysecret#supersecret}
-type: Opaque
+    foo: bar
+    secret: ${vault:secret/data/mysecret#supersecret}
 ```
 
 This works also for ConfigMap resources when `configMapMutation: true` is set in the webhook's Helm chart.

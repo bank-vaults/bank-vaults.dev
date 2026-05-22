@@ -13,7 +13,7 @@ Vault Secrets Reloader provides an easily configurable Kubernetes Controller tha
 ## Better secret management with Bank-Vaults Secret Sync
 ### By Ramiz Polic
 
-This post shows you how to use different secret service providers using the new [Secret Sync](https://github.com/bank-vaults/secret-sync) tool while also addressing common pitfalls when dealing with secrets. [Read more](https://techblog.cisco.com/blog/better-secret-management-with-bank-vaults-secret-sync)
+This post shows you how to use different secret service providers using the new [Secret Sync](https://github.com/bank-vaults/secret-sync) tool while also addressing common pitfalls when dealing with secrets. [Read more](https://outshift.cisco.com/blog/in-depth-tech/secret-management-bank-vaults-secret-sync)
 
 ## Banzai Cloud blog posts
 

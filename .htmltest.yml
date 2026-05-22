@@ -10,4 +10,6 @@ IgnoreURLs:
 - ^https://github\.com/bank-vaults/bank-vaults\.dev/commit/
 - ^https://github\.com/orgs/bank-vaults/projects/
 - ^https://www.nitrokey.com/
+# hashicorp.com aggressively rate-limits CI runners (HTTP 429); the URL is valid.
+- ^https://www\.hashicorp\.com/bsl
 TestFilesConcurrently: false

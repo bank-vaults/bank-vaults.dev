@@ -17,7 +17,7 @@ We support the following three scenarios:
 ## Prerequisites
 
 1. Install the [Istio operator](https://github.com/banzaicloud/istio-operator).
-1. Make sure you have [mTLS](https://istio.io/docs/tasks/security/authentication/authn-policy/#globally-enabling-istio-mutual-tls) enabled in the Istio mesh through the operator with the following command:
+1. Make sure you have [mTLS](https://istio.io/latest/docs/tasks/security/authentication/mtls-migration/#lock-down-mutual-tls-for-the-entire-mesh) enabled in the Istio mesh through the operator with the following command:
 
     Enable mTLS if it is not set to `STRICT`:
 

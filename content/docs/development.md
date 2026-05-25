@@ -3,58 +3,39 @@ title: Development
 weight: 1300
 ---
 
-This guide explains the steps and requirements for developing Bank-Vaults projects.
+This guide explains the requirements for developing Bank-Vaults projects.
 
-## Quick start
+## Requirements
 
-Install [Nix](https://nixos.org/download.html):
+Each Bank-Vaults project is a Go module with its own `Makefile`. The Makefile is the entry point for all common development tasks (building, testing, linting, generating code, etc.).
 
-```shell
-sh <(curl -L https://nixos.org/nix/install) --daemon
-```
+Common prerequisites across the projects:
 
-Install [direnv](https://direnv.net/docs/installation.html):
+- A recent [Go toolchain](https://go.dev/dl/) (see each project's `.go-version` file for the exact version).
+- [Docker](https://docs.docker.com/get-docker/) for building container images and running integration tests.
+- [`kind`](https://kind.sigs.k8s.io/) for running Kubernetes-based acceptance tests locally.
 
-```shell
-curl -sfL https://direnv.net/install.sh | bash
-```
+Additional tools (`kubectl`, `helm`, `kustomize`, `controller-gen`, `golangci-lint`, etc.) are installed automatically into the project's `bin/` directory the first time you run `make deps`.
 
-Load direnv to your shell:
+## Getting started
 
-```shell
-eval "\$(direnv hook bash)"
-```
+1. Clone the project you want to work on, for example:
 
-_Don't forget to add the above line to your shell rc file._
+   ```shell
+   git clone https://github.com/bank-vaults/vault-operator.git
+   cd vault-operator
+   ```
 
-Clone a project and enter its directory, then run:
+2. Install local dependencies:
 
-```shell
-direnv allow
-```
+   ```shell
+   make deps
+   ```
 
-**You are ready to go!**
+3. Run the test suite:
 
-## Development environment
+   ```shell
+   make test
+   ```
 
-Bank-Vaults uses [Nix](https://nixos.org/) to create a portable development environment across developer machines and CI,
-ensuring a certain level of reproducibility and minimizing environmental issues during development.
-
-Follow the [official installation instructions](https://nixos.org/download.html) to download and install Nix.
-
-_Alternatively, you can use [this](https://github.com/DeterminateSystems/nix-installer) installer by [Determinate Systems](https://github.com/DeterminateSystems)._
-
-In addition to Nix, you also need to install [direnv](https://direnv.net/) by following the [installation instructions](https://direnv.net/docs/installation.html).
-
-_Follow the onscreen instructions to add direnv's hook to your shell. You may also need to restart your shell._
-
-After installing both Nix and direnv, you will be ready to develop Bank-Vaults projects.
-
-Check out one of the repositories and run `direnv allow` upon entering the directory.
-(You only need to do this the first time, and then every time the `.envrc` file in the project changes.)
-
-Each project should have additional development information in its README, but generally,
-you will find a `Makefile` in each project with the necessary targets for development.
-
-Finally, each project contains instructions on how to develop the project _without_ using Nix.
-However, these instructions are offered as a best-effort basis and may not always work, as maintainers do not test them regularly.
+4. See `make help` for the full list of available targets, and refer to the project's `README.md` and `CONTRIBUTING.md` for project-specific guidance.

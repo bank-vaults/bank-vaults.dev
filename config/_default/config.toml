@@ -56,8 +56,9 @@ twitter = "calisti12"
   project_name = "Bank-Vaults"
   product_name = "Bank-Vaults"
 
-  latest_version = "1.20.0" # Used in some installation commands
-  latest_operator_version = "1.21.0"
+  latest_vault_operator = "1.24.0"
+  latest_vault_helm_chart = "1.22.0"
+  latest_vault_secrets_webhook = "1.23.0"
 
   ###############################################################################
   # Docsy-theme specific config customizations

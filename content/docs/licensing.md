@@ -3,18 +3,30 @@ title: Licensing guide
 weight: 1275
 ---
 
-This guide explains the licensing of the different Bank-Vaults components, and how they are affected by the [HashiCorp Vault license](https://www.hashicorp.com/bsl).
+This guide explains the licensing of the Bank-Vaults components and how they interact with the upstream Vault implementation they manage.
 
-Bank-Vaults interfaces with Vault in several ways:
+## Bank-Vaults components
 
-- The [Bank-Vaults CLI]({{< relref "/docs/cli-tool/_index.md" >}}) streamlines Vault configuration.
-- The [Vault Operator]({{< relref "/docs/operator/_index.md" >}}) enables seamless operation of Vault on Kubernetes.
-- The [Vault Secrets Webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}) can directly inject secrets from Vault into Kubernetes pods.
+All Bank-Vaults components are licensed under the [Apache 2.0 License](https://github.com/bank-vaults/bank-vaults/blob/main/LICENSE). Each repository contains its own `LICENSE` file. This applies to:
 
-The Bank-Vaults CLI and the Vault Secrets Webhook are not affected by the HashiCorp licensing changes, you can use them both with the older MPL-licensed versions of Vault, and also the newer BUSL-licensed versions.
+- The [Bank-Vaults CLI]({{< relref "/docs/cli-tool/_index.md" >}}).
+- The [Vault Operator]({{< relref "/docs/operator/_index.md" >}}).
+- The [Vault Helm chart](https://github.com/bank-vaults/vault-helm-chart).
+- The [Vault Secrets Webhook]({{< relref "/docs/mutating-webhook/_index.md" >}}).
 
-- By default, the Bank-Vaults components are licensed under the [Apache 2.0 License](https://github.com/bank-vaults/bank-vaults/blob/main/LICENSE).
-- The license of the Vault operator and our Vault Helm chart might change to BUSL in the near future to meet the terms of the Vault BUSL license. We are waiting on our legal advisors to decide wether this change is necessary.
-- Each component includes a LICENSE file in its repository to make it obvious which license applies to the component.
+Bank-Vaults does not embed or redistribute Vault, it manages an upstream Vault container image you choose. Whatever license applies to that image applies to the Vault deployment you run.
 
-If you are using the Vault operator or our Vault Helm chart in a scenario that requires a commercial Vault license, obtaining it is your responsibility.
+## Upstream Vault licensing
+
+Vault's license has changed over time:
+
+- **MPL-2.0** for Vault `< 1.14.x`.
+- **[BSL 1.1](https://www.hashicorp.com/bsl)** for Vault `>= 1.14.x` and the Vault 2.0 line. The HashiCorp BSL restricts commercial offerings that compete with HashiCorp's managed Vault product; production use of Vault itself is permitted.
+- HashiCorp was acquired by IBM in 2025; the BSL-1.1 terms carried over.
+
+If your use case is restricted by Vault's BSL, you have two options:
+
+1. **Stay on an MPL-licensed Vault release** (`< 1.14.x`). Bank-Vaults still supports these — see the [version compatibility matrix](https://github.com/bank-vaults/vault-operator/blob/main/VERSIONS.md).
+2. **Use [OpenBao](https://openbao.org/)** — the Linux Foundation MPL-2.0 community fork. Bank-Vaults image references can be pointed at an OpenBao image; the operator's API is unchanged. This path is community-supported and not yet in our CI matrix.
+
+If you need a commercial Vault license to bypass the BSL non-compete, obtaining it from HashiCorp/IBM is your responsibility. Bank-Vaults does not include or imply any Vault license.

@@ -12,4 +12,6 @@ IgnoreURLs:
 - ^https://www.nitrokey.com/
 # hashicorp.com aggressively rate-limits CI runners (HTTP 429); the URL is valid.
 - ^https://www\.hashicorp\.com/bsl
+# Slack workspace links 403 without a member session; valid once signed in.
+- ^https://cloud-native\.slack\.com/
 TestFilesConcurrently: false

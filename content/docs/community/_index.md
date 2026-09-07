@@ -5,7 +5,7 @@ weight: 8000
 
 If you have questions about Bank-Vaults or its components, get in touch with us on Slack!
 
-First, [register on the CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf), then [visit the #bank-vaults Slack channel](https://cloud-native.slack.com/archives/C078PHYK38W/).
+First, [register on the CNCF Slack](https://slack.cncf.io), then [visit the #bank-vaults Slack channel](https://cloud-native.slack.com/archives/C078PHYK38W/).
 
 You can also ask questions on [GitHub Discussions](https://github.com/orgs/bank-vaults/discussions). We also share important updates here.
 
